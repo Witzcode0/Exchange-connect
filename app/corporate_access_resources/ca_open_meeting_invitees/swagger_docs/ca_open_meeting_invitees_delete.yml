@@ -1,0 +1,22 @@
+Delete a CA Open Meeting invitee
+---
+tags:
+  - CA Open Meeting Invitees
+parameters:
+  - in: header
+    name: Authorization
+    required: true
+    type: string
+  - in: path
+    name: row_id
+    schema:
+      type: int
+    required: true
+    description: 'The CA Open Meeting invitee to delete'
+responses:
+  204:
+    description: 'CA Open Meeting invitee deleted'
+  404:
+    description: 'CA Open Meeting invitee id: <row_id> does not exist'
+  500:
+    description: 'Some unknown exception!'

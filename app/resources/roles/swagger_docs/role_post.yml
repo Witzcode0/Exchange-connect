@@ -1,0 +1,86 @@
+For creating new role
+---
+tags:
+  - Roles
+parameters:
+  - in: header
+    name: Authorization
+    type: string
+  - in: body
+    name: body
+    schema:
+      $ref: '#/definitions/Role'
+responses:
+  201:
+    description: 'Role has been created'
+    schema:
+      content:
+        application/json:
+      schema:
+        type: object
+        required:
+          - message
+          - row_id
+        properties:
+          message:
+            type: string
+            default: 'Role has been created'
+          row_id:
+            type: int32
+            description: 'row id of the generated Role'
+            default: 1
+  400:
+    description: 'No data sent'
+  422:
+    description: 'Error in data'
+  500:
+    description: 'Some unknown exception!'
+definitions:
+  Role:
+    properties:
+      created_by:
+        format: int32
+        readOnly: true
+        type: integer
+      created_date:
+        format: date-time
+        readOnly: true
+        type: string
+        x-nullable: true
+      deleted:
+        readOnly: true
+        type: boolean
+        x-nullable: true
+      links:
+        readOnly: true
+        type: string
+      modified_date:
+        format: date-time
+        readOnly: true
+        type: string
+        x-nullable: true
+      name:
+        maxLength: 128
+        minLength: 1
+        type: string
+      permissions:
+        type: string
+      row_id:
+        format: int32
+        readOnly: true
+        type: integer
+      updated_by:
+        format: int32
+        readOnly: true
+        type: integer
+      users:
+        items:
+          type: string
+        readOnly: true
+        type: array
+    required:
+    - created_by
+    - name
+    - permissions
+    - updated_by
+    type: object

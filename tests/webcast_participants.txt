@@ -1,0 +1,31 @@
+CRUD TEST
+1. POST
+   - test with webcast_id and participant_id
+   - test with random value
+   - test with any keys
+   - test with participant_id which is not in user
+   - check length constraint for participant_first_name, invitee_last_name and
+        invitee_designation
+    - check if participant_id is given and participant_email both are given, raise error
+    - check if participant_id is given and participant_first_name OR participant_last_name OR
+        participant_designation are given, raise error
+  - if data entered, update the webcast_stats table for the webcast_id
+  - check with group account type user with participant_ids and host_ids for
+        both account child and group account team member
+2. PUT
+   -  test same as post
+   - check length constraint for participant_first_name, participant_last_name and
+        participant_designation
+    - check if participant_id is given and participant_email both are given, raise error
+    - check if participant_id is given and participant_first_name OR participant_last_name OR
+        participant_designation are given, raise error
+   - check if webcast_id is changed and update the webcast_stats for the new webcast_id and old
+        webcast_id
+    - check with group account type user with participant_ids and host_ids for
+        both account child and group account team member
+3. DELETE
+  - test delete data by row_id
+  - if webcast_answer is deleted, update the webcast_stats for the related webcast_id
+4. GET
+  - test fetch data by row_id
+  - test fetch all data of webcast participant

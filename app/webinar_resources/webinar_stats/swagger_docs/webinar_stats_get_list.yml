@@ -1,0 +1,161 @@
+Get a list of webinar stats based on query parameters
+---
+tags:
+  - Webinar Stats
+parameters:
+  - in: header
+    name: Authorization
+    required: true
+    type: string
+  - in: query
+    schema:
+      $ref: '#/definitions/WebinarStatsReadArgs'
+responses:
+  200:
+    description: 'webinar stats fetched'
+    schema:
+      type: object
+      properties:
+        results:
+          type: array
+          items:
+            $ref: '#/definitions/WebinarStats'
+        total:
+          type: int32
+          default: 1
+  404:
+    description: 'No matching webinar stats found'
+  500:
+    description: 'Some unknown exception'
+definitions:
+  WebinarStats:
+    properties:
+      average_rating:
+        type: number
+        x-nullable: true
+      created_date:
+        format: date-time
+        readOnly: true
+        type: string
+        x-nullable: true
+      links:
+        readOnly: true
+        type: string
+      modified_date:
+        format: date-time
+        readOnly: true
+        type: string
+        x-nullable: true
+      row_id:
+        format: int32
+        readOnly: true
+        type: integer
+      total_answers:
+        format: int32
+        type: integer
+        x-nullable: true
+      total_attendees:
+        format: int32
+        type: integer
+        x-nullable: true
+      total_chat_messages:
+        format: int32
+        type: integer
+        x-nullable: true
+      total_hosts:
+        format: int32
+        type: integer
+        x-nullable: true
+      total_invitees:
+        format: int32
+        type: integer
+        x-nullable: true
+      total_participants:
+        format: int32
+        type: integer
+        x-nullable: true
+      total_questions:
+        format: int32
+        type: integer
+        x-nullable: true
+      total_rsvps:
+        format: int32
+        type: integer
+        x-nullable: true
+      webinar:
+        properties:
+          ended_at:
+            format: date-time
+            type: string
+            x-nullable: true
+          invite_banner_filename:
+            maxLength: 256
+            type: string
+            x-nullable: true
+          invite_logo_filename:
+            maxLength: 256
+            type: string
+            x-nullable: true
+          row_id:
+            format: int32
+            readOnly: true
+            type: integer
+          started_at:
+            format: date-time
+            type: string
+            x-nullable: true
+          title:
+            maxLength: 256
+            minLength: 1
+            type: string
+        readOnly: true
+        required:
+        - title
+        type: object
+      webinar_id:
+        format: int32
+        type: integer
+    required:
+    - webinar_id
+    type: object
+  WebinarStatsReadArgs:
+    properties:
+      created_date_from:
+        format: date-time
+        type: string
+      created_date_to:
+        format: date-time
+        type: string
+      operator:
+        enum:
+        - and
+        - or
+        type: string
+        default: and
+      page:
+        format: int32
+        type: integer
+        default: 1
+      per_page:
+        format: int32
+        type: integer
+        default: 20
+      pfields:
+        items:
+          type: string
+        type: array
+      sort:
+        enum:
+        - asc
+        - dsc
+        type: string
+        default: asc
+      sort_by:
+        items:
+          type: string
+        type: array
+        default: row_id
+      webinar_id:
+        format: int32
+        type: integer
+    type: object

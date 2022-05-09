@@ -1,0 +1,28 @@
+TEST ADMIN
+
+1. POST
+    - check data missing error
+    - check only super admin can create permission
+    - check http exception error
+    - check no errors, data entered successfully
+
+2. PUT
+    - check forbidden error
+    - check only super admin can update permission
+    - check http exception error
+    - check not found
+    - check no errors, permission updated successfully
+
+3. DELETE
+    - check not found
+    - check only super admin can delete permission
+    - check found, deleted
+
+4. GET
+    - check not found
+    - check only super admin can get permission
+    - check found, fetched
+
+5. GETLIST
+    - only active permissions are fetched
+    - check only super admin can get permissions

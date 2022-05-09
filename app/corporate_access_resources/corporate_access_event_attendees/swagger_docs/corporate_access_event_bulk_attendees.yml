@@ -1,0 +1,72 @@
+For creating new corporate access event attendee in bulk by user
+---
+tags:
+  - Corporate Access Event Attendees
+parameters:
+  - in: header
+    name: Authorization
+    type: string
+  - in: body
+    name: body
+    schema:
+      $ref: '#/definitions/BulkCorporateAccessAttendees'
+responses:
+  201:
+    description: 'Corporate access event attendee added'
+  400:
+    description: 'No data sent'
+  422:
+    description: 'Error in data'
+  500:
+    description: 'Some unknown exception!'
+definitions:
+  BulkCorporateAccessAttendees:
+    properties:
+      attendee_delete_ids:
+        items:
+          format: int32
+          type: integer
+        type: array
+      attendees:
+        items:
+          properties:
+            corporate_access_event_slot_id:
+              format: int32
+              type: integer
+            inquiries:
+              items:
+                properties:
+                  comment:
+                    type: string
+                  inquiry_id:
+                    format: int32
+                    type: integer
+                  row_id:
+                    format: int32
+                    type: integer
+                required:
+                - inquiry_id
+                type: object
+              type: array
+            invitees:
+              items:
+                properties:
+                  comment:
+                    type: string
+                  invitee_id:
+                    format: int32
+                    type: integer
+                  row_id:
+                    format: int32
+                    type: integer
+                type: object
+              type: array
+          type: object
+        type: array
+      corporate_access_event_id:
+        format: int32
+        type: integer
+    required:
+    - corporate_access_event_id
+    type: object
+

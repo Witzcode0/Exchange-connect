@@ -1,0 +1,32 @@
+InquiryContactUsPostAPI :
+* Post
+    - check data missing error (required field).
+    - check data incorrect error (length validations of all fields).
+    - check inquiry type is 'contact-us'
+    - check no errors, data entered successfully.
+
+InquiryPlanPostAPI :
+* Post
+    - check inquiry type is 'plan-quote'.
+    - check major sub type must be there and should be one among in list mentioned.
+    - check getting created_by, account_id, name and email from token, add to db.
+    - check no errors, data entered successfully.
+
+InquiryAPI :
+* Put
+    - check only super admin can access.
+    - check not found (Inquiry id does not exist).
+    - check length validations
+    - check updated_by field updated with admin row_id.
+    - check no errors, data updated successfully.
+* Get
+    - check only super admin can access.
+    - check not found (Inquiry id does not exist).
+    - check found, fetched.
+
+InquiryListAPI :
+* Get
+    - check only super admin can access.
+    - check found, fetched.
+    - check name and email filters.
+    - check inquiry_type, major_sub_type and created_by filters.

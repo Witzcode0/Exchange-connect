@@ -1,0 +1,56 @@
+TEST CRUD
+1. POST
+    - check data missing error
+    - check forbidden error
+    - check httpexception error
+    - check unknown error
+    - check if user has account_type as corporate and is_admin, if not, abort
+    - check if file and url both are being sent, if yes, raise error
+    - check no errors, data entered successfully
+2. PUT
+    - check forbidden error
+    - check httpexception error
+    - check unknown error
+    - check ownership
+    - check if file and url both are being sent, if yes, raise error
+    - check no errors, data updated successfully
+3. DELETE
+    - check not found
+    - check found, deleted
+4. GET
+   - check not found
+   - check found, fetched
+5. GETLIST
+   - check found, fetched
+   - check if filter company_id is there, if yes, then find the all the
+        corporate_announcements of the company the user follows and of his
+        own company.
+
+TEST ADMIN
+1. POST
+    - check data missing error
+    - check forbidden error
+    - check httpexception error
+    - check unknown error
+    - check does not exists error
+    - check user role, if permission is not 'add account', abort
+    - check if file and url both are being sent, if yes, raise error
+    - check no errors, data entered successfully
+2. PUT
+    - check forbidden error
+    - check httpexception error
+    - check unknown error
+    - check does not exists error
+    - check user role, if permission is not 'add account', abort
+    - check if file and url both are being sent, if yes, raise error
+    - check no errors, data entered successfully
+3. DELETE
+    - check not found
+    - check found, deleted
+4. GET
+    - check not found
+    - check found, fetched
+5. GETLIST
+    - check found, fetched
+    - check with manager type user, can fetch assigned accounts announcement
+    - check with company_name

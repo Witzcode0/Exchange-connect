@@ -1,0 +1,538 @@
+definitions:
+  AdminScheduledReportLogReadArgs:
+    properties:
+      created_date_from:
+        format: date-time
+        type: string
+      created_date_to:
+        format: date-time
+        type: string
+      operator:
+        enum:
+        - and
+        - or
+        type: string
+      page:
+        format: int32
+        type: integer
+      per_page:
+        format: int32
+        type: integer
+      pfields:
+        items:
+          type: string
+        type: array
+      report_id:
+        format: int32
+        type: integer
+      sort:
+        enum:
+        - asc
+        - dsc
+        type: string
+      sort_by:
+        items:
+          type: string
+        type: array
+    type: object
+  AdminScheduledReportReadArgs:
+    properties:
+      account_id:
+        format: int32
+        type: integer
+      company:
+        type: string
+      created_by:
+        format: int32
+        type: integer
+      created_date_from:
+        format: date-time
+        type: string
+      created_date_to:
+        format: date-time
+        type: string
+      deleted:
+        type: boolean
+      frequency:
+        enum:
+        - daily
+        - weekly
+        - monthly
+        - yearly
+        type: string
+      is_active:
+        type: boolean
+      operator:
+        enum:
+        - and
+        - or
+        type: string
+      page:
+        format: int32
+        type: integer
+      per_page:
+        format: int32
+        type: integer
+      pfields:
+        items:
+          type: string
+        type: array
+      sort:
+        enum:
+        - asc
+        - dsc
+        type: string
+      sort_by:
+        items:
+          type: string
+        type: array
+    type: object
+  ApiCalls:
+    properties:
+      code:
+        format: int32
+        type: integer
+        x-nullable: true
+      dataReceived:
+        type: string
+        x-nullable: true
+      error:
+        type: string
+        x-nullable: true
+      name:
+        type: string
+        x-nullable: true
+      reason:
+        type: string
+        x-nullable: true
+    type: object
+  ScheduledReport:
+    properties:
+      account:
+        properties:
+          account_name:
+            maxLength: 512
+            minLength: 1
+            type: string
+          account_type:
+            enum:
+            - corporate
+            - buy-side
+            - sell-side
+            - general investor
+            - private
+            - sme
+            - corporate-group
+            - guest
+            - admin
+            type: string
+          row_id:
+            format: int32
+            readOnly: true
+            type: integer
+        readOnly: true
+        required:
+        - account_name
+        - account_type
+        type: object
+      account_id:
+        format: int32
+        readOnly: true
+        type: integer
+      company:
+        maxLength: 128
+        type: string
+      created_by:
+        format: int32
+        readOnly: true
+        type: integer
+      created_date:
+        format: date-time
+        readOnly: true
+        type: string
+        x-nullable: true
+      creator:
+        properties:
+          account:
+            properties:
+              account_name:
+                maxLength: 512
+                minLength: 1
+                type: string
+              account_type:
+                enum:
+                - corporate
+                - buy-side
+                - sell-side
+                - general investor
+                - private
+                - sme
+                - corporate-group
+                - guest
+                - admin
+                type: string
+              row_id:
+                format: int32
+                readOnly: true
+                type: integer
+            readOnly: true
+            required:
+            - account_name
+            - account_type
+            type: object
+          profile:
+            properties:
+              designation:
+                maxLength: 128
+                type: string
+                x-nullable: true
+              first_name:
+                maxLength: 512
+                minLength: 1
+                type: string
+              last_name:
+                maxLength: 512
+                minLength: 1
+                type: string
+            required:
+            - first_name
+            - last_name
+            type: object
+          row_id:
+            format: int32
+            readOnly: true
+            type: integer
+        readOnly: true
+        required:
+        - profile
+        type: object
+      currency:
+        maxLength: 32
+        type: string
+        x-nullable: true
+      deleted:
+        readOnly: true
+        type: boolean
+        x-nullable: true
+      email:
+        format: email
+        maxLength: 128
+        type: string
+      end_date:
+        format: date-time
+        type: string
+      frequency:
+        enum:
+        - daily
+        - weekly
+        - monthly
+        - yearly
+        type: string
+      is_active:
+        type: boolean
+        x-nullable: true
+      logs:
+        items:
+          $ref: '#/definitions/ScheduledReportLog'
+        type: array
+      modified_date:
+        format: date-time
+        readOnly: true
+        type: string
+        x-nullable: true
+      next_at:
+        format: date-time
+        type: string
+        x-nullable: true
+      peers:
+        type: string
+        x-nullable: true
+      request_body:
+        type: string
+        x-nullable: true
+      row_id:
+        format: int32
+        readOnly: true
+        type: integer
+      start_from:
+        format: date-time
+        type: string
+        x-nullable: true
+      type:
+        enum:
+        - COMPANY_PROFILE_SNAPSHOT
+        - OWNERSHIP_ANALYSIS_SNAPSHOT
+        - DETAILED_OWNERSHIP_ANALYSIS
+        - INVESTOR_PROFILE
+        - DISCLOSURES_ENHANCEMENT
+        - OWNERSHIP_PROFILE_INSTITUTION
+        - OWNERSHIP_PROFILE_FUND
+        - INVESTOR_TARGETING_SCREENING
+        type: string
+      updated_by:
+        format: int32
+        readOnly: true
+        type: integer
+      updator:
+        properties:
+          account:
+            properties:
+              account_name:
+                maxLength: 512
+                minLength: 1
+                type: string
+              account_type:
+                enum:
+                - corporate
+                - buy-side
+                - sell-side
+                - general investor
+                - private
+                - sme
+                - corporate-group
+                - guest
+                - admin
+                type: string
+              row_id:
+                format: int32
+                readOnly: true
+                type: integer
+            readOnly: true
+            required:
+            - account_name
+            - account_type
+            type: object
+          profile:
+            properties:
+              designation:
+                maxLength: 128
+                type: string
+                x-nullable: true
+              first_name:
+                maxLength: 512
+                minLength: 1
+                type: string
+              last_name:
+                maxLength: 512
+                minLength: 1
+                type: string
+            required:
+            - first_name
+            - last_name
+            type: object
+          row_id:
+            format: int32
+            readOnly: true
+            type: integer
+        readOnly: true
+        required:
+        - profile
+        type: object
+    required:
+    - account_id
+    - company
+    - created_by
+    - email
+    - end_date
+    - frequency
+    - type
+    - updated_by
+    type: object
+  ScheduledReportLog:
+    properties:
+      account_id:
+        format: int32
+        readOnly: true
+        type: integer
+      api_calls:
+        items:
+          $ref: '#/definitions/ApiCalls'
+        type: array
+      created_by:
+        format: int32
+        readOnly: true
+        type: integer
+      created_date:
+        format: date-time
+        readOnly: true
+        type: string
+        x-nullable: true
+      modified_date:
+        format: date-time
+        readOnly: true
+        type: string
+        x-nullable: true
+      report:
+        type: string
+        x-nullable: true
+      report_id:
+        format: int32
+        readOnly: true
+        type: integer
+        x-nullable: true
+      response_body:
+        type: string
+        x-nullable: true
+      response_code:
+        format: int32
+        type: integer
+        x-nullable: true
+      row_id:
+        format: int32
+        readOnly: true
+        type: integer
+      sent_at:
+        format: date-time
+        type: string
+        x-nullable: true
+      status:
+        type: string
+    required:
+    - account_id
+    - created_by
+    type: object
+  ScheduledReportUserwise:
+    properties:
+      count:
+        format: int32
+        readOnly: true
+        type: integer
+      user:
+        properties:
+          account:
+            properties:
+              account_name:
+                maxLength: 512
+                minLength: 1
+                type: string
+              account_type:
+                enum:
+                - corporate
+                - buy-side
+                - sell-side
+                - general investor
+                - private
+                - sme
+                - corporate-group
+                - guest
+                - admin
+                type: string
+              row_id:
+                format: int32
+                readOnly: true
+                type: integer
+            readOnly: true
+            required:
+            - account_name
+            - account_type
+            type: object
+          profile:
+            properties:
+              designation:
+                maxLength: 128
+                type: string
+                x-nullable: true
+              first_name:
+                maxLength: 512
+                minLength: 1
+                type: string
+              last_name:
+                maxLength: 512
+                minLength: 1
+                type: string
+            required:
+            - first_name
+            - last_name
+            type: object
+          row_id:
+            format: int32
+            readOnly: true
+            type: integer
+        readOnly: true
+        required:
+        - profile
+        type: object
+    type: object
+  ScheduledReportReadArgs:
+    properties:
+      company:
+        type: string
+      created_date_from:
+        format: date-time
+        type: string
+      created_date_to:
+        format: date-time
+        type: string
+      frequency:
+        enum:
+        - daily
+        - weekly
+        - monthly
+        - yearly
+        type: string
+      operator:
+        enum:
+        - and
+        - or
+        type: string
+      page:
+        format: int32
+        type: integer
+      per_page:
+        format: int32
+        type: integer
+      pfields:
+        items:
+          type: string
+        type: array
+      sort:
+        enum:
+        - asc
+        - dsc
+        type: string
+      sort_by:
+        items:
+          type: string
+        type: array
+    type: object
+  ScheduledReportsUserwiseReadArgs:
+    properties:
+      account_name:
+        type: string
+      created_date_from:
+        format: date-time
+        type: string
+      created_date_to:
+        format: date-time
+        type: string
+      full_name:
+        type: string
+      operator:
+        enum:
+        - and
+        - or
+        type: string
+      page:
+        format: int32
+        type: integer
+      per_page:
+        format: int32
+        type: integer
+      pfields:
+        items:
+          type: string
+        type: array
+      sort:
+        enum:
+        - asc
+        - dsc
+        type: string
+      sort_by:
+        items:
+          type: string
+        type: array
+    type: object
+parameters: {}
+paths: {}
+swagger: '2.0'
+tags: []

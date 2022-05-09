@@ -1,0 +1,76 @@
+Webinar Launch Test:
+    -check if is_draft is false of the webinar launched:
+        - send an email to creator
+            along with change the time according to timezone
+        - if invitees, Send an email to invitees
+            along with change the time according to timezone
+        - if participants, send an email to participants
+            along with change the time according to timezone
+        - if rsvps, send an email to rsvps
+            along with change the time according to timezone
+        - if hosts, send an email to hosts
+            along with change the time according to timezone
+
+creator format synced as on 18/06/18 11:43
+invitees format synced as on 18/06/18 11:43
+participants format synced as on 18/06/18 11:43
+rsvps format synced as on 18/06/18 11:43
+hosts format synced as on 18/06/18 11:43
+
+Webinar Completion Test:
+    - check completion email of participants with html
+    - check completion email of attendees with html
+
+participants format synced as on 18/06/18 11:43
+attendees format synced as on 18/06/18 11:43
+
+Webinar Cancellation Test:
+    - check if webinar cancelled, then send an email to invitees
+invitees format last synced on 18/06/18 11:43
+
+Webinar Update Test:
+    - check update mail with html
+    - check send update email to invitees
+        along with change the time according to timezone
+    - check send update email to creators.
+        along with change the time according to timezone
+    - check send update email to rsvps.
+        along with change the time according to timezone
+    - check send update email to participants.
+        along with change the time according to timezone
+    - check send update email to hosts.
+        along with change the time according to timezone
+
+creator format synced as on 18/06/18 11:43
+invitees format synced as on 18/06/18 11:43
+participants format synced as on 18/06/18 11:43
+rsvps format synced as on 18/06/18 11:43
+hosts format synced as on 18/06/18 11:43
+
+check for mandatory and non mandatory fields:
+    mandatory fields :
+    - user_name
+    - webinar(title)
+    non-mandatory fields :
+    - time_zone
+    - date_time (started_at, ended_at)
+    - speaker_list
+    - participant_list
+    - contact_person
+    - email
+    constants/configs :
+    - link
+    - helpdesk_number
+    - helpdesk_email
+
+check only invitee can get book now option.
+check logo url:
+    Get the logo url from the webinar if not, get it from webinar account if not,
+    get default one from config.
+    for the following contents
+    1. Webinar launch
+    2. Webinar update
+    3. Webinar completion
+
+Webinar Register email:
+    - check invitee get confirmation email on register.

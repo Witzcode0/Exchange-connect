@@ -1,0 +1,71 @@
+For creating new permission
+---
+tags:
+  - Permission (Admin)
+parameters:
+  - in: header
+    name: Authorization
+    type: string
+  - in: body
+    name: body
+    schema:
+      $ref: '#/definitions/Permission'
+responses:
+  201:
+    description: 'Permission has been created'
+    schema:
+      content:
+        application/json:
+      schema:
+        type: object
+        required:
+          - message
+          - row_id
+        properties:
+          message:
+            type: string
+            default: 'Permission has been created'
+          row_id:
+            type: int32
+            description: 'row id of the generated Permission'
+            default: 1
+  400:
+    description: 'No data sent'
+  422:
+    description: 'Error in data or Permission already exists'
+  500:
+    description: 'Some unknown exception!'
+definitions:
+  Permission:
+    properties:
+      created_date:
+        format: date-time
+        readOnly: true
+        type: string
+        x-nullable: true
+      description:
+        maxLength: 256
+        type: string
+        x-nullable: true
+      is_active:
+        type: boolean
+        x-nullable: true
+      modified_date:
+        format: date-time
+        readOnly: true
+        type: string
+        x-nullable: true
+      name:
+        maxLength: 256
+        type: string
+      row_id:
+        format: int32
+        readOnly: true
+        type: integer
+      sequence:
+        format: int32
+        type: integer
+        x-nullable: true
+    required:
+      - name
+    type: object

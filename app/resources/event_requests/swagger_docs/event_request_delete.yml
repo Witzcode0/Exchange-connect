@@ -1,0 +1,21 @@
+Delete a Event Request
+---
+tags:
+  - Event Requests
+parameters:
+  - in: header
+    name: Authorization
+    type: string
+  - in: path
+    name: row_id
+    schema:
+      type: int
+    required: true
+    description: 'The event request request to delete'
+responses:
+  204:
+    description: 'Event Request deleted'
+  404:
+    description: 'Event Request id: <row_id> does not exist'
+  500:
+    description: 'Some unknown exception!'

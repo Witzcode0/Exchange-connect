@@ -1,0 +1,214 @@
+Edit a Post Comment udpate details etc.
+---
+tags:
+  - Post Comments
+parameters:
+  - in: header
+    name: Authorization
+    type: string
+    required: true
+  - in: path
+    name: row_id
+    schema:
+      type: int
+    required: true
+    description: 'The Post Comment to modify'
+  - in: body
+    name: body
+    schema:
+      $ref: '#/definitions/PostComment'
+responses:
+  200:
+    description: 'Updated Post Comment id: <row_id>'
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            message:
+              type: string
+              description: 'Updated Post Comment id: <row_id>'
+  400:
+    description: No data sent
+  404:
+    description: 'Post Comment id: <row_id> does not exist'
+  422:
+    description: 'Error in data'
+  500:
+    description: 'Some unknown exception!'
+definitions:
+  PostComment:
+    properties:
+      account:
+        properties:
+          account_name:
+            maxLength: 512
+            minLength: 1
+            type: string
+          account_type:
+            enum:
+            - corporate
+            - buy-side
+            - sell-side
+            - general investor
+            - admin
+            - guest
+            type: string
+          row_id:
+            format: int32
+            readOnly: true
+            type: integer
+        readOnly: true
+        required:
+        - account_name
+        - account_type
+        type: object
+      account_id:
+        format: int32
+        readOnly: true
+        type: integer
+      created_by:
+        format: int32
+        readOnly: true
+        type: integer
+      created_date:
+        format: date-time
+        readOnly: true
+        type: string
+        x-nullable: true
+      creator:
+        properties:
+          account:
+            properties:
+              account_name:
+                maxLength: 512
+                minLength: 1
+                type: string
+              account_type:
+                enum:
+                - corporate
+                - buy-side
+                - sell-side
+                - general investor
+                - admin
+                - guest
+                type: string
+              row_id:
+                format: int32
+                readOnly: true
+                type: integer
+            readOnly: true
+            required:
+            - account_name
+            - account_type
+            type: object
+          profile:
+            properties:
+              designation:
+                maxLength: 128
+                type: string
+                x-nullable: true
+              designation_link:
+                properties:
+                  name:
+                    maxLength: 256
+                    minLength: 1
+                    type: string
+                  row_id:
+                    format: int32
+                    readOnly: true
+                    type: integer
+                readOnly: true
+                required:
+                - name
+                type: object
+              first_name:
+                maxLength: 512
+                minLength: 1
+                type: string
+              last_name:
+                maxLength: 512
+                minLength: 1
+                type: string
+              links:
+                readOnly: true
+                type: string
+              profile_photo_url:
+                format: url
+                readOnly: true
+                type: string
+              profile_thumbnail_url:
+                format: url
+                readOnly: true
+                type: string
+            required:
+            - first_name
+            - last_name
+            type: object
+          row_id:
+            format: int32
+            readOnly: true
+            type: integer
+        readOnly: true
+        required:
+        - profile
+        type: object
+      edited:
+        type: boolean
+        x-nullable: true
+      in_reply_to:
+        format: int32
+        type: integer
+        x-nullable: true
+      links:
+        readOnly: true
+        type: string
+      message:
+        maxLength: 512
+        minLength: 1
+        type: string
+      modified_date:
+        format: date-time
+        readOnly: true
+        type: string
+        x-nullable: true
+      post:
+        properties:
+          description:
+            maxLength: 2048
+            type: string
+            x-nullable: true
+          row_id:
+            format: int32
+            readOnly: true
+            type: integer
+          title:
+            maxLength: 512
+            type: string
+            x-nullable: true
+        readOnly: true
+        type: object
+      post_id:
+        format: int32
+        type: integer
+      posts_f:
+        type: string
+        x-nullable: true
+      posts_j:
+        type: string
+        x-nullable: true
+      row_id:
+        format: int32
+        readOnly: true
+        type: integer
+      updated_by:
+        format: int32
+        readOnly: true
+        type: integer
+    required:
+    - account_id
+    - created_by
+    - message
+    - post_id
+    - updated_by
+    type: object

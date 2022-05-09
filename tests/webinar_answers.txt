@@ -1,0 +1,30 @@
+Test Crud Operations
+
+WebinarAnswerAPI :
+
+* Post
+    - check data missing error (required field)
+    - check does not exist error by sending not available webinar_id and question_id.
+    - check data incorrect error (answer field length validations)
+    - check unknown error
+    - check no errors, data entered successfully
+    - update the webinar_stats table for the webinar_id
+* Put
+    - check not found (webinar answer id does not exist)
+    - check does not exist error by sending not available webinar_id and question_id.
+    - check data incorrect error (answer field length validations)
+    - check unknown error
+    - check no errors, data entered successfully
+    - check if webinar_id is changed then update the webinar_stats for the new webinar_id and old
+        webinar_id
+* Get
+    - check not found (webinar answer id does not exist)
+    - check found, fetched
+* Delete
+    - check not found (webinar answer id does not exist)
+    - check found, deleted
+
+WebinarAnswerListAPI :
+
+* Get
+    - check found, fetched.

@@ -1,0 +1,16 @@
+Test CRUD
+1. Post
+    - creating an company - PASS
+    - testing below validations:
+        - testing for required field for "company_name" - PASS
+        - testing for management_fields validations - PASS
+2. Put
+    - updating an company - PASS
+    - testing below validations:
+        - testing for required field for "company_name" - PASS
+        - testing for management_fields validations - PASS
+3. Delete
+    - deleting a single company = PASS
+4. Get
+    - fetching all company lists = PASS
+    - fetching a single company by id = PASS

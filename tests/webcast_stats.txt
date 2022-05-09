@@ -1,0 +1,6 @@
+Test CRUD
+1. GET
+    - test fetch webcast_stats by webcast_stats row_id
+2. GET List
+    - test fetch webcast_stats list
+    - test fetch webcast_stats using webcast_id filter

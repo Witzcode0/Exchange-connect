@@ -1,0 +1,47 @@
+TEST CRUD
+1. Post
+    - check activation_date updated for new account.
+    - check if subscription first date and last date not provided while creating
+        a new account(i.e. both are empty in account table ),
+        then update both values while creating an user.
+    - add default contacts to user after its creation.
+    - check with already exists guest user to convert into full user
+    - check with is_registration_request with password and without password
+        (Registration request will add and verification email will be send for
+        particular user)
+2. Put
+    - check with already exists guest user to convert into full user
+    - check account id should not change(read-only field)
+3. Get
+4. Delete
+5. Order(PUT)
+    - check if users exists for the all provided row_ids, else raise error
+    - check if all users have same account_id, else raise error
+    - check no errors, update the sequence_id according to the row_ids provided
+        in the input.
+6. OrderAPI(Admin)(PUT):
+    - check admin user permission
+    - validate account_id, else raise error
+    - check if users exists for the all provided row_ids, else raise error
+    - check if all users have same account_id, else raise error
+    - check no errors, update the sequence_id according to the row_ids provided
+        in the input.
+
+TEST ADDITIONAL FUNCTIONALITY
+
+UserListAPI:
+
+    - check filter sector and industry w.r.t. account_profile
+    - check sort_by account_name, designation and full_name
+    - check users account_type of admins coming in result(except super admin)
+    - if account_type filter is passed getting records by passing account_type,
+        if not passed then getting all records except guest users having accout_type guest.
+    - check with manager user, get only assigned account's user detail
+
+ChangePasswordAPI:
+
+    - check password changing successfully.
+    - check email sending to the user email after password successfully changed.
+
+AccountUserMember:
+    - Prefer account user member test case

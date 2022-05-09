@@ -1,0 +1,268 @@
+Get a list of Project Files Archive based on query parameters
+---
+tags:
+  - Project Archive Files
+parameters:
+  - in: header
+    name: Authorization
+    type: string
+  - in: query
+    schema:
+      $ref: '#/definitions/ProjectArchiveFileReadArgs'
+responses:
+  200:
+    description: 'Files fetched'
+    schema:
+      type: object
+      properties:
+        results:
+          type: array
+          items:
+            $ref: '#/definitions/ProjectArchiveFile'
+        total:
+          type: int32
+          default: 1
+  404:
+    description: 'No matching files found'
+  500:
+    description: 'Some unknown exception'
+definitions:
+  ProjectArchiveFile:
+    properties:
+      account:
+        type: string
+        x-nullable: true
+      account_id:
+        format: int32
+        readOnly: true
+        type: integer
+      created_by:
+        format: int32
+        readOnly: true
+        type: integer
+      created_date:
+        format: date-time
+        readOnly: true
+        type: string
+        x-nullable: true
+      creator:
+        properties:
+          account:
+            properties:
+              account_name:
+                maxLength: 512
+                minLength: 1
+                type: string
+              account_type:
+                enum:
+                - corporate
+                - buy-side
+                - sell-side
+                - general investor
+                - admin
+                - guest
+                type: string
+              row_id:
+                format: int32
+                readOnly: true
+                type: integer
+            readOnly: true
+            required:
+            - account_name
+            - account_type
+            type: object
+          profile:
+            properties:
+              designation:
+                maxLength: 128
+                type: string
+                x-nullable: true
+              designation_link:
+                properties:
+                  name:
+                    maxLength: 256
+                    minLength: 1
+                    type: string
+                  row_id:
+                    format: int32
+                    readOnly: true
+                    type: integer
+                readOnly: true
+                required:
+                - name
+                type: object
+              first_name:
+                maxLength: 512
+                minLength: 1
+                type: string
+              last_name:
+                maxLength: 512
+                minLength: 1
+                type: string
+              links:
+                readOnly: true
+                type: string
+              profile_photo_url:
+                format: url
+                readOnly: true
+                type: string
+              profile_thumbnail_url:
+                format: url
+                readOnly: true
+                type: string
+            required:
+            - first_name
+            - last_name
+            type: object
+          row_id:
+            format: int32
+            readOnly: true
+            type: integer
+        readOnly: true
+        required:
+        - profile
+        type: object
+      deleted:
+        readOnly: true
+        type: boolean
+        x-nullable: true
+      file_major_type:
+        maxLength: 128
+        type: string
+        x-nullable: true
+      file_type:
+        maxLength: 256
+        type: string
+        x-nullable: true
+      file_url:
+        format: url
+        readOnly: true
+        type: string
+      filename:
+        type: string
+        x-nullable: true
+      links:
+        readOnly: true
+        type: string
+      modified_date:
+        format: date-time
+        readOnly: true
+        type: string
+        x-nullable: true
+      project:
+        properties:
+          project_name:
+            maxLength: 256
+            type: string
+            x-nullable: true
+          project_type:
+            properties:
+              project_type_name:
+                maxLength: 256
+                minLength: 1
+                type: string
+            readOnly: true
+            required:
+            - project_type_name
+            type: object
+        readOnly: true
+        type: object
+      project_id:
+        format: int32
+        type: integer
+      project_parameter:
+        properties:
+          parent_parameter_name:
+            maxLength: 256
+            minLength: 1
+            type: string
+        readOnly: true
+        required:
+        - parent_parameter_name
+        type: object
+      project_parameter_id:
+        format: int32
+        type: integer
+        x-nullable: true
+      remarks:
+        maxLength: 1024
+        type: string
+        x-nullable: true
+      row_id:
+        format: int32
+        readOnly: true
+        type: integer
+      updated_by:
+        format: int32
+        readOnly: true
+        type: integer
+      version:
+        maxLength: 32
+        type: string
+        x-nullable: true
+    required:
+    - account_id
+    - created_by
+    - project_id
+    - updated_by
+    type: object
+  ProjectArchiveFileReadArgs:
+    properties:
+      account_id:
+        format: int32
+        type: integer
+      created_date_from:
+        format: date-time
+        type: string
+      created_date_to:
+        format: date-time
+        type: string
+      file_name:
+        type: string
+      is_draft:
+        type: boolean
+        default: False
+      main_filter:
+        enum:
+        - all
+        - mine
+        - received
+        type: string
+      operator:
+        enum:
+        - and
+        - or
+        type: string
+        default: and
+      page:
+        format: int32
+        type: integer
+        default: 1
+      per_page:
+        format: int32
+        type: integer
+        default: 20
+      pfields:
+        items:
+          type: string
+        type: array
+      project_id:
+        format: int32
+        type: integer
+      project_name:
+        type: string
+      project_type_id:
+        format: int32
+        type: integer
+      sort:
+        enum:
+        - asc
+        - dsc
+        type: string
+        default: asc
+      sort_by:
+        items:
+          type: string
+        type: array
+        default: row_id
+    type: object

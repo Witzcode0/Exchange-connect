@@ -1,0 +1,77 @@
+Fetch a Menu
+---
+tags:
+  - Menu (Admin)
+parameters:
+  - in: header
+    name: Authorization
+    type: string
+    required: true
+  - in: path
+    name: row_id
+    schema:
+      type: int
+    required: true
+    description: 'The Menu id to fetch'
+responses:
+  200:
+    description: 'Menu fetched'
+    schema:
+      $ref: '#/definitions/Menu'
+  404:
+    description: 'Menu id: <row_id> does not exist'
+  500:
+    description: 'Some unknown exception!'
+definitions:
+  Menu:
+    properties:
+      child_menus:
+        items:
+          allOf:
+            - $ref: '#/definitions/Menu'
+          readOnly: true
+        readOnly: true
+        type: array
+      created_date:
+        format: date-time
+        readOnly: true
+        type: string
+        x-nullable: true
+      description:
+        maxLength: 256
+        type: string
+        x-nullable: true
+      front_end_url:
+        maxLength: 1024
+        type: string
+      icon_name:
+        maxLength: 48
+        type: string
+        x-nullable: true
+      is_active:
+        type: boolean
+        x-nullable: true
+      modified_date:
+        format: date-time
+        readOnly: true
+        type: string
+        x-nullable: true
+      name:
+        maxLength: 256
+        type: string
+      parent_id:
+        format: int32
+        type: integer
+        x-nullable: true
+      row_id:
+        format: int32
+        readOnly: true
+        type: integer
+      sequence:
+        format: int32
+        type: integer
+        x-nullable: true
+    required:
+      - front_end_url
+      - name
+    type: object

@@ -1,0 +1,21 @@
+Delete Menu
+---
+tags:
+  - Menu (Admin)
+parameters:
+  - in: header
+    name: Authorization
+    type: string
+    required: true
+  - in: path
+    name: row_id
+    type: int
+    required: true
+    description: 'The menu to delete'
+responses:
+  204:
+    description: 'menu deleted'
+  404:
+    description: 'menu id: <row_id> does not exist'
+  500:
+    description: 'Some unknown exception!'

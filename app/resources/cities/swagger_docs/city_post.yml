@@ -1,0 +1,94 @@
+For creating new City by user
+---
+tags:
+    - City
+parameters:
+  - in: header
+    name: Authorization
+    type: string
+  - in: body
+    name: body
+    schema:
+      $ref: '#/definitions/City'
+responses:
+  201:
+    description: 'City has been created'
+    schema:
+      content:
+        application/json:
+      schema:
+        type: object
+        required:
+          - message
+          - row_id
+        properties:
+          name:
+            type: string
+            default: 'City been created'
+          row_id:
+            type: int32
+            description: 'row id of the generated City'
+            default: 1
+  400:
+    description: 'No data sent'
+  422:
+    description: 'Error in data'
+  500:
+    description: 'Some unknown exception!'
+definitions:
+  City:
+    properties:
+      city_name:
+        maxLength: 128
+        minLength: 1
+        type: string
+      country_id:
+        format: int32
+        type: integer
+      created_by:
+        format: int32
+        readOnly: true
+        type: integer
+      created_date:
+        format: date-time
+        readOnly: true
+        type: string
+        x-nullable: true
+      creator:
+        properties:
+          row_id:
+            format: int32
+            readOnly: true
+            type: integer
+        readOnly: true
+        type: object
+      deleted:
+        readOnly: true
+        type: boolean
+        x-nullable: true
+      links:
+        readOnly: true
+        type: string
+      modified_date:
+        format: date-time
+        readOnly: true
+        type: string
+        x-nullable: true
+      row_id:
+        format: int32
+        readOnly: true
+        type: integer
+      state_id:
+        format: int32
+        type: integer
+      updated_by:
+        format: int32
+        readOnly: true
+        type: integer
+    required:
+    - city_name
+    - country_id
+    - created_by
+    - state_id
+    - updated_by
+    type: object

@@ -1,0 +1,390 @@
+Get a list of reference event sub types based on query parameters
+---
+tags:
+  - Corporate Access Reference Event Sub Types
+parameters:
+  - in: header
+    name: Authorization
+    required: true
+    type: string
+  - in: query
+    schema:
+      $ref: '#/definitions/CARefEventSubTypeReadArgs'
+responses:
+  200:
+    description: 'reference event sub types fetched'
+    schema:
+      type: object
+      properties:
+        results:
+          type: array
+          items:
+            $ref: '#/definitions/CARefEventSubType'
+        total:
+          type: int32
+          default: 1
+  404:
+    description: 'reference event sub type id: <row_id> does not exist'
+  500:
+    description: 'Some unknown exception'
+definitions:
+  CARefEventSubType:
+    properties:
+      account:
+        properties:
+          account_name:
+            maxLength: 512
+            minLength: 1
+            type: string
+          account_type:
+            enum:
+            - corporate
+            - buy-side
+            - sell-side
+            - general investor
+            - admin
+            - guest
+            type: string
+          row_id:
+            format: int32
+            readOnly: true
+            type: integer
+        readOnly: true
+        required:
+        - account_name
+        - account_type
+        type: object
+      account_id:
+        format: int32
+        readOnly: true
+        type: integer
+      corporate_access_events:
+        items:
+          type: string
+        type: array
+      created_by:
+        format: int32
+        readOnly: true
+        type: integer
+      created_date:
+        format: date-time
+        readOnly: true
+        type: string
+        x-nullable: true
+      creator:
+        properties:
+          account:
+            properties:
+              account_name:
+                maxLength: 512
+                minLength: 1
+                type: string
+              account_type:
+                enum:
+                - corporate
+                - buy-side
+                - sell-side
+                - general investor
+                - admin
+                - guest
+                type: string
+              row_id:
+                format: int32
+                readOnly: true
+                type: integer
+            readOnly: true
+            required:
+            - account_name
+            - account_type
+            type: object
+          profile:
+            properties:
+              designation:
+                maxLength: 128
+                type: string
+                x-nullable: true
+              designation_link:
+                properties:
+                  name:
+                    maxLength: 256
+                    minLength: 1
+                    type: string
+                  row_id:
+                    format: int32
+                    readOnly: true
+                    type: integer
+                readOnly: true
+                required:
+                - name
+                type: object
+              first_name:
+                maxLength: 512
+                minLength: 1
+                type: string
+              last_name:
+                maxLength: 512
+                minLength: 1
+                type: string
+              links:
+                readOnly: true
+                type: string
+              profile_photo_url:
+                format: url
+                readOnly: true
+                type: string
+              profile_thumbnail_url:
+                format: url
+                readOnly: true
+                type: string
+            required:
+            - first_name
+            - last_name
+            type: object
+          row_id:
+            format: int32
+            readOnly: true
+            type: integer
+        readOnly: true
+        required:
+        - profile
+        type: object
+      deleted:
+        readOnly: true
+        type: boolean
+        x-nullable: true
+      description:
+        maxLength: 256
+        type: string
+        x-nullable: true
+      event_type:
+        properties:
+          account:
+            properties:
+              account_name:
+                maxLength: 512
+                minLength: 1
+                type: string
+              account_type:
+                enum:
+                - corporate
+                - buy-side
+                - sell-side
+                - general investor
+                - admin
+                - guest
+                type: string
+              row_id:
+                format: int32
+                readOnly: true
+                type: integer
+            readOnly: true
+            required:
+            - account_name
+            - account_type
+            type: object
+          account_id:
+            format: int32
+            readOnly: true
+            type: integer
+          corporate_access_events:
+            items:
+              type: string
+            type: array
+          corporate_access_ref_event_sub_types:
+            items:
+              type: string
+            type: array
+          created_by:
+            format: int32
+            readOnly: true
+            type: integer
+          created_date:
+            format: date-time
+            readOnly: true
+            type: string
+            x-nullable: true
+          creator:
+            properties:
+              account:
+                properties:
+                  account_name:
+                    maxLength: 512
+                    minLength: 1
+                    type: string
+                  account_type:
+                    enum:
+                    - corporate
+                    - buy-side
+                    - sell-side
+                    - general investor
+                    - admin
+                    - guest
+                    type: string
+                  row_id:
+                    format: int32
+                    readOnly: true
+                    type: integer
+                readOnly: true
+                required:
+                - account_name
+                - account_type
+                type: object
+              profile:
+                properties:
+                  designation:
+                    maxLength: 128
+                    type: string
+                    x-nullable: true
+                  designation_link:
+                    properties:
+                      name:
+                        maxLength: 256
+                        minLength: 1
+                        type: string
+                      row_id:
+                        format: int32
+                        readOnly: true
+                        type: integer
+                    readOnly: true
+                    required:
+                    - name
+                    type: object
+                  first_name:
+                    maxLength: 512
+                    minLength: 1
+                    type: string
+                  last_name:
+                    maxLength: 512
+                    minLength: 1
+                    type: string
+                  links:
+                    readOnly: true
+                    type: string
+                  profile_photo_url:
+                    format: url
+                    readOnly: true
+                    type: string
+                  profile_thumbnail_url:
+                    format: url
+                    readOnly: true
+                    type: string
+                required:
+                - first_name
+                - last_name
+                type: object
+              row_id:
+                format: int32
+                readOnly: true
+                type: integer
+            readOnly: true
+            required:
+            - profile
+            type: object
+          deleted:
+            readOnly: true
+            type: boolean
+            x-nullable: true
+          description:
+            maxLength: 256
+            type: string
+            x-nullable: true
+          links:
+            readOnly: true
+            type: string
+          modified_date:
+            format: date-time
+            readOnly: true
+            type: string
+            x-nullable: true
+          name:
+            maxLength: 128
+            minLength: 1
+            type: string
+          row_id:
+            format: int32
+            readOnly: true
+            type: integer
+          updated_by:
+            format: int32
+            readOnly: true
+            type: integer
+        readOnly: true
+        required:
+        - account_id
+        - created_by
+        - name
+        - updated_by
+        type: object
+      event_type_id:
+        format: int32
+        type: integer
+      links:
+        readOnly: true
+        type: string
+      modified_date:
+        format: date-time
+        readOnly: true
+        type: string
+        x-nullable: true
+      name:
+        maxLength: 128
+        minLength: 1
+        type: string
+      row_id:
+        format: int32
+        readOnly: true
+        type: integer
+      updated_by:
+        format: int32
+        readOnly: true
+        type: integer
+    required:
+    - account_id
+    - created_by
+    - event_type_id
+    - name
+    - updated_by
+    type: object
+  CARefEventSubTypeReadArgs:
+    properties:
+      created_date_from:
+        format: date-time
+        type: string
+      created_date_to:
+        format: date-time
+        type: string
+      event_type_id:
+        format: int32
+        type: integer
+      name:
+        type: string
+      operator:
+        enum:
+        - and
+        - or
+        type: string
+        default: and
+      page:
+        format: int32
+        type: integer
+        default: 1
+      per_page:
+        format: int32
+        type: integer
+        default: 20
+      pfields:
+        items:
+          type: string
+        type: array
+      sort:
+        enum:
+        - asc
+        - dsc
+        type: string
+        default: asc
+      sort_by:
+        items:
+          type: string
+        type: array
+        default: row_id
+    type: object

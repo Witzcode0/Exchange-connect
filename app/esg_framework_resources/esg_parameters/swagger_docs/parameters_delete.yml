@@ -1,0 +1,21 @@
+Delete a Parameter
+---
+tags:
+  - Parameter
+parameters:
+  - in: header
+    name: Authorization
+    type: string
+  - in: path
+    name: row_id
+    schema:
+      type: int
+    required: true
+    description: 'The Parameter to delete'
+responses:
+  204:
+    description: 'Parameter deleted'
+  404:
+    description: 'Parameter id: <row_id> does not exist'
+  500:
+    description: 'Some unknown exception!'

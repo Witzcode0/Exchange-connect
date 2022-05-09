@@ -1,0 +1,62 @@
+Get a list of News Source based on query parameters
+---
+tags:
+  - News
+parameters:
+  - in: header
+    name: Authorization
+    type: string
+  - in: query
+    schema:
+      $ref: '#/definitions/NewsSourceReadArgs'
+responses:
+  200:
+    description: News Source fetched
+    schema:
+      type: object
+      properties:
+        results:
+          type: array
+          items:
+            $ref: '#/definitions/NewsSource'
+        total:
+          type: int32
+          default: 1
+  404:
+    description: 'No matching News Source found'
+  500:
+    description: Some unknown exception!
+definitions:
+  NewsSource:
+    properties:
+      created_date:
+        format: date-time
+        readOnly: true
+        type: string
+        x-nullable: true
+      last_fetched:
+        format: date-time
+        type: string
+        x-nullable: true
+      links:
+        readOnly: true
+        type: string
+      modified_date:
+        format: date-time
+        readOnly: true
+        type: string
+        x-nullable: true
+      news_name:
+        maxLength: 512
+        type: string
+      news_url:
+        maxLength: 1024
+        type: string
+      row_id:
+        format: int32
+        readOnly: true
+        type: integer
+    required:
+    - news_name
+    - news_url
+    type: object

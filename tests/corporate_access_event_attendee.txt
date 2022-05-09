@@ -1,0 +1,52 @@
+TEST CRUD
+* Post
+    - check data missing error
+    - check forbidden error
+    - check httpexception error
+    - check already exists error(attendee_id,corporate_access_event_id,corporate_access_event_slot_id)
+    - check not exist error
+    - check no errors, data added successfully
+    - check with invitee user to create attended
+    - check with event creator and collaborator for create attended
+    - check with direct attendee using invitee
+    - check with invitee_id for guest user
+    - check with attendee_id for invitee user
+
+* Put
+    - check data missing error
+    - check forbidden error
+    - check httpexception error
+    - check already exists error(attendee_id,corporate_access_event_id,corporate_access_event_slot_id)
+    - check not exist error
+    - check no errors, data added successfully
+    - check with comment by invitee(attendee can not comment)
+    - check with rating by event creator(
+        creator or collaborator can not give rating)
+    - check with change attendee id(attendee id never change)
+    - check with direct attendee using invitee
+    - check with invitee_id for guest user
+    - check with attendee_id for invitee user
+
+* Get
+    - check not found
+    - check found, fetched
+* Delete
+    - check not found
+    - check found, deleted
+
+TEST Listing
+- test attendee_id filter
+- test corporate_access_event_id filter
+- test corporate_access_event_slot_id filter
+- test rating filter
+
+
+BulkCorporateAccessEventAttendeeAPI
+
+* Post
+    - try add attended in bulk
+    - try to update attended in bulk
+    - try to delete attended in bulk
+    - only event creator and collaborator use bulk api
+    - try to add or update with rating(Rating can not add or change in bulk api)
+    - try to add direct invitee data to create attendee in bulk

@@ -1,0 +1,47 @@
+For login in user
+---
+tags:
+  - Authentication & Password Assistance
+parameters:
+  - in: body
+    name: body
+    schema:
+      $ref: '#/definitions/Login'
+  - in: query
+    name: from_mobile
+    type: boolean
+responses:
+  200:
+    description: Successfully logged in
+    content:
+      application/json:
+      schema:
+        type: object
+        required:
+          - access_token
+        properties:
+          access_token:
+            type: string
+            description: Encoded access token
+  400:
+    description: No data sent
+  401:
+    description: Bad email or password
+  422:
+    description: Error in data
+  500:
+    description: Some unknown exception!
+
+# the model definition
+definitions:
+  Login:
+    type: object
+    required:
+      - email
+      - password
+    properties:
+      email:
+        format: email
+        type: string
+      password:
+        type: string

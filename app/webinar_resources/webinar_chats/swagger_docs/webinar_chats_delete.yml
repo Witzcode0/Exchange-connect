@@ -1,0 +1,22 @@
+Delete Webinar Chat
+---
+tags:
+  - Webinar Chats
+parameters:
+  - in: header
+    name: Authorization
+    type: string
+    required: true
+  - in: path
+    name: row_id
+    schema:
+      type: int
+    required: true
+    description: 'The Webinar Chat to be deleted'
+responses:
+  204:
+    description: 'Webinar Chat deleted'
+  404:
+    description: 'Webinar Chat id: <row_id> does not exist'
+  500:
+    description: Some unknown exception!

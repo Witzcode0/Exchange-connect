@@ -1,0 +1,31 @@
+Test Crud Operations
+
+CAOpenMeetingInviteeAPI :
+
+* Post
+    - check data missing error (required field)
+    - check unique constraint i.e. created_by, ca_open_meeting_id & invitee_id.
+    - check does not exist error by sending not available invitee_id.
+    - if CA Open Meeting cancelled, so you cannot add an invitee
+    - check unknown error
+    - check no errors, data entered successfully
+* Put
+    - check not found (ca open meeting invitee id does not exist)
+    - check unique constraint i.e. created_by, ca_open_meeting_id & invitee_id.
+    - check does not exist error by sending not available invitee_id.
+    - if CA Open Meeting cancelled, so you cannot update an invitee
+    - check unknown error
+    - check no errors, data entered successfully
+* Get
+    - check not found (ca open meeting invitee id does not exist)
+    - check found, fetched
+* Delete
+    - check not found (ca open meeting invitee id does not exist)
+    - if CA Open Meeting cancelled, so you cannot delete an invitee
+    - check found, deleted
+
+CAOpenMeetingInviteeListAPI :
+
+* Get
+    - check found, fetched.
+    - check ca_open_meeting_id and invitee_id filters

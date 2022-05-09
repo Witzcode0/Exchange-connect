@@ -1,0 +1,21 @@
+Delete a Disclosure enhancement peer Groups
+---
+tags:
+  - Disclosure Enhancement Peer Groups
+parameters:
+  - in: header
+    name: Authorization
+    type: string
+  - in: path
+    name: row_id
+    schema:
+      type: int
+    required: true
+    description: 'The Disclosure enhancement peer groups to delete'
+responses:
+  204:
+    description: 'Disclosure enhancement peer groups deleted'
+  404:
+    description: 'Disclosure enhancement peer groups id: <row_id> does not exist'
+  500:
+    description: 'Some unknown exception!'

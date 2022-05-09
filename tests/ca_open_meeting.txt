@@ -1,0 +1,90 @@
+Test Crud Operations
+
+CAOpenMeetingAPI :
+
+* Post
+    - check data missing error (required field)
+    - check integrity error by sending not available event_type_id and event_sub_type_id.
+    - check data incorrect error (title and description length validations)
+    - check upload different files(attachment)
+    - check single and multiple slots
+    - check invitee_ids
+    - check invitee_ids with same account_type(user can not add same account type invitee)
+    - check no errors, data entered successfully
+    - check with add slots
+    - check external_participants
+        with participants_email, first name, last name(these type of user is guest type user)
+    - check with event sub type non has_slot and try to add slot
+    - check with participant_id and sequence id
+    - check with multi participant_id with same sequence id
+    - check with same user in participant with user id and external participant with email
+    - check with group account type user with participant_ids and host_ids for
+        both account child and group account team member
+    - check if open_to_all is true, if yes, then account_type_preference and
+        designation_preference must be provided, if not, raise validation error
+    - check if open_to_all is false or not provided, if yes, then check if
+        account_type_preference or designation_preference is given, if yes, then
+        raise error
+    - check account_type and designation_level provided for account_type_preference and
+        designation_preference, if not valid, raise error
+* Get
+    - check not found (Corporate Access Event id does not exist)
+    - check found, fetched
+    - check
+        if login user is invitee,
+            invited object display with login user(invitee) details
+        if not invitee, invited = null
+    - only event creator, invitee user who booked particular
+        event can fetch particular event
+    - if event open_to_all, then check if login user account_type is in
+        account_type_preference and designation is in designation_preference,
+        if yes, fetch the event
+
+CAOpenMeetingListAPI :
+
+* Get
+    - check found, fetched.
+    - check different filters
+    - check fetch data according to started_at_from,started_at_to,
+        ended_at_from,ended_at_to
+    - check with random user whose no relation in any meeting if open_to_all True
+        and user account_type is in account_type_preference and user designation is in
+        designation_preference of event
+    - using with main_filter(invited, participated, all, mine)
+    - check with guest user also
+    - check with main_filter mine, all own created event and participated for
+        own account events
+    - check with main filter invited(invited meeting), also get data for open_to_all
+        for events with account_type_preference as user account_type and
+        designation preference with user designation and participated event
+        for other account
+    - check with invited main filter same account type's meeting should not come
+    - check city_name, event_type_name and event_sub_type_name filters.
+    - check with cancelled filter
+    - check with cancelled open meeting only fetch for creator and invitee
+        who inquired the slot and confirmed
+    - check with account_id for particular account's ca_open_meeting for current user related
+
+
+CAOpenMeetingCancelledAPI:
+
+PUT:-
+  - check does not exist error.
+  - check cancelled flag true is update.
+  - check only meeting creator can cancel.
+
+
+CAOpenMeetingToCAEventConversionAPI
+Post:-
+  - check open meeting conversion
+  - check open meeting with event sub type has_slot true(when convert slot
+    will be insert)
+  - check with event sub type has_slot false(agenda will be insert)
+  - check with invitee (only confirmed inquired will be insert in CAEvent invitee)
+  - check with inquiry (only confirmed inquiries will be insert into CAEvent inquiry)
+  - check with slot
+  - check after convert into CAEvent stats
+  - check participant
+  - try to convert which is already converted into CAEvent(it will not working)
+  - try to convert cancelled open meeting event
+  - check attachment file copied or not

@@ -1,0 +1,16 @@
+Test CRUD
+a)News Source
+1. Post
+   - test add News name and url
+   - test add random url
+   - test verify url
+2. Put
+   - test change url and also name
+3. Delete
+   - test delete
+4. Get
+   - test fetch news source
+
+b) News
+1. Get
+   - test fetch news list

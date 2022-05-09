@@ -1,0 +1,50 @@
+Test Crud Operations
+
+WebinarParticipantAPI :
+
+* Post
+    - check data missing error (required field)
+    - check unique constraint i.e. webinar_id and participant_id.
+    - check does not exist error by sending not available webinar_id.
+    - check length validations for participant_first_name,
+        participant_last_name and participant_designation.
+    - check for unique constraint in webinar_id, participant_id and participant_email
+        - check whether participant_id OR participant_email is not NULL
+        - check if participant_id is given, participant_email should not be there and vice versa.
+        - check if participant_id is given, any detail belongs to external participant of
+        participant_first_name, participant_last_name and participant_designation
+        should not be there and vice versa.
+    - check unknown error
+    - check no errors, data entered successfully
+    - update the webinar_stats table for the webinar_id
+    - check with group account type user with participant_ids and host_ids for
+        both account child and group account team member
+* Put
+    - check not found (webinar participant id does not exist)
+    - check unique constraint i.e. webinar_id and participant_id.
+    - check does not exist error by sending not available webinar_id.
+    - check length validations for participant_first_name,
+        participant_last_name and participant_designation.
+    - check for unique constraint in webinar_id, participant_id and participant_email
+        - check whether participant_id OR participant_email is not NULL
+        - check if participant_id is given, participant_email should not be there and vice versa.
+        - check if participant_id is given, any detail belongs to external participant of
+        participant_first_name, participant_last_name and participant_designation
+        should not be there and vice versa.
+    - check unknown error
+    - check no errors, data entered successfully
+    - check if webinar_id is changed then update the webinar_stats for the new webinar_id and old
+        webinar_id
+    - check with group account type user with participant_ids and host_ids for
+        both account child and group account team member
+* Get
+    - check not found (webinar participant id does not exist)
+    - check found, fetched
+* Delete
+    - check not found (webinar participant id does not exist)
+    - check found, deleted
+
+WebinarParticipantListAPI :
+
+* Get
+    - check found, fetched.

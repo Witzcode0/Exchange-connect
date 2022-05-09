@@ -1,0 +1,183 @@
+Fetch a Disclosure enhancement peer groups
+---
+tags:
+  - Disclosure Enhancement Peer Groups
+parameters:
+  - in: header
+    name: Authorization
+    type: string
+  - in: path
+    name: row_id
+    schema:
+      type: int
+    required: true
+    description: The Disclosure enhancement peer groups  to fetch
+responses:
+  200:
+    description: Disclosure enhancement peer groups fetched
+    schema:
+      $ref: '#/definitions/DePeerGroup'
+  400:
+    description: 'No data sent'
+  404:
+    description: 'Disclosure enhancement peer groups id: <row_id> does not exist'
+  422:
+    description: 'Error in data'
+  500:
+    description: 'Some unknown exception!'
+
+# the model definition
+definitions:
+  DePeerGroup:
+    properties:
+      companies:
+        items:
+          properties:
+            isin_number:
+              maxLength: 128
+              type: string
+              x-nullable: true
+            sedol:
+              maxLength: 128
+              type: string
+              x-nullable: true
+            address:
+              maxLength: 512
+              type: string
+              x-nullable: true
+            city:
+              maxLength: 128
+              type: string
+              x-nullable: true
+            company_name:
+              maxLength: 256
+              minLength: 1
+              type: string
+            country:
+              maxLength: 128
+              type: string
+              x-nullable: true
+            identifier:
+              maxLength: 128
+              type: string
+              x-nullable: true
+            industry_id:
+              format: int32
+              type: integer
+              x-nullable: true
+            permanent_security_identifier:
+              maxLength: 128
+              type: string
+              x-nullable: true
+            row_id:
+              format: int32
+              readOnly: true
+              type: integer
+            sector_id:
+              format: int32
+              type: integer
+              x-nullable: true
+          required:
+          - company_name
+          type: object
+        type: array
+      company_id:
+        format: int32
+        type: integer
+      company_ids:
+        items:
+          format: int32
+          type: integer
+        readOnly: true
+        type: array
+      created_by:
+        format: int32
+        readOnly: true
+        type: integer
+      created_date:
+        format: date-time
+        readOnly: true
+        type: string
+        x-nullable: true
+      creator:
+        properties:
+          row_id:
+            format: int32
+            readOnly: true
+            type: integer
+        readOnly: true
+        type: object
+      links:
+        readOnly: true
+        type: string
+      modified_date:
+        format: date-time
+        readOnly: true
+        type: string
+        x-nullable: true
+      name:
+        maxLength: 256
+        type: string
+      primary_company:
+        properties:
+          isin_number:
+            maxLength: 128
+            type: string
+            x-nullable: true
+          sedol:
+            maxLength: 128
+            type: string
+            x-nullable: true
+          address:
+            maxLength: 512
+            type: string
+            x-nullable: true
+          city:
+            maxLength: 128
+            type: string
+            x-nullable: true
+          company_name:
+            maxLength: 256
+            minLength: 1
+            type: string
+          country:
+            maxLength: 128
+            type: string
+            x-nullable: true
+          identifier:
+            maxLength: 128
+            type: string
+            x-nullable: true
+          industry_id:
+            format: int32
+            type: integer
+            x-nullable: true
+          permanent_security_identifier:
+            maxLength: 128
+            type: string
+            x-nullable: true
+          row_id:
+            format: int32
+            readOnly: true
+            type: integer
+          sector_id:
+            format: int32
+            type: integer
+            x-nullable: true
+        required:
+        - company_name
+        type: object
+      row_id:
+        format: int32
+        readOnly: true
+        type: integer
+      updated_by:
+        format: int32
+        readOnly: true
+        type: integer
+    required:
+    - company_id
+    - created_by
+    - name
+    - updated_by
+    type: object

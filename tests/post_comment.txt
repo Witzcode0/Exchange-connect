@@ -1,0 +1,18 @@
+Test CRUD
+1. Post:
+    - test create post comment by post_id
+    - test pass empty message
+    - test without passing post_id
+    - test in_reply_to pass random value
+    - test in_reply_to with different different post_id
+2. Put:
+    - test update comment
+    - test update comment by other user
+    - test edited flag changed or not
+3. Delete:
+    - test delete comment
+    - test delete comment by other user
+    - test delete comment which is hold reply comment
+4. Get:
+    - test fetch comments by post_id
+    - test fetch comments without post_id

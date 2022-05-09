@@ -1,0 +1,3 @@
+Survey Launch Test:
+-check if editable is false of the Survey launched:
+    - Send an email to invitee with token

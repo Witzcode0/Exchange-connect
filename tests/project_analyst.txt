@@ -1,0 +1,30 @@
+TEST CRUD
+* Post
+    - check data missing error
+    - check non unique error
+    - check forbidden error
+    - check httpexception error
+    - check already exists error
+    - check not exist error
+    - check unknown error
+    - check no errors, data added successfully
+* Put
+    - check data missing error
+    - check non unique error
+    - check forbidden error
+    - check httpexception error
+    - check already exists error
+    - check not exist error
+    - check unknown error
+    - check no errors, data added successfully
+* Get
+    - check not found
+    - check found, fetched
+* Delete
+    - check not found
+    - check found, deleted
+
+TEST Listing
+- test analyst_id filter
+- test project_id filter
+

@@ -1,0 +1,76 @@
+Fetch a comment
+---
+tags:
+  - Comment
+parameters:
+  - in: header
+    name: Authorization
+    required: true
+    type: string
+  - in: path
+    name: row_id
+    schema:
+      type: int
+    required: true
+    description: 'The comment id to fetch'
+responses:
+  200:
+    description: comment fetched
+    schema:
+      $ref: '#/definitions/Comment'
+  404:
+    description: 'comment id: <row_id> does not exist'
+  500:
+    description: 'Some unknown exception!'
+definitions:
+  Comment:
+    properties:
+      attachment:
+        type: string
+        x-nullable: true
+      attachment_url:
+        format: url
+        type: string
+      created_by:
+        format: int32
+        readOnly: true
+        type: integer
+      created_date:
+        format: date-time
+        readOnly: true
+        type: string
+        x-nullable: true
+      creator:
+        type: string
+        x-nullable: true
+      deleted:
+        readOnly: true
+        type: boolean
+        x-nullable: true
+      is_admin:
+        type: boolean
+        x-nullable: true
+      links:
+        type: string
+      message:
+        maxLength: 1024
+        type: string
+      modified_date:
+        format: date-time
+        readOnly: true
+        type: string
+        x-nullable: true
+      row_id:
+        format: int32
+        readOnly: true
+        type: integer
+      ticket:
+        type: string
+      ticket_id:
+        format: int32
+        type: integer
+    required:
+    - created_by
+    - message
+    - ticket_id
+    type: object

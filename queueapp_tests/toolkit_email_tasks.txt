@@ -1,0 +1,4 @@
+Order Placed email:
+    - Send email for the order placed to creator
+    - send email to admin with information of the order placed
+        last synced on 31/07/18 11:55:00

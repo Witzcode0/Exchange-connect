@@ -1,0 +1,127 @@
+Get a list of comments based on query parameters
+---
+tags:
+  - Comment
+parameters:
+  - in: header
+    name: Authorization
+    required: true
+    type: string
+  - in: query
+    schema:
+      $ref: '#/definitions/CommentReadArgs'
+responses:
+  200:
+    description: 'comments fetched'
+    schema:
+      type: object
+      properties:
+        results:
+          type: array
+          items:
+            $ref: '#/definitions/Comment'
+        total:
+          type: int32
+          default: 1
+  404:
+    description: 'comment id: <row_id> does not exist'
+  500:
+    description: 'Some unknown exception'
+definitions:
+  Comment:
+    properties:
+      attachment:
+        type: string
+        x-nullable: true
+      attachment_url:
+        format: url
+        type: string
+      created_by:
+        format: int32
+        readOnly: true
+        type: integer
+      created_date:
+        format: date-time
+        readOnly: true
+        type: string
+        x-nullable: true
+      creator:
+        type: string
+        x-nullable: true
+      deleted:
+        readOnly: true
+        type: boolean
+        x-nullable: true
+      is_admin:
+        type: boolean
+        x-nullable: true
+      links:
+        type: string
+      message:
+        maxLength: 1024
+        type: string
+      modified_date:
+        format: date-time
+        readOnly: true
+        type: string
+        x-nullable: true
+      row_id:
+        format: int32
+        readOnly: true
+        type: integer
+      ticket:
+        type: string
+      ticket_id:
+        format: int32
+        type: integer
+    required:
+    - created_by
+    - message
+    - ticket_id
+    type: object
+  CommentReadArgs:
+    properties:
+      created_by:
+        format: int32
+        type: integer
+      created_date_from:
+        format: date-time
+        type: string
+      created_date_to:
+        format: date-time
+        type: string
+      message:
+        type: string
+      operator:
+        enum:
+        - and
+        - or
+        type: string
+        default: and
+      page:
+        format: int32
+        type: integer
+        default: 1
+      per_page:
+        format: int32
+        type: integer
+        default: 20
+      pfields:
+        items:
+          type: string
+        type: array
+      sort:
+        enum:
+        - asc
+        - dsc
+        type: string
+        default: asc
+      sort_by:
+        items:
+          type: string
+        type: array
+        default: row_id
+      ticket_id:
+        format: int32
+        type: integer
+    type: object

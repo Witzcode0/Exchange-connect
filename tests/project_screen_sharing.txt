@@ -1,0 +1,7 @@
+ProjectScreenSharingListAPI:
+    - Check filters
+        project_id
+        account_id
+    - check if login user account_type is not admin, then fetch records by account_id.
+    - check if login user account_type is admin, then fetch all records
+        irrespective of account_id.

@@ -1,0 +1,45 @@
+Test Crud Operations
+
+CAOpenMeetingParticipantAPI :
+
+* Post
+    - check data missing error (required field)
+    - check unique constraint i.e. ca_open_meeting_id and participant_id.
+    - check does not exist error by sending not available participant_id.
+    - check for unique constraint in ca_open_meeting_id, participant_id and participant_email
+        - check whether participant_id OR participant_email is not NULL
+        - check if participant_id is given, participant_email should not be there and vice versa.
+        - check if participant_id is given, any detail belongs to external participant of
+        participant_first_name, participant_last_name and participant_designation
+        should not be there and vice versa.
+    - if CA Open Meeting cancelled, so you cannot add a participant
+    - check no errors, data entered successfully
+    - check with group account type user with participant_ids and host_ids for
+        both account child and group account team member
+* Put
+    - check not found (ca open meeting participant id does not exist)
+    - check unique constraint i.e. ca_open_meeting_id and participant_id.
+    - check does not exist error by sending not available participant_id.
+    - check for unique constraint in ca_open_meeting_id, participant_id and participant_email
+        - check whether participant_id OR participant_email is not NULL
+        - check if participant_id is given, participant_email should not be there and vice versa.
+        - check if participant_id is given, any detail belongs to external participant of
+        participant_first_name, participant_last_name and participant_designation
+        should not be there and vice versa.
+    - if CA Open Meeting cancelled, so you cannot update a participant
+    - check no errors, data entered successfully
+    - check with group account type user with participant_ids and host_ids for
+        both account child and group account team member
+* Get
+    - check not found (ca open meeting participant id does not exist)
+    - check found, fetched
+* Delete
+    - check not found (ca open meeting participant id does not exist)
+    - if CA Open Meeting cancelled, so you cannot delete a participant
+    - check found, deleted
+
+CAOpenMeetingParticipantListAPI :
+
+* Get
+    - check found, fetched.
+    - check ca_open_meeting_id and participant_id filters

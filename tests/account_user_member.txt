@@ -1,0 +1,14 @@
+User Post API:
+    - check with group account type user
+    - when group type account assign to user so particular account's all
+        child accounts will be insert for user in account user member model
+
+Add User Registration Put API:
+    - check with group account type user
+    - when group type account assign to user so particular account's all
+        child accounts will be insert for user in account user member model
+
+Account Put API:
+    - check with update group account with child accounts
+    - when select child account so all child accounts insert in account user
+        member with particular account group users

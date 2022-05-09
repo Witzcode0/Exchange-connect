@@ -1,0 +1,67 @@
+TEST CRUD
+
+1. POST
+    - check data missing error
+    - check http exception error
+    - check scheduled report type is valid
+    - check no errors, scheduled report created successfully
+
+2. PUT
+    - check not found
+    - check scheduled report can be updated only by user who created it
+    - check http exception error
+    - check no errors, scheduled report updated successfully
+
+3. DELETE
+    - check not found
+    - check only owner can delete
+    - check found, deleted
+
+4. GET
+   - check not found
+   - check found, fetched
+
+5. GETLIST
+   - check found, fetched
+   - check scheduled reports owned by current user are fetched
+   - check scheduled reports are filtered with company name and frequency
+
+6. API for updating log from node service
+    - check log is updated
+    - check api_calls json all keys will be stored even if not sent
+
+
+TEST ADMIN
+
+1. GET
+    - check not found
+    - check found, fetched
+
+2. GETLIST (Scheduled reports)
+    - check with account name filter, scheduled reports which are created by
+     are fetched
+    - check if account_id filter, scheduled reports created by that
+    account are fetched
+    - check filters deleted, is_active, frequency, created_by working
+
+3. GETLIST User and  Scheduled report count
+    - check the count is correct
+    - check filters account_name and full_name working
+
+4. GETLIST (Scheduled report logs)
+    - check with filter report_id
+    - check order is latest first
+
+
+TEST COMMANDS
+
+1. SEND SCHEDULED REPORTS
+    - check only undeleted , active , and next_at in a perticular time window
+     are sent to the node service
+    - check before sending logs are created with status pending
+    - check even an exception arises logs are generated as unsent and
+    exception is stored in log
+
+2. DEACTIVATE SCHEDULED REPORTS
+    - check all active reports having end_date less than current time are
+    made inactive

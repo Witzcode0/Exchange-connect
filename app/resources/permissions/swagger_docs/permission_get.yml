@@ -1,0 +1,58 @@
+Fetch a Permission
+---
+tags:
+  - Permission (Admin)
+parameters:
+  - in: header
+    name: Authorization
+    type: string
+    required: true
+  - in: path
+    name: row_id
+    schema:
+      type: int
+    required: true
+    description: 'The Permission id to fetch'
+responses:
+  200:
+    description: 'Permission fetched'
+    schema:
+      $ref: '#/definitions/Permission'
+  404:
+    description: 'Permission id: <row_id> does not exist'
+  500:
+    description: 'Some unknown exception!'
+definitions:
+  Permission:
+    properties:
+      created_date:
+        format: date-time
+        readOnly: true
+        type: string
+        x-nullable: true
+      description:
+        maxLength: 256
+        type: string
+        x-nullable: true
+      is_active:
+        type: boolean
+        x-nullable: true
+      modified_date:
+        format: date-time
+        readOnly: true
+        type: string
+        x-nullable: true
+      name:
+        maxLength: 256
+        type: string
+      row_id:
+        format: int32
+        readOnly: true
+        type: integer
+      sequence:
+        format: int32
+        type: integer
+        x-nullable: true
+    required:
+      - name
+    type: object

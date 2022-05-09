@@ -1,0 +1,159 @@
+Fetch a Project Analyst
+---
+tags:
+  - Project Analysts
+parameters:
+  - in: header
+    name: Authorization
+    type: string
+    required: true
+  - in: path
+    name: row_id
+    schema:
+      type: int
+    required: true
+    description: 'The Project Analyst to fetch'
+responses:
+  200:
+    description: 'Project Analyst fetched'
+    schema:
+      $ref: '#/definitions/ProjectAnalyst'
+  404:
+    description: 'Project Analyst id: <row_id> does not exist'
+  500:
+    description: 'Some unknown exception!'
+definitions:
+  ProjectAnalyst:
+    properties:
+      analyst:
+        properties:
+          account:
+            properties:
+              account_name:
+                minLength: 1
+                type: string
+              account_type:
+                enum:
+                - corporate
+                - buy-side
+                - sell-side
+                - general investor
+                - admin
+                type: string
+              row_id:
+                format: int32
+                readOnly: true
+                type: integer
+            readOnly: true
+            required:
+            - account_name
+            - account_type
+            type: object
+          email:
+            format: email
+            maxLength: 128
+            type: string
+          profile:
+            properties:
+              designation:
+                maxLength: 128
+                type: string
+                x-nullable: true
+              designation_link:
+                properties:
+                  name:
+                    maxLength: 256
+                    minLength: 1
+                    type: string
+                  row_id:
+                    format: int32
+                    readOnly: true
+                    type: integer
+                readOnly: true
+                required:
+                - name
+                type: object
+              first_name:
+                maxLength: 512
+                minLength: 1
+                type: string
+              last_name:
+                maxLength: 512
+                minLength: 1
+                type: string
+              links:
+                readOnly: true
+                type: string
+              phone_number:
+                maxLength: 32
+                type: string
+                x-nullable: true
+              profile_photo_url:
+                format: url
+                readOnly: true
+                type: string
+              profile_thumbnail_url:
+                format: url
+                readOnly: true
+                type: string
+            required:
+            - first_name
+            - last_name
+            type: object
+          row_id:
+            format: int32
+            readOnly: true
+            type: integer
+        readOnly: true
+        required:
+        - email
+        - profile
+        type: object
+      analyst_id:
+        format: int32
+        type: integer
+      assigned_project:
+        properties:
+          row_id:
+            format: int32
+            readOnly: true
+            type: integer
+        readOnly: true
+        type: object
+      created_by:
+        format: int32
+        readOnly: true
+        type: integer
+      created_date:
+        format: date-time
+        readOnly: true
+        type: string
+        x-nullable: true
+      creator:
+        type: string
+        x-nullable: true
+      links:
+        readOnly: true
+        type: string
+      modified_date:
+        format: date-time
+        readOnly: true
+        type: string
+        x-nullable: true
+      project_id:
+        format: int32
+        type: integer
+      row_id:
+        format: int32
+        readOnly: true
+        type: integer
+      updated_by:
+        format: int32
+        readOnly: true
+        type: integer
+    required:
+    - analyst_id
+    - created_by
+    - project_id
+    - updated_by
+    type: object

@@ -1,0 +1,44 @@
+For creating new open event request
+---
+tags:
+  - Event Requests
+parameters:
+  - in: header
+    name: Authorization
+    type: string
+  - in: body
+    name: body
+    schema:
+      $ref: '#/definitions/OpenEventJoin'
+responses:
+  201:
+    description: 'Open Event Request has been created'
+    schema:
+      content:
+        application/json:
+      schema:
+        type: object
+        required:
+          - message
+          - row_id
+        properties:
+          message:
+            type: string
+            default: 'Open Event request has been created'
+          row_id:
+            type: int32
+            description: 'row id of the generated Open Event Request'
+            default: 1
+  400:
+    description: 'No data sent'
+  422:
+    description: 'Error in data'
+  500:
+    description: 'Some unknown exception!'
+definitions:
+  OpenEventJoin:
+    properties:
+      event_id:
+        format: int32
+        type: integer
+    type: object

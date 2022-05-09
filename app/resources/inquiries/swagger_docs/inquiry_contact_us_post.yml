@@ -1,0 +1,306 @@
+For creating a inquiry contact us by anyone
+---
+tags:
+    - Inquiry
+parameters:
+  - in: body
+    name: body
+    schema:
+      $ref: '#/definitions/InquiryContactUs'
+responses:
+  201:
+    description: 'inquiry has been created'
+    schema:
+      content:
+        application/json:
+      schema:
+        type: object
+        required:
+          - message
+          - row_id
+        properties:
+          name:
+            type: string
+            default: 'Inquiry has been created'
+          row_id:
+            type: int32
+            description: 'row id of the generated Inquiry'
+            default: 1
+  400:
+    description: 'No data sent'
+  422:
+    description: 'Error in data'
+  500:
+    description: 'Some unknown exception!'
+definitions:
+  InquiryContactUs:
+    properties:
+      account:
+        properties:
+          account_name:
+            maxLength: 512
+            minLength: 1
+            type: string
+          account_type:
+            enum:
+            - corporate
+            - buy-side
+            - sell-side
+            - general investor
+            - admin
+            - guest
+            - private
+            - sme
+            type: string
+          row_id:
+            format: int32
+            readOnly: true
+            type: integer
+        readOnly: true
+        required:
+        - account_name
+        - account_type
+        type: object
+      account_id:
+        format: int32
+        readOnly: true
+        type: integer
+        x-nullable: true
+      contact_number:
+        maxLength: 32
+        type: string
+        x-nullable: true
+      created_by:
+        format: int32
+        readOnly: true
+        type: integer
+        x-nullable: true
+      created_date:
+        format: date-time
+        readOnly: true
+        type: string
+        x-nullable: true
+      creator:
+        properties:
+          account:
+            properties:
+              account_name:
+                maxLength: 512
+                minLength: 1
+                type: string
+              account_type:
+                enum:
+                - corporate
+                - buy-side
+                - sell-side
+                - general investor
+                - admin
+                - guest
+                - private
+                - sme
+                type: string
+              row_id:
+                format: int32
+                readOnly: true
+                type: integer
+            readOnly: true
+            required:
+            - account_name
+            - account_type
+            type: object
+          profile:
+            properties:
+              designation:
+                maxLength: 128
+                type: string
+                x-nullable: true
+              designation_link:
+                properties:
+                  designation_level:
+                    enum:
+                    - bod & top management
+                    - mid-level management
+                    - managers & others
+                    type: string
+                  name:
+                    maxLength: 256
+                    minLength: 1
+                    type: string
+                  row_id:
+                    format: int32
+                    readOnly: true
+                    type: integer
+                readOnly: true
+                required:
+                - designation_level
+                - name
+                type: object
+              first_name:
+                maxLength: 512
+                minLength: 1
+                type: string
+              last_name:
+                maxLength: 512
+                minLength: 1
+                type: string
+              links:
+                readOnly: true
+                type: string
+              profile_photo_url:
+                format: url
+                readOnly: true
+                type: string
+              profile_thumbnail_url:
+                format: url
+                readOnly: true
+                type: string
+            required:
+            - first_name
+            - last_name
+            type: object
+          row_id:
+            format: int32
+            readOnly: true
+            type: integer
+        readOnly: true
+        required:
+        - profile
+        type: object
+      editor:
+        properties:
+          account:
+            properties:
+              account_name:
+                maxLength: 512
+                minLength: 1
+                type: string
+              account_type:
+                enum:
+                - corporate
+                - buy-side
+                - sell-side
+                - general investor
+                - admin
+                - guest
+                - private
+                - sme
+                type: string
+              row_id:
+                format: int32
+                readOnly: true
+                type: integer
+            readOnly: true
+            required:
+            - account_name
+            - account_type
+            type: object
+          profile:
+            properties:
+              designation:
+                maxLength: 128
+                type: string
+                x-nullable: true
+              designation_link:
+                properties:
+                  designation_level:
+                    enum:
+                    - bod & top management
+                    - mid-level management
+                    - managers & others
+                    type: string
+                  name:
+                    maxLength: 256
+                    minLength: 1
+                    type: string
+                  row_id:
+                    format: int32
+                    readOnly: true
+                    type: integer
+                readOnly: true
+                required:
+                - designation_level
+                - name
+                type: object
+              first_name:
+                maxLength: 512
+                minLength: 1
+                type: string
+              last_name:
+                maxLength: 512
+                minLength: 1
+                type: string
+              links:
+                readOnly: true
+                type: string
+              profile_photo_url:
+                format: url
+                readOnly: true
+                type: string
+              profile_thumbnail_url:
+                format: url
+                readOnly: true
+                type: string
+            required:
+            - first_name
+            - last_name
+            type: object
+          row_id:
+            format: int32
+            readOnly: true
+            type: integer
+        readOnly: true
+        required:
+        - profile
+        type: object
+      email:
+        format: email
+        maxLength: 128
+        minLength: 1
+        type: string
+      inquiry_type:
+        default: contact-us
+        type: string
+      links:
+        readOnly: true
+        type: string
+      major_sub_type:
+        enum:
+        - free
+        - premium
+        - enterprise
+        type: string
+        x-nullable: true
+      message:
+        maxLength: 4096
+        type: string
+        x-nullable: true
+      modified_date:
+        format: date-time
+        readOnly: true
+        type: string
+        x-nullable: true
+      name:
+        maxLength: 128
+        minLength: 1
+        type: string
+      remarks:
+        maxLength: 1024
+        type: string
+        x-nullable: true
+      row_id:
+        format: int32
+        readOnly: true
+        type: integer
+      subject:
+        maxLength: 512
+        type: string
+        x-nullable: true
+      updated_by:
+        format: int32
+        readOnly: true
+        type: integer
+        x-nullable: true
+    required:
+    - email
+    - name
+    type: object

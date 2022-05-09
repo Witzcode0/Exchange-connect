@@ -1,0 +1,2 @@
+GET LIST
+    - admin can fetch all account stats

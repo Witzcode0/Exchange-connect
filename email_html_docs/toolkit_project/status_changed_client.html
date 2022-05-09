@@ -1,0 +1,11 @@
+{% extends 'toolkit_project/base.html' %}
+{% block content %}
+    <tr>
+      <td align="center" style="padding: 10px;">
+          {% autoescape false %}
+          {{msg}}
+          {% endautoescape %}
+          <br/>Please find the project details below:
+      </td>
+    </tr>
+{% endblock %}

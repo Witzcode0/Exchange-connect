@@ -1,0 +1,94 @@
+For creating new designation by user
+---
+tags:
+    - Designations
+parameters:
+  - in: header
+    name: Authorization
+    type: string
+  - in: body
+    name: body
+    schema:
+      $ref: '#/definitions/Designation'
+responses:
+  201:
+    description: 'Designation has been created'
+    schema:
+      content:
+        application/json:
+      schema:
+        type: object
+        required:
+          - message
+          - row_id
+        properties:
+          name:
+            type: string
+            default: 'Designation been created'
+          row_id:
+            type: int32
+            description: 'row id of the generated designation'
+            default: 1
+  400:
+    description: 'No data sent'
+  422:
+    description: 'Error in data'
+  500:
+    description: 'Some unknown exception!'
+definitions:
+  Designation:
+    properties:
+      account_type:
+        enum:
+        - corporate
+        - buy-side
+        - sell-side
+        - general investor
+        - admin
+        - guest
+        type: string
+      created_by:
+        format: int32
+        readOnly: true
+        type: integer
+      created_date:
+        format: date-time
+        readOnly: true
+        type: string
+        x-nullable: true
+      creator:
+        type: string
+        x-nullable: true
+      designation_level:
+        enum:
+        - bod & top management
+        - mid-level management
+        - managers & others
+        type: string
+      links:
+        readOnly: true
+        type: string
+      modified_date:
+        format: date-time
+        readOnly: true
+        type: string
+        x-nullable: true
+      name:
+        maxLength: 256
+        minLength: 1
+        type: string
+      row_id:
+        format: int32
+        readOnly: true
+        type: integer
+      updated_by:
+        format: int32
+        readOnly: true
+        type: integer
+    required:
+    - account_type
+    - created_by
+    - designation_level
+    - name
+    - updated_by
+    type: object

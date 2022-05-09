@@ -1,0 +1,137 @@
+definitions:
+  WebcastStats:
+    properties:
+      average_rating:
+        type: number
+        x-nullable: true
+      created_date:
+        format: date-time
+        readOnly: true
+        type: string
+        x-nullable: true
+      links:
+        readOnly: true
+        type: string
+      modified_date:
+        format: date-time
+        readOnly: true
+        type: string
+        x-nullable: true
+      row_id:
+        format: int32
+        readOnly: true
+        type: integer
+      total_answers:
+        format: int32
+        type: integer
+        x-nullable: true
+      total_attendees:
+        format: int32
+        type: integer
+        x-nullable: true
+      total_hosts:
+        format: int32
+        type: integer
+        x-nullable: true
+      total_invitees:
+        format: int32
+        type: integer
+        x-nullable: true
+      total_participants:
+        format: int32
+        type: integer
+        x-nullable: true
+      total_questions:
+        format: int32
+        type: integer
+        x-nullable: true
+      total_rsvps:
+        format: int32
+        type: integer
+        x-nullable: true
+      webcast:
+        properties:
+          ended_at:
+            format: date-time
+            type: string
+            x-nullable: true
+          invite_banner_filename:
+            maxLength: 256
+            type: string
+            x-nullable: true
+          invite_logo_filename:
+            maxLength: 256
+            type: string
+            x-nullable: true
+          row_id:
+            format: int32
+            readOnly: true
+            type: integer
+          started_at:
+            format: date-time
+            type: string
+            x-nullable: true
+          title:
+            maxLength: 256
+            minLength: 1
+            type: string
+        readOnly: true
+        required:
+        - title
+        type: object
+      webcast_id:
+        format: int32
+        type: integer
+    required:
+    - webcast_id
+    type: object
+  WebcastStatsReadArgs:
+    properties:
+      created_date_from:
+        format: date-time
+        type: string
+      created_date_to:
+        format: date-time
+        type: string
+      operator:
+        enum:
+        - and
+        - or
+        type: string
+        default: and
+      page:
+        format: int32
+        type: integer
+        default: 1
+      per_page:
+        format: int32
+        type: integer
+        default: 20
+      pfields:
+        items:
+          type: string
+        type: array
+      sort:
+        enum:
+        - asc
+        - dsc
+        type: string
+        default: asc
+      sort_by:
+        items:
+          type: string
+        type: array
+        default: row_id
+      webcast_id:
+        format: int32
+        type: integer
+    type: object
+  WebcastStatsOverall:
+    properties:
+      total_webcast_participants:
+        format: int32
+        type: integer
+      total_webcasts:
+        format: int32
+        type: integer
+    type: object

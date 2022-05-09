@@ -1,0 +1,25 @@
+Test Crud Operations
+
+CompanyPageAPI :
+
+* Post
+    - check data missing error (required field)
+    - check already exist data error (account_id should be unique)
+    - check unknown error
+    - check no errors, data entered successfully
+* Put
+    - check already exist data error (account_id should be unique)
+    - check unknown error
+    - check no errors, data entered successfully
+* Get
+    - check not found (row id does not exist)
+    - check found, fetched
+* Delete
+    - check not found (row id does not exist)
+    - check found, deleted
+
+CompanyPageListAPI :
+
+* Get
+    - check found, fetched.
+    - check by using account_id filter

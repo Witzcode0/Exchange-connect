@@ -1,0 +1,89 @@
+Bulk event invite status change details etc.
+---
+tags:
+  - Event Requests
+parameters:
+  - in: header
+    name: Authorization
+    type: string
+  - in: path
+    name: event_id
+    schema:
+      type: int
+    required: true
+    description: 'The event to modify'
+  - in: body
+    name: body
+    schema:
+      $ref: '#/definitions/BulkEventInviteStatusChange'
+responses:
+  200:
+    description: 'Updated Event id: <event_id>'
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            message:
+              type: string
+              description: 'Updated Event id: <event_id>'
+  400:
+    description: No data sent
+  404:
+    description: 'Event id: <event_id> does not exist'
+  422:
+    description: 'Error in data'
+  500:
+    description: 'Some unknown exception!'
+definitions:
+  BulkEventInviteStatusChange:
+    properties:
+      event_invites:
+        items:
+          properties:
+            comment:
+              maxLength: 1024
+              minLength: 1
+              type: string
+              x-nullable: true
+            created_by:
+              format: int32
+              readOnly: true
+              type: integer
+            rating:
+              format: int32
+              type: integer
+              x-nullable: true
+            row_id:
+              format: int32
+              readOnly: true
+              type: integer
+            status:
+              enum:
+              - invited
+              - rejected
+              - accepted
+              - requested
+              - maybe
+              - not_attended
+              - attended
+              type: string
+            updated_by:
+              format: int32
+              readOnly: true
+              type: integer
+            user_id:
+              format: int32
+              type: integer
+          required:
+          - created_by
+          - updated_by
+          - user_id
+          type: object
+        type: array
+      invite_ids:
+        items:
+          format: int32
+          type: integer
+        type: array
+    type: object

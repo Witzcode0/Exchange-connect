@@ -1,0 +1,81 @@
+Fetch a Event File Librarry
+---
+tags:
+  - Event Library Files
+parameters:
+  - in: header
+    name: Authorization
+    required: true
+    type: string
+  - in: path
+    name: row_id
+    required: true
+    schema:
+      type: int
+responses:
+  200:
+    description: File fetched
+    schema:
+      $ref: '#/definitions/EventLibraryFile'
+  404:
+    description: 'File id: <row_id> does not exist'
+  500:
+    description: 'Some unknown exception!'
+definitions:
+  EventLibraryFile:
+    required:
+    - account_id
+    - created_by
+    - updated_by
+    properties:
+      account:
+        x-nullable: true
+        type: string
+      row_id:
+        format: int32
+        readOnly: true
+        type: integer
+      links:
+        readOnly: true
+        type: string
+      filename:
+        x-nullable: true
+        type: string
+      deleted:
+        x-nullable: true
+        readOnly: true
+        type: boolean
+      account_id:
+        format: int32
+        readOnly: true
+        type: integer
+      file_type:
+        x-nullable: true
+        maxLength: 256
+        type: string
+      file_url:
+        format: url
+        readOnly: true
+        type: string
+      updated_by:
+        format: int32
+        readOnly: true
+        type: integer
+      creator:
+        x-nullable: true
+        type: string
+      date_modified:
+        x-nullable: true
+        format: date-time
+        readOnly: true
+        type: string
+      date_created:
+        x-nullable: true
+        format: date-time
+        readOnly: true
+        type: string
+      created_by:
+        format: int32
+        readOnly: true
+        type: integer
+    type: object

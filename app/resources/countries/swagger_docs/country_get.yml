@@ -1,0 +1,73 @@
+Fetch a Country
+---
+tags:
+  - Country
+parameters:
+  - in: header
+    name: Authorization
+    required: true
+    type: string
+  - in: path
+    name: row_id
+    schema:
+      type: int
+    required: true
+    description: 'The Country id to fetch'
+responses:
+  200:
+    description: Country fetched
+    schema:
+      $ref: '#/definitions/Country'
+  404:
+    description: 'Country id: <row_id> does not exist'
+  500:
+    description: 'Some unknown exception!'
+definitions:
+  Country:
+    properties:
+      country_name:
+        maxLength: 128
+        minLength: 1
+        type: string
+      created_by:
+        format: int32
+        readOnly: true
+        type: integer
+      created_date:
+        format: date-time
+        readOnly: true
+        type: string
+        x-nullable: true
+      creator:
+        properties:
+          row_id:
+            format: int32
+            readOnly: true
+            type: integer
+        readOnly: true
+        type: object
+      deleted:
+        readOnly: true
+        type: boolean
+        x-nullable: true
+      links:
+        readOnly: true
+        type: string
+      modified_date:
+        format: date-time
+        readOnly: true
+        type: string
+        x-nullable: true
+      row_id:
+        format: int32
+        readOnly: true
+        type: integer
+      updated_by:
+        format: int32
+        readOnly: true
+        type: integer
+    required:
+    - country_name
+    - created_by
+    - updated_by
+    type: object

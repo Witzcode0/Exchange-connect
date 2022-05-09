@@ -1,0 +1,31 @@
+Test Crud Operations
+
+CorporateAccessEventParticipantAPI :
+
+* Post
+    - check data missing error (required field)
+    - check unique constraint i.e. corporate_access_event_id and participant_id.
+    - check does not exist error by sending not available corporate_access_event_id.
+    - check unknown error
+    - check no errors, data entered successfully
+    - check with group account type user with participant_ids and host_ids for
+        both account child and group account team member
+* Put
+    - check not found (corporate access event participant id does not exist)
+    - check unique constraint i.e. corporate_access_event_id and participant_id.
+    - check does not exist error by sending not available corporate_access_event_id.
+    - check unknown error
+    - check no errors, data entered successfully
+    - check with group account type user with participant_ids and host_ids for
+        both account child and group account team member
+* Get
+    - check not found (corporate access event participant id does not exist)
+    - check found, fetched
+* Delete
+    - check not found (corporate access event participant id does not exist)
+    - check found, deleted
+
+CorporateAccessEventParticipantListAPI :
+
+* Get
+    - check found, fetched.

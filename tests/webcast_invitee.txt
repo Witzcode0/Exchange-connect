@@ -1,0 +1,56 @@
+Test CRUD
+1. Post
+    - creating a webcast invitee - PASS
+    - testing below validations:
+        - Testing for validation of invitee_email:
+            - Testing for valid email address
+            - Testing for 128 characters limit
+        - checking for valid webcast_id (FK refer to webcast)
+        - check for unique constraint in webcast_id, invitee_id and invitee_email
+        - check whether invitee_id OR invitee_email is not NULL
+    - check length constraint for invitee_first_name, invitee_last_name and
+        invitee_designation
+    - check if invitee_id is given and invitee_email both are given, raise error
+    - check if invitee_id is given and invitee_first_name OR invitee_last_name OR
+        invitee_designation are given, raise error
+    - if data entered, update the webcast_stats table for the webcast_id
+
+2. Put
+    - updating a webcast invitee - PASS
+    - testing below validations:
+        - Testing for validation of invitee_email:
+            - Testing for valid email address
+            - Testing for 128 characters limit
+        - checking for valid webcast_id (FK refer to webcast)
+        - check for unique constraint in webcast_id, invitee_id and invitee_email
+        - check whether invitee_id OR invitee_email is not NULL
+    - check length constraint for invitee_first_name, invitee_last_name and
+        invitee_designation
+    - check if invitee_id is given and invitee_email both are given, raise error
+    - check if invitee_id is given and invitee_first_name OR invitee_last_name OR
+        invitee_designation are given, raise error
+    - check if webcast_id is changed and update the webcast_stats for the new webcast_id and old
+        webcast_id
+3. Delete
+    - deleting a single webcast invitee = PASS
+    - if webcast_invitee is deleted, update the webcast_stats for the related webcast_id
+4. Get
+    - fetching all webcast invitee lists = PASS
+    - fetching a single webcast invitee by id = PASS
+
+
+WebcastInviteeRegisterAPI:
+
+Post:
+    - check if webcast cancelled, raise 422 error.
+    - check if already invitee(having 'invited' status) then change status to 'registered'.
+    - check if current user is not an invitee,
+    - if all good, conference registration for invitee.
+    - check webcast stats, updated with invitees count.
+    - check coonference url generated or not
+
+Delete:
+    - check if webcast cancelled, raise 422 error.
+    - check only that particular invitee can deregister.
+    - check status updated to 'invited'.
+    - on successful deregistration, delete conference related in table.

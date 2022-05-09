@@ -1,0 +1,152 @@
+Test Crud Operations
+
+CorporateAccessEventAPI :
+
+* Post
+    - check data missing error (required field)
+    - check integrity error by sending not available event_type_id and event_sub_type_id.
+    - check data incorrect error (title and description length validations)
+    - check same and other company host_ids.
+    - check upload different files(logo, banner)
+    - check upload different files(attachment)
+    - check with multiple files(text, ppt) etc
+    - check single and multiple slots
+    - check invitee_ids with contact id
+    - check invitee_ids with same account_type(user can not add same account type invitee)
+    - check no errors, data entered successfully
+    - check collaborator_ids(any user can add as collaborator)
+    - check with add slots
+    - check with add rsvp
+    - check external_invitees, external_hosts, external_participants
+        with invitee_email, first name, last name(these type of user is guest type user)
+    - check with event sub type non has_slot and try to add slot
+    - check with agenda
+    - check with invitee for guest user, send mail with event verification token
+    - check with participant_id and sequence id
+    - check with multi participant_id with same sequence id
+    - check sequence id in rsvp
+    - check with multi rsvp with same sequence id
+    - check with same user in host_ids with user id and external host with user email
+    - check with same user in invitee_ids with user id and external invitee with user email
+    - check with same user in participant with user id and external participant with email
+    - check with external invitee which is already system user
+    - check with group account type user with participant_ids and host_ids for
+        both account child and group account team member
+    Meeting type event
+        - check with meeting type event such as one-to-one, e-meeting
+        - check with meeting_company_id with multiple invitee_ids(only support one invitee)
+        - check with participants, host, external_invitees, slots(in meeting type event these are not support so we removed)
+        - check with corporate user and create meeting for corporate user(it not support)
+            corporate create meeting type event only sell-side, buy-side and genernal investor
+        - check with sell-side, buy-side or genernal investor user and create meeting for same account type user(it not support)
+            sell-side, buy-side or genernal investor create only for corporate type user
+        - check with event_type is meeting and not post meeting_company_id
+        - check with caevent_support fields
+        - check with remark fields
+
+* Put
+    - check not found (Corporate Access Event id does not exist)
+    - check integrity error by sending not available event_type_id and event_sub_type_id.
+    - check data incorrect error (title and description length validations)
+    - check same and other company participant_ids and host_ids.
+    - check upload different files(logo, banner)
+    - check upload different files(attachment)
+    - check with multiple files(text, ppt) etc
+    - check single and multiple slots
+    - check updating more or less invitee_ids
+    - check no errors, data entered successfully
+    - check update and add invitee_ids and also check update external_invitees
+    - check update and add external_participants, external_hosts
+    - check update and add rsvp and slot
+    - check with event sub type non has_slot and try to add slot
+    - check with update agenda
+    - check only invitee creator can delete old invitee whether he is collaborator or event creator.
+    - check with invitee for guest user, send mail with event verification token
+    - check after event launch if any external invitee email changed or
+        new external invitee added, then send an email to invitee emails.
+    - check with change sequence id of system user participant as well as
+        external participant
+    - check with same user in host_ids with user id and external host with user email
+    - check with same user in invitee_ids with user id and external invitee with user email
+    - check with same user in participant with user id and external participant with email
+    - check with external invitee which is already system user
+    - check with group account type user with participant_ids and host_ids for
+        both account child and group account team member
+    Meeting type event
+        - check with meeting type event such as one-to-one, e-meeting
+        - check with meeting_company_id with multiple invitee_ids(only support one invitee)
+        - check with participants, host, external_invitees, slots(in meeting type event these are not support so we removed)
+        - check with corporate, sme, private user and create meeting for sell-side, buy-side and genernal investor and
+            vice-versa
+        - check with event_type is meeting and not post meeting_company_id
+        - check with caevent_support fields
+        - check with remark fields
+* Get
+    - check not found (Corporate Access Event id does not exist)
+    - check found, fetched
+    - check
+        if login user is invitee,
+            invited object display with login user(invitee) details
+        if not invitee, invited = null
+    - check
+        if login user is collaborator,
+            collaborated object display with login user(collaborator) details
+        if not collaborator, collaborated = null
+    - check with event verification token with guest user,
+      for book particular event(means update user_id in corporate invitee model)
+    - only event creator, collaborator and invitee user who booked particular
+        event can fetch particular event
+    - check with external invitee which is system user and call get api without
+        book from email
+* Delete
+    - check not found (Corporate Access Event id does not exist)
+    - check found, deleted
+
+CorporateAccessEventListAPI :
+
+* Get
+    - check found, fetched.
+    - check different filters
+    - check fetch data according to started_at_from,started_at_to,
+    ended_at_from,ended_at_to
+    - check with random user whose no relation in any event
+    - using with main_filter(invited, participated, collaborated, all, mine)
+    - check with guest user also
+    - using main_filter(invited, participated, collaborated, all) with is_draft
+        (only is_draft=true working on all and mine)
+    - check invited field(if current user invited particular event)
+    - check collaborated field(if current user collaborated particular event)
+    - check with guest user try to fetch without book event by email(Event will not get)
+    - check after book event by event verification token(Event will be get)
+    - check with account_id for particular account's ca_open_meeting for current user related
+
+Extra testing (Permission):
+
+* Collaborator
+    - Collaborator can access events
+    - Collaborator can add new slots and edit slots for particular event
+    - Collaborator can add new rsvp and edit
+    - Collaborator can add new invitees and edit also
+    - Collaborator can not change in event fields
+    - Collaborator can not delete event
+
+
+Corporate access event Cancelled API:-
+PUT:-
+  - check does not exist error
+  - check cancelled flag true is update
+  - check Corporate access event in is_draft mode then can't be cancelled
+
+CAE emails:-
+    - test CAE launch email sent from settings email if set and verified
+
+ReSendMailToCAEventInvitee:-
+PUT:-
+  - check not exist error
+  - check unauthorized access
+  - check if only the recepients (invitees, hosts, rsvp's and attendees) to
+    whome we did not sent the mail earlier will get the mail
+  - check if task is already running in background by acquiring corporate
+     access event lock (is_in_process) , don't add in task queue
+  - check if corporate access event lock is released after the task is
+    finished and/or exception is raised

@@ -1,0 +1,18 @@
+Delete Industry
+---
+tags:
+  - Industry
+parameters:
+  - in: path
+    name: row_id
+    schema:
+      type: int
+    required: true
+    description: 'The industry to be deleted'
+responses:
+  204:
+    description: 'Industry deleted'
+  404:
+    description: 'Industry id: <row_id> does not exist'
+  500:
+    description: Some unknown exception!

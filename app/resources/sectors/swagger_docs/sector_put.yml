@@ -1,0 +1,73 @@
+Edit and udpate Sector details.
+---
+tags:
+  - Sectors
+parameters:
+  - in: header
+    name: Authorization
+    type: string
+    required: true
+  - in: path
+    name: row_id
+    schema:
+      type: int
+    required: true
+    description: The sector to modify
+  - in: body
+    name: body
+    schema:
+      $ref: '#/definitions/Sector'
+responses:
+  200:
+    description: 'Updated Sector id: <row_id>'
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            message:
+              type: string
+              description: 'Updated Sector id: <row_id>'
+  400:
+    description: No data sent
+  404:
+    description: 'Sector id: <row_id> does not exist'
+  422:
+    description: 'Error in data'
+  500:
+    description: 'Some unknown exception!'
+definitions:
+  Sector:
+    properties:
+      created_date:
+        format: date-time
+        readOnly: true
+        type: string
+        x-nullable: true
+      creator:
+        properties:
+          row_id:
+            format: int32
+            readOnly: true
+            type: integer
+        readOnly: true
+        type: object
+      links:
+        readOnly: true
+        type: string
+      modified_date:
+        format: date-time
+        readOnly: true
+        type: string
+        x-nullable: true
+      name:
+        maxLength: 256
+        minLength: 1
+        type: string
+      row_id:
+        format: int32
+        readOnly: true
+        type: integer
+    required:
+    - name
+    type: object

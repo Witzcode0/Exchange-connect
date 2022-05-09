@@ -1,0 +1,81 @@
+Fetch a designation
+---
+tags:
+  - Designations
+parameters:
+  - in: header
+    name: Authorization
+    required: true
+    type: string
+  - in: path
+    name: row_id
+    schema:
+      type: int
+    required: true
+    description: 'The designation id to fetch'
+responses:
+  200:
+    description: designation fetched
+    schema:
+      $ref: '#/definitions/Designation'
+  404:
+    description: 'designation id: <row_id> does not exist'
+  500:
+    description: 'Some unknown exception!'
+definitions:
+  Designation:
+    properties:
+      account_type:
+        enum:
+        - corporate
+        - buy-side
+        - sell-side
+        - general investor
+        - admin
+        - guest
+        type: string
+      created_by:
+        format: int32
+        readOnly: true
+        type: integer
+      created_date:
+        format: date-time
+        readOnly: true
+        type: string
+        x-nullable: true
+      creator:
+        type: string
+        x-nullable: true
+      designation_level:
+        enum:
+        - bod & top management
+        - mid-level management
+        - managers & others
+        type: string
+      links:
+        readOnly: true
+        type: string
+      modified_date:
+        format: date-time
+        readOnly: true
+        type: string
+        x-nullable: true
+      name:
+        maxLength: 256
+        minLength: 1
+        type: string
+      row_id:
+        format: int32
+        readOnly: true
+        type: integer
+      updated_by:
+        format: int32
+        readOnly: true
+        type: integer
+    required:
+    - account_type
+    - created_by
+    - designation_level
+    - name
+    - updated_by
+    type: object

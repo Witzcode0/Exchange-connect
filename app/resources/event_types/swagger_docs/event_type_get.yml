@@ -1,0 +1,76 @@
+Fetch a Event Type
+---
+tags:
+  - Event Types
+parameters:
+  - in: header
+    name: Authorization
+    type: string
+  - in: path
+    name: row_id
+    schema:
+      type: int
+    required: true
+    description: 'The Event Type id to fetch'
+responses:
+  200:
+    description: Event Type fetched
+    schema:
+      $ref: '#/definitions/EventType'
+  404:
+    description: 'Event Type id: <row_id> does not exist'
+  500:
+    description: 'Some unknown exception!'
+definitions:
+  EventType:
+    properties:
+      account_id:
+        format: int32
+        readOnly: true
+        type: integer
+      activated:
+        type: boolean
+        x-nullable: true
+      created_by:
+        format: int32
+        readOnly: true
+        type: integer
+      created_date:
+        format: date-time
+        readOnly: true
+        type: string
+        x-nullable: true
+      deleted:
+        readOnly: true
+        type: boolean
+        x-nullable: true
+      events:
+        items:
+          type: string
+        type: array
+      links:
+        readOnly: true
+        type: string
+      modified_date:
+        format: date-time
+        readOnly: true
+        type: string
+        x-nullable: true
+      name:
+        maxLength: 256
+        minLength: 1
+        type: string
+      row_id:
+        format: int32
+        readOnly: true
+        type: integer
+      updated_by:
+        format: int32
+        readOnly: true
+        type: integer
+    required:
+    - account_id
+    - created_by
+    - name
+    - updated_by
+    type: object

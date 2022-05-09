@@ -1,0 +1,259 @@
+<html lang="en">
+   <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta http-equiv="X-UA-Compatible" content="ie=edge">
+      <meta name="x-apple-disable-message-reformatting">
+      <title></title>
+   </head>
+   <body style="font-family: Arial, sans-serif; padding: 0; margin: 0;color:#000;font-size: 14px;">
+    <table border="0" align="center" cellpadding="0" cellspacing="0" width="600">
+        <tr>
+            <td height="20"></td>
+        </tr>
+        <tr>
+            <td valign="top" align="center">
+                <img src="https://exchangeconnectasset.s3.ap-south-1.amazonaws.com/Images/emails/EC+Daily+Dots+Logo.png" height="60" class="CToWUd">
+            </td>
+        </tr>
+        <tr>
+           <td height="20"></td>
+        </tr>
+        <tr>
+           <td valign="top" align="left">
+              <span>Dear {user_name},</span>
+           </td>
+        </tr>
+        <tr>
+            <td height="20"></td>
+        </tr>
+        {% if 'account_performance' in companies.keys() %}
+        <tr>
+            <td>
+                <h6 style="margin:0 0 10px;font-size:14px">Today's Market Performance</h6>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <table align="center" border="1" cellpadding="0" cellspacing="0" width="100%" style="min-width: 600px;max-width:600px;" >
+                    <tbody>
+                       <tr>
+                          <td nowrap="" style="height:30px">&nbsp;</td>
+                          
+                          <td nowrap="" style="height:30px;text-align:center"><span style="font-size:17px">Close</span></td>
+                          <td nowrap="" style="height:30px;text-align:center"><span style="font-size:17px">Prev. Cl.</span></td>
+                          <td nowrap="" style="height:30px;text-align:center"><span style="font-size:17px">%Change</span></td>  
+                          
+                       </tr>
+
+                       {% for performance in companies['account_performance'] %}
+                        {% if performance %}
+                        
+                       <tr>
+                          <td nowrap="" style="height:30px;text-align:center"><span style="font-size:17px">{{performance['account_name']}}</span></td>
+                          
+                          <td nowrap="" style="height:30px;text-align:center"><span style="font-size:17px">{{performance['ltp_price']}}</span></td>
+                          <td nowrap="" style="height:30px;text-align:center"><span style="font-size:17px">{{performance['prev_close_price']}}</span></td>
+                          <td nowrap="" style="height:30px;text-align:center"><span style="font-size:17px">{{performance['chng_price']}}</span></td> 
+                           
+                        </tr>
+                        {% endif %}
+                        {% endfor %}
+                    </tbody>
+                 </table>
+            </td>
+        </tr>
+        {% endif %} 
+        <tr>
+            <td height="20"></td>
+        </tr>
+        {% if 'comment' in companies.keys() %}
+         <tr>
+             <td style="font-size: 14px;text-align: justify;">
+                 <h6 style="margin: 0;font-size: 14px;">Market Commentary :</h6>
+                 {{companies['comment']}}
+             </td>
+         </tr>
+        {% endif %}
+        <tr>
+            <td height="20"></td>
+        </tr>
+        {% if 'news' in companies.keys() %}
+        <tr>
+            <td style="border-top:1px solid #000;border-bottom:1px solid #000;padding:10px 0">
+                 <h5 style="margin:0;font-size:14px;color:#83131a">News : </h5>
+            </td>
+        </tr>
+        <tr>
+            <td height="15"></td>
+        </tr>
+        {% if companies['no_peer_acc']%}
+        <tr>
+            <td>
+                <ol style="font-size: 14px;line-height: 21px;">
+                  {% for new in companies['news'] %}
+                     <li style="font-size: 14px;"><a href="{{new['href']}}">{{new['title']}}</a></li>
+                  {% endfor %}
+                </ol>
+            </td>
+        </tr>
+        {% else %}
+        <tr>
+            <td>
+                <ol style="font-size: 14px;line-height: 21px;">
+                  {% for new in companies['news'] %}
+                    <li style="font-size: 14px;"><span>{{new['company_name']}} :</span><a href="{{new['href']}}">{{new['title']}}</a></li>
+                  {% endfor %}
+                </ol>
+            </td>
+        </tr>
+        {% endif %}
+        {% if companies['view_more'] %}
+        <tr>
+            <td align="center">
+                <a href="https://www.exchangeconnect.in/?utm_source=ec-newsletter&utm_medium=email" style="background-color: #83131A;color:#fff;padding: 10px;display: inline-block;text-decoration: none;font-weight: 600;border-radius: 5px;" target="_blank" data-saferedirecturl="https://www.google.com/url?q=https://www.exchangeconnect.in/?utm_source%3Dec-newsletter%26utm_medium%3Demail&amp;source=gmail&amp;ust=1593181027483000&amp;usg=AFQjCNHQJ9GijNopdIpqESkbVCdapR3Fbw">View More</a>
+
+            </td>
+        </tr>
+        {% endif %}
+        {% endif %}
+        <tr>
+            <td height="15"></td>
+        </tr>
+        {% if 'announcements' in companies.keys() %}
+        <tr>
+            <td style="border-top:1px solid #000;border-bottom:1px solid #000;padding:10px 0;">
+                 <h5 style="margin: 0;font-size: 14px;color: #83131A;">Announcements : </h5>
+            </td>
+        </tr>
+        <tr>
+            <td height="15"></td>
+        </tr>
+        <tr>
+            <td>
+                <ol style="font-size: 14px;line-height: 21px;">
+                  {% for announcement in companies['announcements'] %}
+                    <li style="font-size: 14px;"><span>{{announcement['company_name']}} :</span><a href="{{announcement['url']}}">{{announcement['subject']}}</a></li>
+                  {% endfor %}
+                </ol>
+            </td>
+        </tr>
+        {% endif %}
+
+        <tr>
+            <td style="border-bottom: 2px solid #EAEAEA;">
+                <p style="margin:0 0 25px;font-size: 14px;line-height: 22px;text-align: justify;"><!-- "Connecting the dots" is our daily newsletter highlighting important developments in the market and key events at your favourite capital markets digital platform, ExchangeConnect.  -->Daily Dots is brought to you as our effort to keep {{companies['user_company']}} updated with the latest developments in the capital market. For more such engaging content and daily market updates, stay in touch with your digital ecosystem ExchangeConnect.</p>
+            </td>
+        </tr>
+        <tr>
+            <td align="center">
+                <p>Regards,</p>
+            </td>
+        </tr>
+        <tr>
+            <td align="center">
+
+                <a href="https://www.exchangeconnect.in/?utm_source=ec-newsletter&utm_medium=email" style="background-color:#2baadf;display:inline-block;text-align:center;color:#fff;text-decoration:none;font-weight:300;padding:10px" target="_blank" data-saferedirecturl="https://www.google.com/url?q=https://www.exchangeconnect.in/?utm_source%3Dec-newsletter%26utm_medium%3Demail&amp;source=gmail&amp;ust=1593181027483000&amp;usg=AFQjCNHQJ9GijNopdIpqESkbVCdapR3Fbw">ExchangeConnect  </a>
+
+           </td>
+       </tr>
+       <tr>
+        <td height="15"></td>
+       </tr>
+       <tr>
+          <td>
+            <table align="center" border="0" cellpadding="0" cellspacing="0" width="220">
+              <tbody>
+              <tr>
+                <td align="center">
+                  <a href="https://play.google.com/store/apps/details?id=com.exchangeconnect.sancial" data-saferedirecturl="https://www.google.com/url?q=https://play.google.com/store/apps/details?id%3Dcom.exchangeconnect.sancial&amp;source=gmail&amp;ust=1593181027483000&amp;usg=AFQjCNHBh8AqjZluFsdSltI9Gl6MhRENqQ">
+                    <img _ngcontent-c8="" class="img-fluid" alt="Exchangeconnect App" src="https://exchangeconnectasset.s3.ap-south-1.amazonaws.com/Images/emails/android.png" height="35" width="100" class="CToWUd"/>
+                  </a>
+                </td>
+                <td align="center">
+                  <a href="https://apps.apple.com/in/app/exchangeconnect/id1428636169" data-saferedirecturl="https://www.google.com/url?q=https://play.google.com/store/apps/details?id%3Dcom.exchangeconnect.sancial&amp;source=gmail&amp;ust=1593181027483000&amp;usg=AFQjCNHBh8AqjZluFsdSltI9Gl6MhRENqQ">
+                    <img _ngcontent-c8="" class="img-fluid" alt="Exchangeconnect App" src="https://exchangeconnectasset.s3.ap-south-1.amazonaws.com/Images/emails/ios.png" height="35" width="100" class="CToWUd"/>
+                  </a>
+                </td>
+              </tr>
+            </tbody>
+            </table>
+          </td>
+        </tr>
+        <tr>
+            <td height="15"></td>
+        </tr>
+        <tr>
+            <td>
+                <table align="center" border="0" cellpadding="0" cellspacing="0" width="210">
+                    <tbody><tr>
+                        <td align="center">
+                            <a href="https://www.linkedin.com/company/exchangeconnect" target="_blank" data-saferedirecturl="https://www.google.com/url?q=https://www.linkedin.com/company/exchangeconnect&amp;source=gmail&amp;ust=1593181027483000&amp;usg=AFQjCNFBUgur_WVCBjJooKy31c1mzjXH4A">
+                                <img src="https://exchangeconnectasset.s3.ap-south-1.amazonaws.com/Images/emails/linkedin_logo.png" height="24" class="CToWUd">
+                            </a>
+                        </td>
+                        <td align="center">
+                            <a href="http://www.twitter.com/exchangec0nnect" target="_blank" data-saferedirecturl="https://www.google.com/url?q=https://www.linkedin.com/company/exchangeconnect&amp;source=gmail&amp;ust=1593181027483000&amp;usg=AFQjCNFBUgur_WVCBjJooKy31c1mzjXH4A">
+                                <img src="https://exchangeconnectasset.s3.ap-south-1.amazonaws.com/Images/emails/twitter_logo.png" height="24" class="CToWUd">
+                            </a>
+                        </td>
+                        <td align="center">
+                            <a href="https://www.facebook.com/exchangeconnect/" target="_blank" data-saferedirecturl="https://www.google.com/url?q=https://www.linkedin.com/company/exchangeconnect&amp;source=gmail&amp;ust=1593181027483000&amp;usg=AFQjCNFBUgur_WVCBjJooKy31c1mzjXH4A">
+                                <img src="https://exchangeconnectasset.s3.ap-south-1.amazonaws.com/Images/emails/facebook_logo.png" height="24" class="CToWUd">
+                            </a>
+                        </td>
+                        <td align="center">
+                            <a href="http://www.exchangeconnect.in/" target="_blank" data-saferedirecturl="https://www.google.com/url?q=https://www.linkedin.com/company/exchangeconnect&amp;source=gmail&amp;ust=1593181027483000&amp;usg=AFQjCNFBUgur_WVCBjJooKy31c1mzjXH4A">
+                                <img src="https://exchangeconnectasset.s3.ap-south-1.amazonaws.com/Images/emails/attachment_logo.png" height="24" class="CToWUd">
+                            </a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+        <tr>
+            <td height="15"></td>
+        </tr>
+        <tr>
+            <td align="center">
+                <table align="center" cellpadding="0" cellspacing="0" width="600" bgcolor="#FAFAFA" style="background-color:#fafafa;border-top:1px solid #eaeaea">
+                    <tbody>
+                      <tr>
+                          <td height="15"></td>
+                      </tr>
+                      <tr>
+                        <td align="center" style="padding: 0 20px;font-size: 14px;line-height: 20px;"> 
+                            <p>Copyright © {{companies['current_year']}} S-Ancial Technologies Pvt. Ltd, All rights reserved.<br/>
+                                You are receiving this email because you have subscribed to ExchangeConnect</p>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td align="center" style="padding: 0 20px;font-size: 14px;line-height: 20px;">
+                        <p><b>Our mailing address is:</b><br/>
+S-Ancial Technologies Pvt. Ltd<br/>
+215, Shiv Shakti Industrial Estate, Lower Parel (East)<br/>
+Mumbai 400011<br/>
+India</p>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td align="center" style="padding: 0 20px;font-size: 14px;line-height: 20px;">
+                            <p>Want to change how you receive these emails?<br/>
+                            You can <a href={unsubscribe} target="_blank" data-saferedirecturl="https://www.google.com/url?q=https://csstaging.s-ancial.com/unsubscribe-email?token%3DImNvcnBvcmF0ZXNvbHV0aW9uNDAzKzFAZ21haWwuY29tIg.EdY5tw.c1Y7AK4PBKiqFmWe14gxIjPcSYA%26email%3DY29ycG9yYXRlc29sdXRpb240MDMrMUBnbWFpbC5jb20%3D&amp;source=gmail&amp;ust=1593181027484000&amp;usg=AFQjCNE0hyFZe7N9OSk4Neu8i8jytQhFxA">unsubscribe from this list.</a>
+                            </p>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td height="20" style="border-bottom: 1px solid #eaeaea;"></td>
+                      </tr>
+                      <tr>
+                          <td height="15"></td>
+                      </tr>
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+    </table>
+  </body>
+</html>

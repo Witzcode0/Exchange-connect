@@ -1,0 +1,150 @@
+update a ticket details etc.
+---
+tags:
+  - Ticket
+parameters:
+  - in: header
+    name: Authorization
+    required: true
+    type: string
+  - in: path
+    name: row_id
+    required: true
+  - name: assignee_id
+    in: formData
+    type: string
+  - name: attachment
+    in: formData
+    type: file
+  - name: deleted
+    in: formData
+    type: boolean
+  - name: description
+    in: formData
+    type: string
+  - name: email
+    in: formData
+    type: string
+  - name: function
+    in: formData
+    type: string
+    enum:
+        - home
+        - following
+        - company showcase
+        - find connection
+        - news
+        - overview
+        - events
+        - statistics
+        - draft
+        - webcast
+        - upcoming
+        - webinar
+        - survey
+        - newswire
+        - investor relations modules
+        - concept of investor relations
+        - organizing and conducting investor day
+        - other
+        - activity
+        - followers
+        - company webpage
+        - my network
+        - my connections
+        - search company
+        - search people
+        - sent requests
+        - contact requests
+        - corporate access
+        - open for event
+        - availability
+        - create event
+        - ownership analysis
+        - snapshot
+        - buyer/seller
+        - comprehensive ownership
+        - historical
+        - geographical dispersion
+        - peer analysis
+        - company profile
+        - stock info
+        - search profile
+        - people
+        - tree view
+        - investor targeting
+        - perception study
+        - create survey
+        - disclosures enhancement
+        - webcasting
+        - newswire distribution
+        - create newswire
+        - order your documents
+        - my projects
+        - projects
+        - files
+        - dashboard
+        - announcements
+    required: True
+    default: home
+  - name: name
+    in: formData
+    type: string
+  - name: phone
+    in: formData
+    type: string
+  - name: section
+    in: formData
+    type: string
+    enum:
+        - activity
+        - corporate access
+        - peer benchmarking
+        - webcasting
+        - webinar
+        - perception survey
+        - newswire distribution
+        - investor relations modules
+        - other
+        - my network
+        - ownership analysis
+        - investor targeting
+        - perception study
+        - disclosures enhancement
+        - order your documents
+        - my projects
+    default: activity
+    required: True
+  - name: status
+    in: formData
+    type: string
+    enum:
+        - pending
+        - in process
+        - closed
+    required: True
+    default: pending
+  - name: subject
+    in: formData
+    type: string
+    schema:
+      $ref: '#/definitions/Ticket'
+responses:
+  200:
+    description: 'Updated ticket id: <row_id>'
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            message:
+              type: string
+              description: 'Updated ticket id: <row_id>'
+  400:
+    description: No data sent
+  404:
+    description: 'ticket id: <row_id> does not exist'
+  422:
+    description: 'Error in data'
+  500:
+    description: 'Some unknown exception!'

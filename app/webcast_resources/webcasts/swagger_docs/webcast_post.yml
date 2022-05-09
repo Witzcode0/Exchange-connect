@@ -1,0 +1,235 @@
+For creating new webcast
+---
+tags:
+  - Webcasts
+parameters:
+  - in: header
+    name: Authorization
+    required: true
+    type: string
+  - name: title
+    in: formData
+    type: string
+    required: true
+  - name: started_at
+    in: formData
+    type: string
+    format: date-time
+  - name: ended_at
+    in: formData
+    type: string
+    format: date-time
+  - name: description
+    in: formData
+    type: string
+  - name: external_invitees
+    in: formData
+    schema:
+      $ref: '#/definitions/external_invitees'
+  - name: external_hosts
+    in: formData
+    schema:
+      $ref: '#/definitions/external_hosts'
+  - name: external_participants
+    in: formData
+    schema:
+      $ref: '#/definitions/external_participants'
+  - name: webcast_participants
+    in: formData
+    schema:
+      $ref: '#/definitions/webcast_participants'
+  - name: rsvps
+    in: formData
+    schema:
+      $ref: '#/definitions/rsvps'
+  - name: host_ids
+    in: formData
+    schema:
+      $ref: '#/definitions/host_ids'
+  - name: invitee_ids
+    in: formData
+    schema:
+      $ref: '#/definitions/invitee_ids'
+  - name: cc_emails
+    in: formData
+    schema:
+      $ref: '#/definitions/cc_emails'
+  - name: invite_logo_filename
+    in: formData
+    type: file
+  - name: invite_banner_filename
+    in: formData
+    type: file
+responses:
+  201:
+    description: 'webcast has been created'
+    schema:
+      content:
+        application/json:
+      schema:
+        type: object
+        required:
+          - message
+          - row_id
+        properties:
+          message:
+            type: string
+            default: 'webcast added'
+          row_id:
+            type: int32
+            description: 'row id of the webcast'
+            default: 1
+  400:
+    description: 'No data sent or No file provided'
+  422:
+    description: 'webcast type not allowed'
+definitions:
+  webcast_participants:
+    items:
+      properties:
+        participant_designation:
+          maxLength: 128
+          type: string
+          x-nullable: true
+        participant_email:
+          format: email
+          maxLength: 128
+          type: string
+          x-nullable: true
+        participant_first_name:
+          maxLength: 128
+          type: string
+          x-nullable: true
+        participant_id:
+          format: int32
+          type: integer
+          x-nullable: true
+        participant_last_name:
+          maxLength: 128
+          type: string
+          x-nullable: true
+        row_id:
+          format: int32
+          readOnly: true
+          type: integer
+        sequence_id:
+          format: int32
+          minimum: 1
+          type: integer
+          x-nullable: true
+      type: object
+    type: array
+  host_ids:
+    type: array
+    items:
+      type: integer
+  invitee_ids:
+    type: array
+    items:
+      type: integer
+  rsvps:
+    items:
+      properties:
+        contact_person:
+          maxLength: 256
+          type: string
+          x-nullable: true
+        email:
+          format: email
+          maxLength: 128
+          type: string
+          x-nullable: true
+        phone:
+          maxLength: 32
+          type: string
+          x-nullable: true
+        row_id:
+          format: int32
+          readOnly: true
+          type: integer
+      type: object
+    type: array
+  external_hosts:
+    items:
+      properties:
+        host_designation:
+          maxLength: 128
+          type: string
+          x-nullable: true
+        host_email:
+          format: email
+          maxLength: 128
+          type: string
+          x-nullable: true
+        host_first_name:
+          maxLength: 128
+          type: string
+          x-nullable: true
+        host_last_name:
+          maxLength: 128
+          type: string
+          x-nullable: true
+        row_id:
+          format: int32
+          readOnly: true
+          type: integer
+      type: object
+    type: array
+  external_invitees:
+    items:
+      properties:
+        invitee_designation:
+          maxLength: 128
+          type: string
+          x-nullable: true
+        invitee_email:
+          format: email
+          maxLength: 128
+          type: string
+          x-nullable: true
+        invitee_first_name:
+          maxLength: 128
+          type: string
+          x-nullable: true
+        invitee_last_name:
+          maxLength: 128
+          type: string
+          x-nullable: true
+        row_id:
+          format: int32
+          readOnly: true
+          type: integer
+      type: object
+    type: array
+  external_participants:
+    items:
+      properties:
+        participant_designation:
+          maxLength: 128
+          type: string
+          x-nullable: true
+        participant_email:
+          format: email
+          maxLength: 128
+          type: string
+          x-nullable: true
+        participant_first_name:
+          maxLength: 128
+          type: string
+          x-nullable: true
+        participant_last_name:
+          maxLength: 128
+          type: string
+          x-nullable: true
+        row_id:
+          format: int32
+          readOnly: true
+          type: integer
+      type: object
+    type: array
+  cc_emails:
+    items:
+      format: email
+      type: string
+    type: array
+    x-nullable: true

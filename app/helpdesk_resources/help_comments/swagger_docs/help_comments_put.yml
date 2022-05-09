@@ -1,0 +1,46 @@
+update a comment details etc.
+---
+tags:
+  - Comment
+parameters:
+  - in: header
+    name: Authorization
+    type: string
+    required: true
+  - in: path
+    name: row_id
+    required: true
+  - name: attachment
+    in: formData
+    type: file
+  - name: deleted
+    in: formData
+    type: boolean
+  - name: is_admin
+    in: formData
+    type: boolean
+  - name: message
+    in: formData
+    type: string
+  - name: ticket_id
+    in: formData
+    type: integer
+responses:
+  200:
+    description: 'Updated comment id: <row_id>'
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            message:
+              type: string
+              description: 'Updated comment id: <row_id>'
+  400:
+    description: No data sent
+  404:
+    description: 'comment id: <row_id> does not exist'
+  422:
+    description: 'Error in data'
+  500:
+    description: 'Some unknown exception!'

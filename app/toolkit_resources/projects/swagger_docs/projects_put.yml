@@ -1,0 +1,393 @@
+Edit an Project udpate details etc.
+---
+tags:
+  - Project
+parameters:
+  - in: header
+    name: Authorization
+    type: string
+  - in: path
+    name: row_id
+    schema:
+      type: int
+    required: true
+    description: 'The Project to modify'
+  - in: body
+    name: body
+    schema:
+      $ref: '#/definitions/ProjectPut'
+responses:
+  200:
+    description: 'Updated Project id: <row_id>'
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            message:
+              type: string
+              description: 'Updated Project id: <row_id>'
+  400:
+    description: No data sent
+  404:
+    description: 'Project id: <row_id> does not exist'
+  422:
+    description: 'Error in data'
+  500:
+    description: 'Some unknown exception!'
+definitions:
+  ProjectPut:
+    properties:
+      account:
+        properties:
+          account_name:
+            maxLength: 512
+            minLength: 1
+            type: string
+          links:
+            readOnly: true
+            type: string
+          row_id:
+            format: int32
+            readOnly: true
+            type: integer
+        readOnly: true
+        required:
+        - account_name
+        type: object
+      account_id:
+        format: int32
+        readOnly: true
+        type: integer
+      analysts:
+        items:
+          properties:
+            account:
+              properties:
+                account_name:
+                  maxLength: 512
+                  minLength: 1
+                  type: string
+                account_type:
+                  enum:
+                  - corporate
+                  - buy-side
+                  - sell-side
+                  - general investor
+                  - admin
+                  - guest
+                  type: string
+                row_id:
+                  format: int32
+                  readOnly: true
+                  type: integer
+              readOnly: true
+              required:
+              - account_name
+              - account_type
+              type: object
+            email:
+              format: email
+              maxLength: 128
+              type: string
+            profile:
+              properties:
+                designation:
+                  maxLength: 128
+                  type: string
+                  x-nullable: true
+                designation_link:
+                  properties:
+                    name:
+                      maxLength: 256
+                      minLength: 1
+                      type: string
+                    row_id:
+                      format: int32
+                      readOnly: true
+                      type: integer
+                  readOnly: true
+                  required:
+                  - name
+                  type: object
+                first_name:
+                  maxLength: 512
+                  minLength: 1
+                  type: string
+                last_name:
+                  maxLength: 512
+                  minLength: 1
+                  type: string
+                links:
+                  readOnly: true
+                  type: string
+                phone_number:
+                  maxLength: 32
+                  type: string
+                  x-nullable: true
+                profile_photo_url:
+                  format: url
+                  readOnly: true
+                  type: string
+                profile_thumbnail_url:
+                  format: url
+                  readOnly: true
+                  type: string
+              required:
+              - first_name
+              - last_name
+              type: object
+            row_id:
+              format: int32
+              readOnly: true
+              type: integer
+          required:
+          - email
+          - profile
+          type: object
+        readOnly: true
+        type: array
+      created_by:
+        format: int32
+        readOnly: true
+        type: integer
+      created_date:
+        format: date-time
+        readOnly: true
+        type: string
+        x-nullable: true
+      creator:
+        properties:
+          account:
+            properties:
+              account_name:
+                maxLength: 512
+                minLength: 1
+                type: string
+              account_type:
+                enum:
+                - corporate
+                - buy-side
+                - sell-side
+                - general investor
+                - admin
+                - guest
+                type: string
+              row_id:
+                format: int32
+                readOnly: true
+                type: integer
+            readOnly: true
+            required:
+            - account_name
+            - account_type
+            type: object
+          profile:
+            properties:
+              designation:
+                maxLength: 128
+                type: string
+                x-nullable: true
+              designation_link:
+                properties:
+                  name:
+                    maxLength: 256
+                    minLength: 1
+                    type: string
+                  row_id:
+                    format: int32
+                    readOnly: true
+                    type: integer
+                readOnly: true
+                required:
+                - name
+                type: object
+              first_name:
+                maxLength: 512
+                minLength: 1
+                type: string
+              last_name:
+                maxLength: 512
+                minLength: 1
+                type: string
+              links:
+                readOnly: true
+                type: string
+              profile_photo_url:
+                format: url
+                readOnly: true
+                type: string
+              profile_thumbnail_url:
+                format: url
+                readOnly: true
+                type: string
+            required:
+            - first_name
+            - last_name
+            type: object
+          row_id:
+            format: int32
+            readOnly: true
+            type: integer
+        readOnly: true
+        required:
+        - profile
+        type: object
+      delivery_date:
+        format: date-time
+        type: string
+        x-nullable: true
+      glossary:
+        maxLength: 256
+        type: string
+        x-nullable: true
+      is_draft:
+        type: boolean
+        x-nullable: true
+      link:
+        format: url
+        maxLength: 256
+        type: string
+        x-nullable: true
+      links:
+        readOnly: true
+        type: string
+      modified_date:
+        format: date-time
+        readOnly: true
+        type: string
+        x-nullable: true
+      order_date:
+        format: date-time
+        type: string
+        x-nullable: true
+      project_analysts:
+        items:
+          properties:
+            analyst_id:
+              format: int32
+              type: integer
+            project_id:
+              format: int32
+              type: integer
+            row_id:
+              format: int32
+              readOnly: true
+              type: integer
+          required:
+          - analyst_id
+          - project_id
+          type: object
+        readOnly: true
+        type: array
+      project_chats:
+        items:
+          type: string
+        type: array
+      project_name:
+        maxLength: 256
+        type: string
+        x-nullable: true
+      project_parameters:
+        items:
+          properties:
+            account_id:
+              format: int32
+              readOnly: true
+              type: integer
+            created_by:
+              format: int32
+              readOnly: true
+              type: integer
+            created_date:
+              format: date-time
+              readOnly: true
+              type: string
+              x-nullable: true
+            ended_at:
+              format: date-time
+              type: string
+              x-nullable: true
+            links:
+              readOnly: true
+              type: string
+            modified_date:
+              format: date-time
+              readOnly: true
+              type: string
+              x-nullable: true
+            parameter_name:
+              maxLength: 256
+              minLength: 1
+              type: string
+            parameter_value:
+              maxLength: 256
+              type: string
+              x-nullable: true
+            parent_parameter_name:
+              maxLength: 256
+              minLength: 1
+              type: string
+            row_id:
+              format: int32
+              readOnly: true
+              type: integer
+            started_at:
+              format: date-time
+              type: string
+              x-nullable: true
+            updated_by:
+              format: int32
+              readOnly: true
+              type: integer
+          required:
+          - account_id
+          - created_by
+          - parameter_name
+          - parent_parameter_name
+          - updated_by
+          type: object
+        readOnly: true
+        type: array
+      project_type:
+        properties:
+          estimated_delivery_days:
+            format: int32
+            type: integer
+          project_type_name:
+            maxLength: 256
+            minLength: 1
+            type: string
+          row_id:
+            format: int32
+            readOnly: true
+            type: integer
+        readOnly: true
+        required:
+        - estimated_delivery_days
+        - project_type_name
+        type: object
+      project_type_id:
+        format: int32
+        type: integer
+      row_id:
+        format: int32
+        readOnly: true
+        type: integer
+      special_instructions:
+        maxLength: 1024
+        type: string
+        x-nullable: true
+      status:
+        type: number
+        x-nullable: true
+      updated_by:
+        format: int32
+        readOnly: true
+        type: integer
+    required:
+    - account_id
+    - created_by
+    - project_type_id
+    - updated_by
+    type: object

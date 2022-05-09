@@ -1,0 +1,7 @@
+Test CRUD
+1. GET
+    - test fetch feed by feed row_id
+2. GET List
+    - test fetch post of current user
+    - test fetch pots of current user contact
+    - test fetch corporate announcement which user follow companies

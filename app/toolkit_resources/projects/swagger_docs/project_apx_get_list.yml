@@ -1,0 +1,176 @@
+Get a list of Project based on query parameters
+---
+tags:
+  - Project
+parameters:
+  - in: query
+    schema:
+      $ref: '#/definitions/ProjectReadArgs'
+responses:
+  200:
+    description: Project fetched
+    schema:
+      type: object
+      properties:
+        results:
+          type: array
+          items:
+            $ref: '#/definitions/Project'
+        total:
+          type: int32
+          default: 1
+  404:
+    description: 'Project id: <row_id> does not exist'
+  500:
+    description: 'Some unknown exception'
+definitions:
+  ProjectReadArgsSchema:
+    properties:
+      created_date_from:
+        format: date-time
+        type: string
+      created_date_to:
+        format: date-time
+        type: string
+      operator:
+        enum:
+        - and
+        - or
+        type: string
+      page:
+        format: int32
+        type: integer
+      per_page:
+        format: int32
+        type: integer
+      pfields:
+        items:
+          type: string
+        type: array
+      project_name:
+        type: string
+      project_type:
+        type: string
+      sort:
+        enum:
+        - asc
+        - dsc
+        type: string
+      sort_by:
+        items:
+          type: string
+        type: array
+    type: object
+  ProjectSchema:
+    properties:
+      account_name:
+        maxLength: 512
+        type: string
+      account_type:
+        enum:
+        - corporate
+        - private
+        - corporate-group
+        type: string
+      analyst_requested:
+        type: boolean
+        x-nullable: true
+      cancelled:
+        type: boolean
+        x-nullable: true
+      created_date:
+        format: date-time
+        readOnly: true
+        type: string
+        x-nullable: true
+      deleted:
+        readOnly: true
+        type: boolean
+        x-nullable: true
+      delivery_date:
+        format: date-time
+        type: string
+        x-nullable: true
+      dimention:
+        enum:
+        - wide
+        - standard
+        type: string
+      email:
+        format: email
+        maxLength: 128
+        type: string
+      glossary:
+        maxLength: 256
+        type: string
+        x-nullable: true
+      is_completed:
+        readOnly: true
+        type: boolean
+        x-nullable: true
+      link:
+        maxLength: 256
+        type: string
+        x-nullable: true
+      modified_date:
+        format: date-time
+        readOnly: true
+        type: string
+        x-nullable: true
+      order_date:
+        format: date-time
+        type: string
+        x-nullable: true
+      params:
+        type: string
+        x-nullable: true
+      percentage:
+        type: number
+        x-nullable: true
+      project_name:
+        maxLength: 256
+        type: string
+        x-nullable: true
+      project_type:
+        enum:
+        - Annual Report
+        - Corporate Presentation
+        - Earning Presentation
+        - Investor Presentation
+        - Factsheet
+        - Press Release
+        - Newsletter
+        - Press Release Earning
+        - Build Corporate Website
+        type: string
+      row_id:
+        format: int32
+        readOnly: true
+        type: integer
+      sides_nr:
+        format: int32
+        type: integer
+        x-nullable: true
+      slides_completed:
+        format: int32
+        type: integer
+        x-nullable: true
+      special_instructions:
+        maxLength: 1024
+        type: string
+        x-nullable: true
+      work_area:
+        enum:
+        - design
+        - content
+        - design_content
+        type: string
+    required:
+    - account_name
+    - account_type
+    - dimention
+    - email
+    - project_type
+    - work_area
+    type: object
+

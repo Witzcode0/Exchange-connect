@@ -1,0 +1,30 @@
+Resend verification mail by admin
+---
+tags:
+  - Registration Requests (Admin)
+parameters:
+  - in: header
+    name: Authorization
+    type: string
+    required: true
+  - in: path
+    name: row_id
+    schema:
+      type: int
+    required: true
+    description: 'Resend verifictaion email by admin'
+responses:
+  200:
+    description: 'Verification email resent for registration request: row_id'
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            message:
+              type: string
+              description: 'Verification email resent for registration request: row_id'
+  404:
+    description: 'RegistrationRequest id: <row_id> does not exist'
+  500:
+    description: Some unknown exception!

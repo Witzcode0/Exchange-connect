@@ -1,0 +1,32 @@
+Test Crud Operations
+
+WebcastAnswerAPI :
+
+* Post
+    - check data missing error (required field)
+    - check does not exist error by sending not available webcast_id and question_id.
+    - check data incorrect error (answer field length validations)
+    - check unknown error
+    - check no errors, data entered successfully
+    - if data entered, update the webcast_stats table for the webcast_id
+
+* Put
+    - check not found (webcast answer id does not exist)
+    - check does not exist error by sending not available webcast_id and question_id.
+    - check data incorrect error (answer field length validations)
+    - check unknown error
+    - check no errors, data entered successfully
+    - check if webcast_id is changed and update the webcast_stats for the new webcast_id and old
+        webcast_id
+* Get
+    - check not found (webcast answer id does not exist)
+    - check found, fetched
+* Delete
+    - check not found (webcast answer id does not exist)
+    - check found, deleted
+    - if webcast_answer is deleted, update the webcast_stats for the related webcast_id
+
+WebcastAnswerListAPI :
+
+* Get
+    - check found, fetched.

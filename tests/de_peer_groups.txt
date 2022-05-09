@@ -1,0 +1,17 @@
+Test CRUD
+1. Post
+    - test create depeergroup
+    - test create depeermembership
+2. Put
+    - test update depeergroup
+    - test update depeermembership
+    - test when passed new companies then add
+3. Delete
+    - test delete depeergroup
+    - test delete depeermembership
+4. Get
+   - test fetch all depeergroup
+
+TEST Listing
+- test below filters:
+    - name

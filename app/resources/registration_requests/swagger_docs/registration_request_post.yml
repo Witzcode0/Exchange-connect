@@ -1,0 +1,125 @@
+For creating new registration requests by end user
+---
+tags:
+  - Registration Requests
+parameters:
+  - in: body
+    name: body
+    schema:
+      $ref: '#/definitions/RegistrationRequest'
+responses:
+  201:
+    description: RegistrationRequest has been created
+    schema:
+      content:
+        application/json:
+      schema:
+        type: object
+        required:
+          - message
+          - row_id
+        properties:
+          message:
+            type: string
+            default: RegistrationRequest has been created
+          row_id:
+            type: int32
+            description: row id of the generated RegistrationRequest
+            default: 1
+  400:
+    description: No data sent
+    schema:
+      type: object
+      required:
+        - message
+        - row_id
+      properties:
+        message:
+          type: string
+          default: RegistrationRequest has been created
+        row_id:
+          type: int32
+          description: row id of the generated RegistrationRequest
+          default: 1
+  422:
+    description: Error in data or email already exists
+  500:
+    description: Some unknown exception!
+
+# the model definition
+definitions:
+  RegistrationRequest:
+    properties:
+      company:
+        maxLength: 256
+        type: string
+        x-nullable: true
+      created_date:
+        format: date-time
+        readOnly: true
+        type: string
+        x-nullable: true
+      deleted:
+        readOnly: true
+        type: boolean
+        x-nullable: true
+      designation:
+        maxLength: 128
+        type: string
+        x-nullable: true
+      email:
+        format: email
+        maxLength: 128
+        type: string
+      first_name:
+        maxLength: 128
+        minLength: 1
+        type: string
+      join_as:
+        enum:
+        - corporate
+        - buy-side
+        - sell-side
+        - general investor
+        - admin
+        type: string
+      last_name:
+        maxLength: 128
+        minLength: 1
+        type: string
+      links:
+        type: string
+      modified_date:
+        format: date-time
+        readOnly: true
+        type: string
+        x-nullable: true
+      password:
+        minLength: 7
+        type: string
+      phone_number:
+        maxLength: 32
+        type: string
+        x-nullable: true
+      row_id:
+        format: int32
+        readOnly: true
+        type: integer
+      status:
+        enum:
+        - unverified
+        - pending
+        - accepted
+        - rejected
+        type: string
+      updated_by:
+        format: int32
+        readOnly: true
+        type: integer
+        x-nullable: true
+    required:
+    - email
+    - first_name
+    - last_name
+    - password
+    type: object

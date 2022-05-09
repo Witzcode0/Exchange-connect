@@ -1,0 +1,11 @@
+TEST CRUD
+
+1. Delete
+    - delete contact and check in contact history
+    - sender and receiver both can delete
+    - Try delete to another user
+    - when delete contact then contact request also delete
+2. Get
+    - fetch contact list only current user of his contacts
+    - try to fetch contacts of different users
+    - check filter sector and industry w.r.t. account_profile

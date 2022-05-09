@@ -1,0 +1,22 @@
+Delete a webcast answer
+---
+tags:
+  - Webcast Answers
+parameters:
+  - in: header
+    name: Authorization
+    required: true
+    type: string
+  - in: path
+    name: row_id
+    schema:
+      type: int
+    required: true
+    description: 'The webcast answer to delete'
+responses:
+  204:
+    description: 'webcast answer deleted'
+  404:
+    description: 'webcast answer id: <row_id> does not exist'
+  500:
+    description: 'Some unknown exception!'

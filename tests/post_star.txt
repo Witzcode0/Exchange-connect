@@ -1,0 +1,12 @@
+Test CRUD
+1. Post:
+    - test create post star for particular post
+    - test give random value for stars
+2. Put:
+    - test change stars
+3. Delete:
+    - test delete post star
+    - test delete post star other user
+4. Get:
+    - test fetch post stars according to post_id
+    - test fetch all post stars

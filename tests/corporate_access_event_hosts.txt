@@ -1,0 +1,27 @@
+Test Crud Operations
+
+CorporateAccessEventHostAPI :
+
+* Post
+    - check data missing error (required field)
+    - check does not exist error.
+    - check already exists error (for unique constraint)
+    - check unknown error
+    - check no errors, data entered successfully
+* Put
+    - check not found.
+    - check does not exist error.
+    - check already exists error (unique constraint)
+    - check unknown error
+    - check no errors, data entered successfully
+* Get
+    - check not found (does not exist error)
+    - check found, fetched
+* Delete
+    - check not found (does not exist error)
+    - check found, deleted
+
+CorporateAccessEventHostListAPI :
+
+* Get
+    - check found, fetched.

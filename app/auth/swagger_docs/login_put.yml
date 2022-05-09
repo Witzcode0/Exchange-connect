@@ -1,0 +1,26 @@
+For refresh token for user
+---
+tags:
+  - Authentication & Password Assistance
+parameters:
+  - in: header
+    name: Authorization
+    type: string
+    required: true
+responses:
+  200:
+    description: Successfully logged in
+    content:
+      application/json:
+      schema:
+        type: object
+        required:
+          - access_token
+        properties:
+          access_token:
+            type: string
+            description: Encoded access token
+  404:
+    description: User not found
+  500:
+    description: Some unknown exception!

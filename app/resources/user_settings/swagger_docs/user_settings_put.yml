@@ -1,0 +1,229 @@
+Edit user settings, update details
+---
+tags:
+  - User Settings
+parameters:
+  - in: header
+    name: Authorization
+    type: string
+    required: true
+  - in: body
+    name: body
+    schema:
+      $ref: '#/definitions/UserSettings'
+responses:
+  200:
+    description: 'Updated User Settings id: <user_id>'
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            message:
+              type: string
+              description: 'Updated User Settings id: <user_id>'
+  400:
+    description: No data sent
+  404:
+    description: 'User Settings id: <user_id> does not exist'
+  422:
+    description: 'Error in data'
+  500:
+    description: 'Some unknown exception!'
+definitions:
+  UserSettings:
+    properties:
+      allow_admin_access:
+        type: boolean
+      contact_request_accepted:
+        type: boolean
+        x-nullable: true
+      corpaccess_event_invite_accepted:
+        type: boolean
+        x-nullable: true
+      corpaccess_event_invited:
+        type: boolean
+        x-nullable: true
+      corpaccess_slot_inquiry_received:
+        type: boolean
+        x-nullable: true
+      created_date:
+        format: date-time
+        readOnly: true
+        type: string
+        x-nullable: true
+      deleted:
+        readOnly: true
+        type: boolean
+        x-nullable: true
+      enable_chat:
+        type: boolean
+      language:
+        enum:
+        - en
+        type: string
+        x-nullable: true
+      links:
+        readOnly: true
+        type: string
+      modified_date:
+        format: date-time
+        readOnly: true
+        type: string
+        x-nullable: true
+      new_contact_request:
+        type: boolean
+        x-nullable: true
+      row_id:
+        format: int32
+        readOnly: true
+        type: integer
+      search_privacy:
+        items:
+          enum:
+          - corporate
+          - buy-side
+          - sell-side
+          - general investor
+          - admin
+          - guest
+          type: string
+          x-nullable: true
+        type: array
+      search_privacy_designation_level:
+        items:
+          enum:
+          - bod & top management
+          - mid-level management
+          - managers & others
+          type: string
+          x-nullable: true
+        type: array
+      search_privacy_industry:
+        items:
+          enum:
+          - 1
+          - 2
+          type: integer
+          x-nullable: true
+        type: array
+      search_privacy_market_cap_max:
+        format: int32
+        type: integer
+        x-nullable: true
+      search_privacy_market_cap_min:
+        format: int32
+        type: integer
+        x-nullable: true
+      search_privacy_sector:
+        items:
+          enum:
+          - 1
+          - 2
+          type: integer
+          x-nullable: true
+        type: array
+      timezone:
+        description: IANA/Olson Time Zone format
+        type: string
+        x-nullable: true
+        enum:
+        - Asia/Shanghai
+        - Asia/Calcutta
+        - Greenwich
+        default: Asia/Calcutta
+      user:
+        properties:
+          account:
+            properties:
+              account_name:
+                maxLength: 512
+                minLength: 1
+                type: string
+              account_type:
+                enum:
+                - corporate
+                - buy-side
+                - sell-side
+                - general investor
+                - admin
+                - guest
+                type: string
+              row_id:
+                format: int32
+                readOnly: true
+                type: integer
+            readOnly: true
+            required:
+            - account_name
+            - account_type
+            type: object
+          profile:
+            properties:
+              designation:
+                maxLength: 128
+                type: string
+                x-nullable: true
+              designation_link:
+                properties:
+                  name:
+                    maxLength: 256
+                    minLength: 1
+                    type: string
+                  row_id:
+                    format: int32
+                    readOnly: true
+                    type: integer
+                readOnly: true
+                required:
+                - name
+                type: object
+              first_name:
+                maxLength: 512
+                minLength: 1
+                type: string
+              last_name:
+                maxLength: 512
+                minLength: 1
+                type: string
+              links:
+                readOnly: true
+                type: string
+              profile_photo_url:
+                format: url
+                readOnly: true
+                type: string
+              profile_thumbnail_url:
+                format: url
+                readOnly: true
+                type: string
+            required:
+            - first_name
+            - last_name
+            type: object
+          row_id:
+            format: int32
+            readOnly: true
+            type: integer
+        readOnly: true
+        required:
+        - profile
+        type: object
+      user_id:
+        format: int32
+        type: integer
+      webcast_invite_accepted:
+        type: boolean
+        x-nullable: true
+      webcast_invited:
+        type: boolean
+        x-nullable: true
+      webinar_invite_accepted:
+        type: boolean
+        x-nullable: true
+      webinar_invited:
+        type: boolean
+        x-nullable: true
+    required:
+    - user_id
+    type: object

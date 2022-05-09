@@ -1,0 +1,140 @@
+Get a list of Newswire Post library files based on query parameters
+---
+tags:
+  - Newswire Post Library Files
+parameters:
+  - in: header
+    name: Authorization
+    type: string
+  - in: query
+    schema:
+      $ref: '#/definitions/NewswirePostLibraryFileReadArgs'
+responses:
+  200:
+    description: 'Files fetched'
+    schema:
+      type: object
+      properties:
+        results:
+          type: array
+          items:
+            $ref: '#/definitions/NewswirePostLibraryFile'
+        total:
+          type: int32
+          default: 1
+  404:
+    description: 'No matching files found'
+  500:
+    description: 'Some unknown exception'
+definitions:
+  NewswirePostLibraryFile:
+    properties:
+      account:
+        type: string
+        x-nullable: true
+      account_id:
+        format: int32
+        readOnly: true
+        type: integer
+      created_by:
+        format: int32
+        readOnly: true
+        type: integer
+      created_date:
+        format: date-time
+        readOnly: true
+        type: string
+        x-nullable: true
+      creator:
+        type: string
+        x-nullable: true
+      deleted:
+        readOnly: true
+        type: boolean
+        x-nullable: true
+      file_major_type:
+        maxLength: 128
+        readOnly: true
+        type: string
+        x-nullable: true
+      file_type:
+        maxLength: 256
+        type: string
+        x-nullable: true
+      file_url:
+        format: url
+        readOnly: true
+        type: string
+      filename:
+        type: string
+        x-nullable: true
+      links:
+        readOnly: true
+        type: string
+      modified_date:
+        format: date-time
+        readOnly: true
+        type: string
+        x-nullable: true
+      newswire_posts:
+        items:
+          type: string
+        type: array
+      row_id:
+        format: int32
+        readOnly: true
+        type: integer
+      thumbnail_name:
+        type: string
+        x-nullable: true
+      thumbnail_url:
+        format: url
+        readOnly: true
+        type: string
+      updated_by:
+        format: int32
+        readOnly: true
+        type: integer
+    required:
+    - account_id
+    - created_by
+    - updated_by
+    type: object
+  NewswirePostLibraryFileReadArgs:
+    properties:
+      created_date_from:
+        format: date-time
+        type: string
+      created_date_to:
+        format: date-time
+        type: string
+      operator:
+        enum:
+        - and
+        - or
+        type: string
+        default: and
+      page:
+        format: int32
+        type: integer
+        default: 1
+      per_page:
+        format: int32
+        type: integer
+        default: 20
+      pfields:
+        items:
+          type: string
+        type: array
+      sort:
+        enum:
+        - asc
+        - dsc
+        type: string
+        default: asc
+      sort_by:
+        items:
+          type: string
+        type: array
+        default: row_id
+    type: object

@@ -1,0 +1,19 @@
+Test Gets
+
+* GET
+  Corporate User(Survey Creator)
+        total_publish_survey = Total publish survey(editable false) from all
+                               survey created by particular user
+        total_response_survey = Total answered by invitees from particular
+                                user's survey
+        average_response_per_survey = (Total answered / Total publish survey)
+        total_survey = All created survey by particular user
+        total_invitee = All invited user in all survey which are created by
+                        particular user
+
+  Survey Invitee user(Sell-side, buy-side, general investor)
+        total_invited_survey = Total invited survey for particular user
+        total_completed_survey = Total closed survey which are invited
+        total_live_survey = Total running survey which are invited
+        # #TODO: not fully discussed yet
+        average_time_spent

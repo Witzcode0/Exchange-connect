@@ -1,0 +1,65 @@
+Test CRUD
+
+SurveyAPI:
+
+1. Post
+    - creating a survey - PASS
+    - testing below validations:
+        - checking "questions" field as JSON. - PASS
+        - choosing "status" among specific choices - PASS
+        - testing for required field for "title" - PASS
+        - testing for max length - PASS
+        - check only corporate and admin can create a survey.
+        - test add external invitees - PASS
+        - check when survey is launched then email is send to invited user
+        - check external_invitees with first_name, last_name, email, designation
+        - check external_invitees with user_id and email
+        - check external_invitees with user_id and first_name, last_name
+        - check unique constraint with survey_id vs user_id and survey_id vs email.
+        - check integrity error for already exist invitees.
+2. Put
+    - updating a survey - PASS
+    - testing below validations:
+        - checking "questions" field as JSON. - PASS
+        - choosing "status" among specific choices - PASS
+        - testing for required field for "title" - PASS
+        - testing for max length - PASS
+        - check only corporate and admin can update a survey.
+        - check external invitees using row_id, not found
+        - check external invitees using row_id, found, updated
+        - add external invitees if no row_id
+        - check when survey is launched then email is send to invited user
+        - check external_invitees with first_name, last_name, email, designation
+        - check external_invitees with user_id and email
+        - check external_invitees with user_id and first_name, last_name
+        - check unique constraint with survey_id vs user_id and survey_id vs email.
+        - check integrity error for already exist invitees.
+3. Delete
+    - deleting a single survey = PASS
+4. Get
+    - fetching a single survey by id = PASS
+
+SurveyListAPI:
+
+Get
+    - fetching results of a user who created and invited to survey
+    - check editable filter
+
+SurveyGetAPI:
+Get
+    - check if token is provided, if not, then send survey does not exist message.
+    - check if token is provided and valid, if valid, fetch the survey data, else token
+        invalid error
+    - check if token and row_id provided and survey data exist for the combination, if
+        not, return token invalid.
+
+ReSendMailToSurveyInvitee:-
+PUT:-
+  - check not exist error
+  - check unauthorized access
+  - check if only the survey responders to whome we did not sent the mail
+    earlier will get the mail
+  - check if task is already running in background by acquiring survey lock
+    (is_in_process) , don't add in task queue
+  - check if survey lock is released after the task is finished and/or
+     exception is raised

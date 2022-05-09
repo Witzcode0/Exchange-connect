@@ -1,0 +1,29 @@
+TEST CRUD
+* Post
+    - check data missing error
+    - check does not exist error(webinar_id & sent_to).
+    - check forbidden error
+    - check httpexception error
+    - check unknown error
+    - check no errors, data added successfully
+    - update the webinar_stats table for the webinar_id
+* Put
+    - check data missing error
+    - check webinar chat id not found
+    - check does not exist error(webinar_id & sent_to).
+    - check forbidden error
+    - check httpexception error
+    - check unknown error
+    - check no errors, data update successfully
+    - check if webinar_id is changed then update the webinar_stats for the new webinar_id and old
+        webinar_id
+* Get
+    - check not found
+    - check found, fetched
+* Delete
+    - check not found
+    - check found, deleted
+
+TEST Listing
+- test sent_by filter
+- test webinar_id filter

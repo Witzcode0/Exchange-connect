@@ -1,0 +1,8 @@
+Test file for subscription checks of corporate account users
+
+1. Check corporate_access_event, survey and newswire_post modules.
+2. Check CRUD of above 3 modules.
+3. Check current_date is between subscription_start_date and
+    subscription_end_date or not. (ref account for subscription period)
+    If it is, allow the access
+    If not, raise NoAuthorizationError with message - "Your subscription has expired"

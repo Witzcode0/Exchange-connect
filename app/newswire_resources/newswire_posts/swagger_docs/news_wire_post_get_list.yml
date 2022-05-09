@@ -1,0 +1,386 @@
+Get a list of Newswire Posts based on query parameters
+---
+tags:
+  - Newswire Posts
+parameters:
+  - in: header
+    name: Authorization
+    type: string
+    required: true
+  - in: query
+    schema:
+      $ref: '#/definitions/NewswirePostReadArgs'
+responses:
+  200:
+    description: Newswire Posts fetched
+    schema:
+      type: object
+      properties:
+        results:
+          type: array
+          items:
+            $ref: '#/definitions/NewswirePost'
+        total:
+          type: int32
+          default: 1
+  404:
+    description: 'No matching Newswire Posts found'
+  500:
+    description: 'Some unknown exception'
+definitions:
+  NewswirePost:
+    properties:
+      account:
+        properties:
+          account_name:
+            maxLength: 512
+            minLength: 1
+            type: string
+          account_type:
+            enum:
+            - corporate
+            - buy-side
+            - sell-side
+            - general investor
+            - admin
+            - guest
+            type: string
+          row_id:
+            format: int32
+            readOnly: true
+            type: integer
+        readOnly: true
+        required:
+        - account_name
+        - account_type
+        type: object
+      account_id:
+        format: int32
+        readOnly: true
+        type: integer
+      body_text:
+        maxLength: 2048
+        type: string
+        x-nullable: true
+      company_name:
+        maxLength: 256
+        type: string
+        x-nullable: true
+      created_by:
+        format: int32
+        readOnly: true
+        type: integer
+      created_date:
+        format: date-time
+        readOnly: true
+        type: string
+        x-nullable: true
+      creator:
+        properties:
+          account:
+            properties:
+              account_name:
+                maxLength: 512
+                minLength: 1
+                type: string
+              account_type:
+                enum:
+                - corporate
+                - buy-side
+                - sell-side
+                - general investor
+                - admin
+                - guest
+                type: string
+              row_id:
+                format: int32
+                readOnly: true
+                type: integer
+            readOnly: true
+            required:
+            - account_name
+            - account_type
+            type: object
+          profile:
+            properties:
+              designation:
+                maxLength: 128
+                type: string
+                x-nullable: true
+              designation_link:
+                properties:
+                  name:
+                    maxLength: 256
+                    minLength: 1
+                    type: string
+                  row_id:
+                    format: int32
+                    readOnly: true
+                    type: integer
+                readOnly: true
+                required:
+                - name
+                type: object
+              first_name:
+                maxLength: 512
+                minLength: 1
+                type: string
+              last_name:
+                maxLength: 512
+                minLength: 1
+                type: string
+              links:
+                readOnly: true
+                type: string
+              profile_photo_url:
+                format: url
+                readOnly: true
+                type: string
+              profile_thumbnail_url:
+                format: url
+                readOnly: true
+                type: string
+            required:
+            - first_name
+            - last_name
+            type: object
+          row_id:
+            format: int32
+            readOnly: true
+            type: integer
+        readOnly: true
+        required:
+        - profile
+        type: object
+      deleted:
+        readOnly: true
+        type: boolean
+        x-nullable: true
+      editor:
+        properties:
+          account:
+            properties:
+              account_name:
+                maxLength: 512
+                minLength: 1
+                type: string
+              account_type:
+                enum:
+                - corporate
+                - buy-side
+                - sell-side
+                - general investor
+                - admin
+                - guest
+                type: string
+              row_id:
+                format: int32
+                readOnly: true
+                type: integer
+            readOnly: true
+            required:
+            - account_name
+            - account_type
+            type: object
+          profile:
+            properties:
+              designation:
+                maxLength: 128
+                type: string
+                x-nullable: true
+              designation_link:
+                properties:
+                  name:
+                    maxLength: 256
+                    minLength: 1
+                    type: string
+                  row_id:
+                    format: int32
+                    readOnly: true
+                    type: integer
+                readOnly: true
+                required:
+                - name
+                type: object
+              first_name:
+                maxLength: 512
+                minLength: 1
+                type: string
+              last_name:
+                maxLength: 512
+                minLength: 1
+                type: string
+              links:
+                readOnly: true
+                type: string
+              profile_photo_url:
+                format: url
+                readOnly: true
+                type: string
+              profile_thumbnail_url:
+                format: url
+                readOnly: true
+                type: string
+            required:
+            - first_name
+            - last_name
+            type: object
+          row_id:
+            format: int32
+            readOnly: true
+            type: integer
+        readOnly: true
+        required:
+        - profile
+        type: object
+      file_ids:
+        items:
+          format: int32
+          type: integer
+        readOnly: true
+        type: array
+      files:
+        items:
+          properties:
+            file_type:
+              maxLength: 256
+              type: string
+              x-nullable: true
+            file_url:
+              format: url
+              readOnly: true
+              type: string
+            filename:
+              type: string
+              x-nullable: true
+            row_id:
+              format: int32
+              readOnly: true
+              type: integer
+            thumbnail_url:
+              format: url
+              readOnly: true
+              type: string
+          readOnly: true
+          type: object
+        type: array
+      heading:
+        maxLength: 256
+        type: string
+        x-nullable: true
+      link:
+        maxLength: 256
+        type: string
+        x-nullable: true
+      links:
+        readOnly: true
+        type: string
+      logo_file:
+        properties:
+          file_type:
+            maxLength: 256
+            type: string
+            x-nullable: true
+          file_url:
+            format: url
+            readOnly: true
+            type: string
+          filename:
+            type: string
+            x-nullable: true
+          row_id:
+            format: int32
+            readOnly: true
+            type: integer
+          thumbnail_url:
+            format: url
+            readOnly: true
+            type: string
+        readOnly: true
+        type: object
+      logo_file_id:
+        format: int32
+        type: integer
+        x-nullable: true
+      modified_date:
+        format: date-time
+        readOnly: true
+        type: string
+        x-nullable: true
+      platforms:
+        items:
+          enum:
+          - bse india
+          - bloomberg
+          - reuters
+          - financial times
+          - money control
+          type: string
+        type: array
+      pushed:
+        type: boolean
+        x-nullable: true
+      row_id:
+        format: int32
+        readOnly: true
+        type: integer
+      sub_heading:
+        maxLength: 512
+        type: string
+        x-nullable: true
+      updated_by:
+        format: int32
+        readOnly: true
+        type: integer
+    required:
+    - account_id
+    - created_by
+    - updated_by
+    type: object
+  NewswirePostReadArgs:
+    properties:
+      company_name:
+        type: string
+      created_date_from:
+        format: date-time
+        type: string
+      created_date_to:
+        format: date-time
+        type: string
+      file_ids:
+        items:
+          format: int32
+          type: integer
+        type: array
+      heading:
+        type: string
+      operator:
+        enum:
+        - and
+        - or
+        type: string
+        default: and
+      page:
+        format: int32
+        type: integer
+        default: 1
+      per_page:
+        format: int32
+        type: integer
+        default: 20
+      pfields:
+        items:
+          type: string
+        type: array
+      sort:
+        enum:
+        - asc
+        - dsc
+        type: string
+        default: asc
+      sort_by:
+        items:
+          type: string
+        type: array
+        default: row_id
+    type: object

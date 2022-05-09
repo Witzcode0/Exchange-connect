@@ -1,0 +1,24 @@
+Test CRUD
+1. Post
+   - test follow create
+   - test follow create to own company
+   - test follow exists company
+   - test follow any company id
+2. Delete
+   - test delete/unfollow
+   - test pass different different row_id for delete
+3. Get
+   - test fetch following data of user
+   - test fetch follower data of companies
+
+GetList:
+    - test with following_follower filter
+    - test with following_follower=follower all data fetch will be own company's
+        all follower(sent_by) and all filter will be according to user
+        (Ex: account_type=sell-side so all data will be come according to
+            sell-side sender )
+    - test with following_follower=following all data fetch will be all company
+        which are current user following and all filter will be according to
+        company
+        (Ex: account_type=sell-side so all data will be come according to
+            sell-side company which are current user follow)

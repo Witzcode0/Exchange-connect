@@ -1,0 +1,7 @@
+SENT = "sent"
+NOT_SENT = "not-sent"
+UNSUBSCRIBE = "unsubscribe"
+
+EMAIL_ACTION_LIST = [SENT,NOT_SENT,UNSUBSCRIBE]
+
+ACTIONS = [(v,v) for v in EMAIL_ACTION_LIST]

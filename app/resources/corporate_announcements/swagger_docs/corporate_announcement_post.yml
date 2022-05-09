@@ -1,0 +1,63 @@
+For creating new corporate announcement by user
+---
+tags:
+    - Corporate Announcements
+parameters:
+  - in: header
+    name: Authorization
+    type: string
+  - name: file
+    in: formData
+    type: file
+  - name: announcement_date
+    in: formData
+    type: date-time
+  - name: category
+    in: formData
+    type: string
+    schema:
+      $ref: '#/definitions/category'
+  - name: subject
+    in: formData
+    type: string
+  - name: description
+    in: formData
+    type: string
+  - name: url
+    in: formData
+    type: string
+responses:
+  201:
+    description: 'CorporateAnnouncement has been created'
+    schema:
+      content:
+        application/json:
+      schema:
+        type: object
+        required:
+          - message
+          - row_id
+        properties:
+          message:
+            type: string
+            default: 'CorporateAnnouncement has been created'
+          row_id:
+            type: int32
+            description: 'row id of the generated CorporateAnnouncement'
+            default: 1
+  400:
+    description: 'No data sent'
+  422:
+    description: 'Error in data'
+  500:
+    description: 'Some unknown exception!'
+definitions:
+  category:
+    enum:
+    - annual reports
+    - concal transcripts
+    - presentation
+    - others
+    - result updates
+    - news
+    type: string

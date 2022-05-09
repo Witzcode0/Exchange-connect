@@ -1,0 +1,111 @@
+Fetch a webcast stat
+---
+tags:
+  - Webcast Stats
+parameters:
+  - in: header
+    name: Authorization
+    required: true
+    type: string
+  - in: path
+    name: row_id
+    schema:
+      type: int
+    required: true
+    description: 'The webcast stat id to fetch'
+responses:
+  200:
+    description: webcast stat fetched
+    schema:
+      $ref: '#/definitions/WebcastStats'
+  404:
+    description: 'webcast stat id: <row_id> does not exist'
+  500:
+    description: 'Some unknown exception!'
+definitions:
+  WebcastStats:
+    properties:
+      average_rating:
+        type: number
+        x-nullable: true
+      created_date:
+        format: date-time
+        readOnly: true
+        type: string
+        x-nullable: true
+      links:
+        readOnly: true
+        type: string
+      modified_date:
+        format: date-time
+        readOnly: true
+        type: string
+        x-nullable: true
+      row_id:
+        format: int32
+        readOnly: true
+        type: integer
+      total_answers:
+        format: int32
+        type: integer
+        x-nullable: true
+      total_attendees:
+        format: int32
+        type: integer
+        x-nullable: true
+      total_hosts:
+        format: int32
+        type: integer
+        x-nullable: true
+      total_invitees:
+        format: int32
+        type: integer
+        x-nullable: true
+      total_participants:
+        format: int32
+        type: integer
+        x-nullable: true
+      total_questions:
+        format: int32
+        type: integer
+        x-nullable: true
+      total_rsvps:
+        format: int32
+        type: integer
+        x-nullable: true
+      webcast:
+        properties:
+          ended_at:
+            format: date-time
+            type: string
+            x-nullable: true
+          invite_banner_filename:
+            maxLength: 256
+            type: string
+            x-nullable: true
+          invite_logo_filename:
+            maxLength: 256
+            type: string
+            x-nullable: true
+          row_id:
+            format: int32
+            readOnly: true
+            type: integer
+          started_at:
+            format: date-time
+            type: string
+            x-nullable: true
+          title:
+            maxLength: 256
+            minLength: 1
+            type: string
+        readOnly: true
+        required:
+        - title
+        type: object
+      webcast_id:
+        format: int32
+        type: integer
+    required:
+    - webcast_id
+    type: object

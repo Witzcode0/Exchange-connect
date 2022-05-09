@@ -1,0 +1,21 @@
+Delete a Project Parameter
+---
+tags:
+  - Project Parameter
+parameters:
+  - in: header
+    name: Authorization
+    type: string
+  - in: path
+    name: row_id
+    schema:
+      type: int
+    required: true
+    description: 'The Project Parameter to delete'
+responses:
+  204:
+    description: 'Project Parameter deleted'
+  404:
+    description: 'Project Parameter id: <row_id> does not exist'
+  500:
+    description: 'Some unknown exception!'

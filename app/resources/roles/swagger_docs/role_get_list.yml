@@ -1,0 +1,125 @@
+Get a list of Roles based on query parameters
+---
+tags:
+  - Roles
+parameters:
+  - in: header
+    name: Authorization
+    type: string
+  - in: query
+    schema:
+      $ref: '#/definitions/RoleReadArgs'
+responses:
+  200:
+    description: 'Events fetched'
+    schema:
+      type: object
+      properties:
+        results:
+          type: array
+          items:
+            $ref: '#/definitions/Role'
+        total:
+          type: int32
+          default: 1
+  404:
+    description: 'Role id: <row_id> does not exist'
+  500:
+    description: 'Some unknown exception'
+definitions:
+  Role:
+    properties:
+      created_by:
+        format: int32
+        readOnly: true
+        type: integer
+      created_date:
+        format: date-time
+        readOnly: true
+        type: string
+        x-nullable: true
+      deleted:
+        readOnly: true
+        type: boolean
+        x-nullable: true
+      links:
+        readOnly: true
+        type: string
+      modified_date:
+        format: date-time
+        readOnly: true
+        type: string
+        x-nullable: true
+      name:
+        maxLength: 128
+        minLength: 1
+        type: string
+      permissions:
+        type: string
+      row_id:
+        format: int32
+        readOnly: true
+        type: integer
+      updated_by:
+        format: int32
+        readOnly: true
+        type: integer
+      users:
+        items:
+          type: string
+        readOnly: true
+        type: array
+    required:
+    - created_by
+    - name
+    - permissions
+    - updated_by
+    type: object
+  RoleReadArgs:
+    properties:
+      created_date_from:
+        format: date-time
+        type: string
+      created_date_to:
+        format: date-time
+        type: string
+      name:
+        type: string
+      operator:
+        enum:
+        - and
+        - or
+        type: string
+        default: and
+      page:
+        format: int32
+        type: integer
+        default: 1
+      per_page:
+        format: int32
+        type: integer
+        default: 20
+      permissions:
+        enum:
+        - add account
+        - add user
+        - assign roles
+        - create roles
+        - assign menu items
+        type: string
+      pfields:
+        items:
+          type: string
+        type: array
+      sort:
+        enum:
+        - asc
+        - dsc
+        type: string
+        default: asc
+      sort_by:
+        items:
+          type: string
+        type: array
+        default: row_id
+    type: object

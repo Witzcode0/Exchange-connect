@@ -1,0 +1,164 @@
+For creating new Project Parameter
+---
+tags:
+  - Project Parameter
+parameters:
+  - in: header
+    name: Authorization
+    type: string
+  - in: body
+    name: body
+    schema:
+      $ref: '#/definitions/ProjectParameter'
+responses:
+  201:
+    description: Project Parameterhas been created
+    schema:
+      content:
+        application/json:
+      schema:
+        type: object
+        required:
+          - message
+          - row_id
+        properties:
+          message:
+            type: string
+            default: Project Parameter has been created
+          row_id:
+            type: int32
+            description: row id of the generated Project Parameter
+            default: 1
+  400:
+    description: No data sent
+  422:
+    description: Error in data
+  500:
+    description: Some unknown exception!
+
+# the model definition
+definitions:
+  ProjectParameter:
+    properties:
+      account:
+        properties:
+          account_name:
+            maxLength: 512
+            minLength: 1
+            type: string
+          links:
+            readOnly: true
+            type: string
+          row_id:
+            format: int32
+            readOnly: true
+            type: integer
+        readOnly: true
+        required:
+        - account_name
+        type: object
+      account_id:
+        format: int32
+        readOnly: true
+        type: integer
+      created_by:
+        format: int32
+        readOnly: true
+        type: integer
+      created_date:
+        format: date-time
+        readOnly: true
+        type: string
+        x-nullable: true
+      creator:
+        properties:
+          row_id:
+            format: int32
+            readOnly: true
+            type: integer
+        readOnly: true
+        type: object
+      ended_at:
+        format: date-time
+        type: string
+        x-nullable: true
+      level:
+        format: int32
+        type: integer
+        x-nullable: true
+      links:
+        readOnly: true
+        type: string
+      modified_date:
+        format: date-time
+        readOnly: true
+        type: string
+        x-nullable: true
+      parameter_name:
+        maxLength: 256
+        minLength: 1
+        type: string
+      parameter_value:
+        maxLength: 256
+        type: string
+        x-nullable: true
+      parent_parameter_name:
+        maxLength: 256
+        minLength: 1
+        type: string
+      project:
+        properties:
+          delivery_date:
+            format: date-time
+            type: string
+            x-nullable: true
+          order_date:
+            format: date-time
+            type: string
+            x-nullable: true
+          project_name:
+            maxLength: 256
+            type: string
+            x-nullable: true
+          project_type_id:
+            format: int32
+            type: integer
+          row_id:
+            format: int32
+            readOnly: true
+            type: integer
+        readOnly: true
+        required:
+        - project_type_id
+        type: object
+      project_files:
+        items:
+          type: string
+        type: array
+      project_id:
+        format: int32
+        type: integer
+      project_screen_sharing:
+        items:
+          type: string
+        type: array
+      row_id:
+        format: int32
+        readOnly: true
+        type: integer
+      started_at:
+        format: date-time
+        type: string
+        x-nullable: true
+      updated_by:
+        format: int32
+        readOnly: true
+        type: integer
+    required:
+    - account_id
+    - created_by
+    - parameter_name
+    - parent_parameter_name
+    - project_id
+    - updated_by
+    type: object

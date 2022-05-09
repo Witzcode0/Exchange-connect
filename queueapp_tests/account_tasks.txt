@@ -1,0 +1,5 @@
+Account stats update
+    - when new user created for particular account so total_users will be
+        update for particular account
+    - when registration requested user add as user by admin so total_users of
+        account stats will be update for particular account

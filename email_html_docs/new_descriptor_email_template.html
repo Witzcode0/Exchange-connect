@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+  <div dir="ltr">
+    <p>
+      Hi,
+      <br><br>
+      New Descriptor has been added to descriptor master list.
+      <br><br>
+      {% for each in descriptors %}
+      ID : {{ each[0] }}
+      <br>
+      Name : {{ each[1] }}
+      <br>
+      {% endfor %}
+      <br>
+      Kindly check the descriptors list in admin portal https://admin.exchangeconnect.in and tag the category accordingly.
+      <br><br>
+    </p>
+      <p>
+      Regards,<br><br>
+      Team ExchangeConnect
+      </p>
+  </div>
+</body>
+</html>

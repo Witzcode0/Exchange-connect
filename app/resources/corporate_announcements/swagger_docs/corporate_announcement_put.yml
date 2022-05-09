@@ -1,0 +1,64 @@
+Edit a corporate announcement  udpate details etc.
+---
+tags:
+  - Corporate Announcements
+parameters:
+  - in: header
+    name: Authorization
+    required: true
+    type: string
+  - in: path
+    name: row_id
+    schema:
+      type: int
+    required: true
+    description: 'The corporate announcement to modify'
+  - name: file
+    in: formData
+    type: file
+  - name: announcement_date
+    in: formData
+    type: date-time
+  - name: category
+    in: formData
+    type: string
+    schema:
+      $ref: '#/definitions/category'
+  - name: subject
+    in: formData
+    type: string
+  - name: description
+    in: formData
+    type: string
+  - name: url
+    in: formData
+    type: string
+responses:
+  200:
+    description: 'Updated corporate announcement id: <row_id>'
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            message:
+              type: string
+              description: 'Updated Corporate Announcement id: <row_id>'
+  400:
+    description: No data sent
+  404:
+    description: 'Corporate Announcement id: <row_id> does not exist'
+  422:
+    description: 'Error in data'
+  500:
+    description: 'Some unknown exception!'
+definitions:
+  category:
+    enum:
+    - annual reports
+    - concal transcripts
+    - presentation
+    - others
+    - result updates
+    - news
+    type: string

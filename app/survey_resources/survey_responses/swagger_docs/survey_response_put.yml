@@ -1,0 +1,100 @@
+Edit a survey response udpate details etc.
+---
+tags:
+  - Survey Responses
+parameters:
+  - in: header
+    name: Authorization
+    required: true
+    type: string
+  - in: path
+    name: row_id
+    schema:
+      type: int
+    required: true
+    description: 'The survey response to modify'
+  - in: body
+    name: body
+    schema:
+      $ref: '#/definitions/SurveyResponse'
+responses:
+  200:
+    description: 'Updated survey response id: <row_id>'
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            message:
+              type: string
+              description: 'Updated survey response id: <row_id>'
+  400:
+    description: No data sent
+  404:
+    description: 'survey response id: <row_id> does not exist'
+  422:
+    description: 'Error in data'
+  500:
+    description: 'Some unknown exception!'
+definitions:
+  SurveyResponse:
+    properties:
+      answers:
+        type: object
+        x-nullable: true
+      created_date:
+        format: date-time
+        readOnly: true
+        type: string
+        x-nullable: true
+      designation:
+        maxLength: 128
+        type: string
+        x-nullable: true
+      email:
+        format: email
+        maxLength: 128
+        type: string
+        x-nullable: true
+      external_invitee:
+        type: string
+        x-nullable: true
+      first_name:
+        maxLength: 128
+        type: string
+        x-nullable: true
+      invitee:
+        type: string
+        x-nullable: true
+      links:
+        readOnly: true
+        type: string
+      modified_date:
+        format: date-time
+        readOnly: true
+        type: string
+        x-nullable: true
+      row_id:
+        format: int32
+        readOnly: true
+        type: integer
+      status:
+        enum:
+        - unanswered
+        - partial
+        - answered
+        type: string
+        x-nullable: true
+      survey:
+        type: string
+        x-nullable: true
+      survey_id:
+        format: int32
+        type: integer
+      user_id:
+        format: int32
+        type: integer
+        x-nullable: true
+    required:
+    - survey_id
+    type: object

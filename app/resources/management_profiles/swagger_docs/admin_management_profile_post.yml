@@ -1,0 +1,67 @@
+For creating new Management Profiles
+---
+tags:
+  - Management Profile (Admin)
+parameters:
+  - in: header
+    name: Authorization
+    type: string
+    required: true
+  - name: profile_photo
+    in: formData
+    type: file
+  - name: name
+    in: formData
+    type: string
+  - name: designation
+    in: formData
+    type: string
+  - name: description
+    in: formData
+    type: string
+  - name: account_profile_id
+    in: formData
+    type: integer
+  - name: account_id
+    in: formData
+    type: integer
+    required: true
+  - name: user_id
+    in: formData
+    type: integer
+    schema:
+      $ref: '#/definitions/AdminManagementProfile'
+responses:
+  201:
+    description: 'Management Profile has been created'
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            message:
+              type: string
+              default: 'Management Profile has been created'
+            row_id:
+            type: int32
+            description: 'row id of the generated Management Profile'
+            default: 1
+  400:
+    description: 'No data sent'
+  422:
+    description: 'Error in data'
+  500:
+    description: 'Some unknown exception!'
+definitions:
+  AdminManagementProfile:
+    properties:
+      account_id:
+        format: int32
+        type: integer
+      sequence_id:
+        format: int32
+        type: integer
+    required:
+    - account_id
+    - sequence_id
+    type: object

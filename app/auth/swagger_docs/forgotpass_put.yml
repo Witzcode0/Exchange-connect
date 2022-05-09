@@ -1,0 +1,46 @@
+Reset the password
+---
+tags:
+  - Authentication & Password Assistance
+parameters:
+  - in: path
+    name: token
+    schema:
+      type: string
+    required: true
+    description: Special token generated for the link
+  - in: body
+    name: body
+    schema:
+      $ref: '#/definitions/PasswordSchema'
+responses:
+  200:
+    description: Password successfully changed
+    content:
+      application/json:
+      schema:
+        type: object
+        properties:
+          message:
+            type: string
+            description: 'Password successfully changed'
+  400:
+    description: No data sent
+  401:
+    description: Bad email or password
+  404:
+    description: Bad email
+  422:
+    description: Error in data or Email not found
+  500:
+    description: Some unknown exception!
+
+# the model definition
+definitions:
+  PasswordSchema:
+    type: object
+    required:
+      - password
+    properties:
+      password:
+        type: string

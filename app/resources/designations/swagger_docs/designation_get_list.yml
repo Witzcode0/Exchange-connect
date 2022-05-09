@@ -1,0 +1,141 @@
+Get a list of designations based on query parameters
+---
+tags:
+  - Designations
+parameters:
+  - in: header
+    name: Authorization
+    required: true
+    type: string
+  - in: query
+    schema:
+      $ref: '#/definitions/DesignationReadArgs'
+responses:
+  200:
+    description: 'designations fetched'
+    schema:
+      type: object
+      properties:
+        results:
+          type: array
+          items:
+            $ref: '#/definitions/Designation'
+        total:
+          type: int32
+          default: 1
+  404:
+    description: 'designation id: <row_id> does not exist'
+  500:
+    description: 'Some unknown exception'
+definitions:
+  Designation:
+    properties:
+      account_type:
+        enum:
+        - corporate
+        - buy-side
+        - sell-side
+        - general investor
+        - admin
+        - guest
+        type: string
+      created_by:
+        format: int32
+        readOnly: true
+        type: integer
+      created_date:
+        format: date-time
+        readOnly: true
+        type: string
+        x-nullable: true
+      creator:
+        type: string
+        x-nullable: true
+      designation_level:
+        enum:
+        - bod & top management
+        - mid-level management
+        - managers & others
+        type: string
+      links:
+        readOnly: true
+        type: string
+      modified_date:
+        format: date-time
+        readOnly: true
+        type: string
+        x-nullable: true
+      name:
+        maxLength: 256
+        minLength: 1
+        type: string
+      row_id:
+        format: int32
+        readOnly: true
+        type: integer
+      updated_by:
+        format: int32
+        readOnly: true
+        type: integer
+    required:
+    - account_type
+    - created_by
+    - designation_level
+    - name
+    - updated_by
+    type: object
+  DesignationReadArgs:
+    properties:
+      account_type:
+        enum:
+        - corporate
+        - buy-side
+        - sell-side
+        - general investor
+        - admin
+        - guest
+        type: string
+      created_date_from:
+        format: date-time
+        type: string
+      created_date_to:
+        format: date-time
+        type: string
+      designation_level:
+        enum:
+        - bod & top management
+        - mid-level management
+        - managers & others
+        type: string
+      name:
+        type: string
+      operator:
+        enum:
+        - and
+        - or
+        type: string
+        default: and
+      page:
+        format: int32
+        type: integer
+        default: 1
+      per_page:
+        format: int32
+        type: integer
+        default: 20
+      pfields:
+        items:
+          type: string
+        type: array
+      sort:
+        enum:
+        - asc
+        - dsc
+        type: string
+        default: asc
+      sort_by:
+        items:
+          type: string
+        type: array
+        default: row_id
+    type: object

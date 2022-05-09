@@ -1,0 +1,39 @@
+Test Crud Operations
+
+CorporateAccessEventSlotAPI :
+
+* Post
+    - check data missing error (required field)
+    - check does not exist error.
+    - check unknown error
+    - check no errors, data entered successfully
+* Put
+    - check not found.
+    - check does not exist error.
+    - check unknown error
+    - check no errors, data entered successfully
+    - check with update bookable seat
+    - check with update bookable seat less then booked seat
+
+* Get
+    - check not found (does not exist error)
+    - check found, fetched
+* Delete
+    - check not found (does not exist error)
+    - check found, deleted
+
+CorporateAccessEventSlotListAPI :
+
+* Get
+    - check found, fetched.
+    - check with availbale seat
+    - check with rejected(this only for invitee user whose inquired but creator
+        rejected for particular slot)
+    - check with rejected_inquiries(this only for event creator
+        which is rejected users by self for particular slot)
+
+Extra testing API(Permissions)
+
+    -collaborator and event creator can add and update slots
+    -collaborator and event creator can delete slots
+    -other user can not add or update slots

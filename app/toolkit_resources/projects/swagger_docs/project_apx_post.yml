@@ -1,0 +1,181 @@
+For creating new Project
+---
+tags:
+  - Project
+parameters:
+  - name: project_name
+    in: formData
+    type: string
+    required: true
+    description: name of the project
+  - name: first_name
+    in: formData
+    type: string
+    required: true
+    description: first name of user
+  - name: last_name
+    in: formData
+    type: string
+    required: true
+    description: last name of user
+  - name: email
+    in: formData
+    type: string
+    required: true
+    description: user email
+  - name: account_name
+    in: formData
+    type: string
+    required: true
+    description: name of the company
+  - name: account_type
+    in: formData
+    type: string
+    required: true
+    enum:
+      - corporate
+      - private
+      - corporate-group
+    description: type of the company
+  - name: dimention
+    in: formData
+    type: string
+    required: true
+    enum:
+      - wide
+      - standard
+    description: dimention of document
+  - name: project_type
+    in: formData
+    type: string
+    required: true
+    enum:
+      - Annual Report
+      - Corporate Presentation
+      - Earning Presentation
+      - Investor Presentation
+      - Factsheet
+      - Press Release
+      - Newsletter
+      - Press Release Earning
+      - Build Corporate Website
+    description: type of the project
+  - name: work_area
+    in: formData
+    type: string
+    required: true
+    enum:
+      - design
+      - content
+      - design_content
+    description: work area of the project
+
+
+responses:
+  201:
+    description: Project has been created
+    schema:
+      content:
+        application/json:
+      schema:
+        type: object
+        required:
+          - message
+          - row_id
+        properties:
+          message:
+            type: string
+            default: Project has been created
+          row_id:
+            type: int32
+            description: row id of the generated Project
+            default: 1
+  300:
+    description: multiple choices
+  400:
+    description: No data sent
+  404:
+    description: not found
+  422:
+    description: Error in data
+  429:
+    description: too many requests
+  500:
+    description: Some unknown exception!
+definitions:
+  ProjectSchema:
+    properties:
+      account_name:
+        maxLength: 512
+        type: string
+      account_type:
+        enum:
+          - corporate
+          - private
+          - corporate-group
+        type: string
+      dimention:
+        enum:
+          - wide
+          - standard
+        type: string
+      email:
+        format: email
+        maxLength: 128
+        type: string
+      glossary:
+        maxLength: 256
+        type: string
+        x-nullable: true
+      link:
+        maxLength: 256
+        type: string
+        x-nullable: true
+      params:
+        type: string
+        x-nullable: true
+      percentage:
+        type: number
+        x-nullable: true
+      project_name:
+        maxLength: 256
+        type: string
+        x-nullable: true
+      project_type:
+        enum:
+          - Annual Report
+          - Corporate Presentation
+          - Earning Presentation
+          - Investor Presentation
+          - Factsheet
+          - Press Release
+          - Newsletter
+          - Press Release Earning
+          - Build Corporate Website
+        type: string
+      sides_nr:
+        format: int32
+        type: integer
+        x-nullable: true
+      slides_completed:
+        format: int32
+        type: integer
+        x-nullable: true
+      special_instructions:
+        maxLength: 1024
+        type: string
+        x-nullable: true
+      work_area:
+        enum:
+          - design
+          - content
+          - design_content
+        type: string
+    required:
+      - account_name
+      - account_type
+      - dimention
+      - email
+      - project_type
+      - work_area
+    type: object

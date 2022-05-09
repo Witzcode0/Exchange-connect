@@ -1,0 +1,21 @@
+Delete an Scheduled report
+---
+tags:
+  - Scheduled reports
+parameters:
+  - in: header
+    name: Authorization
+    type: string
+  - in: path
+    name: row_id
+    schema:
+      type: int
+    required: true
+    description: 'The scheduled report to delete'
+responses:
+  204:
+    description: 'Scheduled report deleted'
+  404:
+    description: 'Scheduled report id: <row_id> does not exist'
+  500:
+    description: 'Some unknown exception!'

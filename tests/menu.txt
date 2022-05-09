@@ -1,0 +1,34 @@
+TEST ADMIN
+
+1. POST
+    - check data missing error
+    - check only super admin can create menu
+    - check if sequence is not provided, sequence is auto set to max sequence
+      of its siblings + 1
+    - check http exception error
+    - check no errors, data entered successfully
+
+2. PUT
+    - check forbidden error
+    - check only super admin can update menu
+    - check http exception error
+    - check not found
+    - check if descendants are sent they are also updated
+    - check no errors, menu updated successfully
+
+3. DELETE
+    - check not found
+    - check only super admin can delete menu
+    - check found, deleted
+    - sequence of all sibling menus with sequence greater than deleted menu's
+      sequence will be decreased by 1
+
+4. GET
+    - check not found
+    - check only super admin can get menu
+    - check found, fetched
+
+5. GETLIST
+    - only active menus are fetched
+    - check only super admin can get menus
+    - provision to get all menus (inactive too)

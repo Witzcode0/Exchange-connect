@@ -1,0 +1,37 @@
+Get a list of Follow analysis
+---
+tags:
+  - Follows
+parameters:
+  - in: header
+    name: Authorization
+    type: string
+    required: true
+responses:
+  200:
+    description: Follow fetched
+    schema:
+      type: object
+      properties:
+        results:
+          type: array
+          items:
+            $ref: '#/definitions/CFollowAnalysis'
+        total:
+          type: int32
+          default: 1
+  404:
+    description: 'No matching CFollow found'
+  500:
+    description: Some unknown exception!
+definitions:
+  CFollowAnalysis:
+    properties:
+      designation_level:
+        readOnly: true
+        type: string
+      total_follow_by_designation:
+        format: int32
+        readOnly: true
+        type: integer
+    type: object

@@ -1,0 +1,20 @@
+Delete News Source
+---
+tags:
+  - News
+parameters:
+  - in: header
+    name: Authorization
+    type: string
+  - in: path
+    name: row_id
+    type: int
+    required: true
+    description: 'The News source to delete'
+responses:
+  204:
+    description: 'News source deleted'
+  404:
+    description: 'News Source id: <row_id> does not exist'
+  500:
+    description: 'Some unknown exception!'

@@ -1,0 +1,35 @@
+TEST CRUD
+1. Post
+    - check with new type sme and private
+    - check with new type group with is_parent and child_account_ids
+    - check with another type with child_account_ids
+    - check with child_account_ids list only corporate type accounts
+    - check with child_account_ids list only other type accounts
+    - check with add child account id which is already child account of another
+        group account
+2. Put
+    - check with update new child account for group type account
+    - check with child account which is already child account of another group
+        account
+3. Get
+    - check with child_accounts data
+    - check with stats
+4. Delete
+
+TEST ADDITIONAL FUNCTIONALITY
+1.
+
+AccountList:
+
+*Get:
+    - check sector_id and industry_id filters
+    - check with is_account_active filter
+    - check subscription filters
+    - check with parent_account_id
+    - test without is_active_account, data will be come like first all active
+      accounts and then in active accounts
+    - test with manager role user, only get assigned accounts details
+
+
+AccountUserMember:
+    - Prefer account user member test case

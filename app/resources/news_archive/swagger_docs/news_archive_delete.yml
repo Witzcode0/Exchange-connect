@@ -1,0 +1,20 @@
+Delete News item archive
+---
+tags:
+  - News Archive
+parameters:
+  - in: header
+    name: Authorization
+    type: string
+  - in: path
+    name: row_id
+    type: int
+    required: true
+    description: 'The News item archive to delete'
+responses:
+  204:
+    description: 'News item archive deleted'
+  404:
+    description: 'News item archive id: <row_id> does not exist'
+  500:
+    description: 'Some unknown exception!'

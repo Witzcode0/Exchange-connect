@@ -1,0 +1,22 @@
+Test CRUD
+1. Post
+    - creating a webinar attendee - PASS
+    - testing below validations: - PASS
+        - checking for valid webinar_id (FK refer to webinar)
+        - check for unique constraint in webinar_id, attendee_id
+    - update the webinar_stats table for the webinar_id
+2. Put
+    - updating a webinar attendee - PASS
+    - testing below validations: - PASS
+        - checking for valid webinar_id (FK refer to webinar)
+        - check for unique constraint in webinar_id, attendee_id
+    - check if webinar_id is changed then update the webinar_stats for the new webinar_id and old
+        webinar_id
+    - check only webinar creator can give comment
+    - check only attendee can give rating
+    - check only webinar creator or attendee can update any records (otherwise 403 error)
+3. Delete
+    - deleting a single webinar attendee = PASS
+4. Get
+    - fetching all webinar attendee lists = PASS
+    - fetching a single webinar attendee by id = PASS

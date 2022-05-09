@@ -1,0 +1,11 @@
+TEST CRUD
+1. Post
+2. Put
+3. Get
+    - test with manager role
+4. Delete
+
+TEST ADDITIONAL FUNCTIONALITY
+1. Test Default Roles try edit, delete
+
+Test branch, delete in next PR

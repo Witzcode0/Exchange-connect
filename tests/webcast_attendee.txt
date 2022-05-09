@@ -1,0 +1,24 @@
+Test CRUD
+1. Post
+    - creating a webcast attendee - PASS
+    - testing below validations: - PASS
+        - checking for valid webcast_id (FK refer to webcast)
+        - check for unique constraint in webcast_id, attendee_id
+    - if data entered, update the webcast_stats table for the webcast_id for total_attendee
+        and average_rating
+2. Put
+    - updating a webcast attendee - PASS
+    - testing below validations: - PASS
+        - checking for valid webcast_id (FK refer to webcast)
+        - check for unique constraint in webcast_id, attendee_id
+    - check if webcast_id is changed and update the total_attendee and average_rating
+        in webcast_stats for the new webcast_id and old webcast_id
+    - check with comment by invitee(attendee can not comment)
+    - check with rating by webcast creator(
+        creator can not give rating)
+3. Delete
+    - deleting a single webcast attendee = PASS
+    - if webcast_attende is deleted, update the webcast_stats for the related webcast_id
+4. Get
+    - fetching all webcast attendee lists = PASS
+    - fetching a single webcast attendee by id = PASS

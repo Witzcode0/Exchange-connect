@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<packageItem
+    xmlns="http://iptc.org/std/nar/2006-10-01/"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://iptc.org/std/nar/2006-10-01/
+        ./NewsML-G2_2.25-spec-All-Power.xsd"
+    standard="NewsML-G2"
+    standardversion="2.25"
+    conformance="power"
+    guid="tag:example.com,2008:UK-NEWS-TOPTEN:UK20081220098658"
+    version="{{item_data.version}}">
+    <catalogRef
+        href="http://www.iptc.org/std/catalog/catalog.IPTC-G2-Standards_30.xml" />
+    <itemMeta>
+        <!-- {# item class will be composite as we're providing group of items #} -->
+        <itemClass qcode="ninat:composite" />
+        <!-- {# provider details #} -->
+        <provider>
+            <name>{{meta_data.name}}</name>
+        </provider>
+        <!-- {# updated Date with timezone #} -->
+        <versionCreated>{{item_data.updated_on}}</versionCreated>
+        <!-- {# created Date with timezone #} -->
+        <firstCreated>{{item_data.created_on}}</firstCreated>
+        <!-- {# publication status #} -->
+        <pubStatus qcode="stat:usable" />
+        {% if prev_version in item_data %}
+            <!-- {# pre-arranged sheet for reference, might be the earlier version with
+                    version info #} -->
+            <profile versioninfo="{{''}}">
+                {{item_data.previous_version}}
+            </profile>
+        {% endif %}
+        {% if service in item_data %}
+            <!-- {# service provider name (optional) #} -->
+            <service>
+                <name>{{item_data.service}}</name>
+            </service>
+        {% endif %}
+        <!-- {# title of the newspackage #} -->
+        <title>{{item_data.headline}}</title>
+        {% if editors_note in item_data %}
+            <!-- {# editor's note(optional) #} -->
+            <edNote>{{item_data.editors_note}}</edNote>
+        {% endif %}
+        <signal qcode="sig:update" />
+    </itemMeta>
+    <contentMeta>
+        <!-- {# creator information #} -->
+        <contributor>
+            <name>{{meta_data.name}}</name>
+            <name>{{meta_data.designation}}</name>
+            {% if availability in meta_data %}
+                <!-- {# can also provide contact details with availability(see sample) #} -->
+                <note validto="{{''}}">{{''}}</note>
+            {% endif %}
+        </contributor>
+         <headline xml:lang="en">{{item_data.headline}}</headline>
+    </contentMeta>
+    <!-- {# root refernce is necessary for child recognition, mandatory while defining
+            child, to refer to which group they belongs to #} -->
+    <groupSet root="{{"G1"}}">
+        <!-- {# id must be same as root for connection #} -->
+        <group id="{{"G1"}}" role="group:main">
+            <!-- {# items of different class are defined here #} -->
+            {% if item_data['text_data'] %}
+                {% for text in item_data['text_data'] %}
+                    <itemRef residref="urn:newsml:iptc.org:20081007:tutorial-item-A"
+                        contenttype="application/vnd.iptc.g2.newsitem+xml"
+                        size="2345">
+                        <itemClass qcode="ninat:text" />
+                        <!-- {# provider info #} -->
+                        <provider>
+                            <name>{{meta_data.name}}</name>
+                        </provider>
+                        <pubStatus qcode="stat:usable"/>
+                        <!-- {# title or headline on newitem #} -->
+                        <title>{{text['sub_heading']}}</title>
+                        <!-- {# description or summary of newsitem, if any #} -->
+                        <description role="drol:summary">{{text['body']}}
+                        </description>
+                    </itemRef>
+                {% endfor %}
+            {% endif %}
+            {% if item_data['image_data'] %}
+                {% for image in item_data['image_data'] %}
+                    <itemRef residref="{{image['url']}}"
+                        size="300039">
+                        <itemClass qcode="ninat:picture" />
+                        <provider>
+                            <name>{{meta_data.name}}</name>
+                        </provider>
+                        <pubStatus qcode="stat:usable"/>
+                        <!-- {# title or headline on newitem #} -->
+                        <title>{{image['sub_heading']}}</title>
+                        <!-- {# description or summary of newsitem, if any #} -->
+                        <description role="drol:caption">{{image['body']}}
+                        </description>
+                    </itemRef>
+                {% endfor %}
+            {% endif %}
+        </group>
+    </groupSet>
+</packageItem>

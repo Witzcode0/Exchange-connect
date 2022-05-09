@@ -1,0 +1,17 @@
+Test Crud Operatios
+
+UserSettingsAPI :
+
+* Put
+    - update settings by access_token
+    - check data missing error (Json format)
+    - check validations for search_privacy, timezone and language
+    - check validations for search_privacy_sector and search_privacy_industry w.r.t
+        sector and industry tables. if not available throw an error.
+    - check unknown error
+    - check no errors, data entered successfully
+    - check with search_privacy_designation_level give designation level in array
+
+* Get
+    - check not found
+    - check found, fetched (by access_token)

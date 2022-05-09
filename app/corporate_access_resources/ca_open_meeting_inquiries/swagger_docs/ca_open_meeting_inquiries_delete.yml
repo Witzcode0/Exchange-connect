@@ -1,0 +1,22 @@
+Delete a CA Open Meeting inquiry
+---
+tags:
+  - CA Open Meeting Inquiries
+parameters:
+  - in: header
+    name: Authorization
+    required: true
+    type: string
+  - in: path
+    name: row_id
+    schema:
+      type: int
+    required: true
+    description: 'The CA Open Meeting inquiry to delete'
+responses:
+  204:
+    description: 'CA Open Meeting inquiry deleted'
+  404:
+    description: 'CA Open Meeting inquiry id: <row_id> does not exist'
+  500:
+    description: 'Some unknown exception!'

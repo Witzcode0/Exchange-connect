@@ -1,0 +1,98 @@
+Get a list of Permissions based on query parameters
+---
+tags:
+  - Permission (Admin)
+parameters:
+  - in: header
+    name: Authorization
+    type: string
+    required: true
+  - in: query
+    schema:
+      $ref: '#/definitions/PermissionReadArgs'
+responses:
+  200:
+    description: fetch menus
+    schema:
+      type: object
+      properties:
+        results:
+          type: array
+          items:
+            $ref: '#/definitions/Permission'
+        total:
+          type: int32
+          default: 1
+  404:
+    description: 'No matching menus found'
+  500:
+    description: Some unknown exception!
+definitions:
+  Permission:
+    properties:
+      created_date:
+        format: date-time
+        readOnly: true
+        type: string
+        x-nullable: true
+      description:
+        maxLength: 256
+        type: string
+        x-nullable: true
+      is_active:
+        type: boolean
+        x-nullable: true
+      modified_date:
+        format: date-time
+        readOnly: true
+        type: string
+        x-nullable: true
+      name:
+        maxLength: 256
+        type: string
+      row_id:
+        format: int32
+        readOnly: true
+        type: integer
+      sequence:
+        format: int32
+        type: integer
+        x-nullable: true
+    required:
+      - name
+    type: object
+  PermissionReadArgs:
+    properties:
+      created_date_from:
+        format: date-time
+        type: string
+      created_date_to:
+        format: date-time
+        type: string
+      name:
+        type: string
+      operator:
+        enum:
+          - and
+          - or
+        type: string
+      page:
+        format: int32
+        type: integer
+      per_page:
+        format: int32
+        type: integer
+      pfields:
+        items:
+          type: string
+        type: array
+      sort:
+        enum:
+          - asc
+          - dsc
+        type: string
+      sort_by:
+        items:
+          type: string
+        type: array
+    type: object

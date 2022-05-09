@@ -1,0 +1,211 @@
+Get a list of Event Requests based on query parameters
+---
+tags:
+  - Event Requests
+parameters:
+  - in: header
+    name: Authorization
+    type: string
+  - in: query
+    schema:
+      $ref: '#/definitions/EventRequestReadArgs'
+responses:
+  200:
+    description: 'Event Requests fetched'
+    schema:
+      type: object
+      properties:
+        results:
+          type: array
+          items:
+            $ref: '#/definitions/EventRequest'
+        total:
+          type: int32
+          default: 1
+  404:
+    description: 'Event Request id: <row_id> does not exist'
+  500:
+    description: 'Some unknown exception'
+
+definitions:
+  EventRequestReadArgs:
+    type: object
+    properties:
+      created_by:
+        format: int32
+        type: integer
+      created_date_from:
+        format: date-time
+        type: string
+      created_date_to:
+        format: date-time
+        type: string
+      event_id:
+        format: int32
+        type: integer
+      operator:
+        enum:
+        - and
+        - or
+        type: string
+        default: and
+      page:
+        format: int32
+        type: integer
+        default: 1
+      per_page:
+        format: int32
+        type: integer
+        default: 20
+      pfields:
+        items:
+          type: string
+        type: array
+      sort:
+        enum:
+        - asc
+        - dsc
+        type: string
+        default: asc
+      sort_by:
+        items:
+          type: string
+        type: array
+        default: row_id
+      status:
+        enum:
+        - invited
+        - rejected
+        - accepted
+        - requested
+        - not_attending
+        - maybe
+        type: string
+      updated_by:
+        format: int32
+        type: integer
+      user_id:
+        format: int32
+        type: integer
+  EventInvite:
+    required:
+      - created_by
+      - event_id
+      - updated_by
+      - user_id
+    properties:
+      created_by:
+        format: int32
+        readOnly: true
+        type: integer
+      created_date:
+        format: date-time
+        readOnly: true
+        type: string
+        x-nullable: true
+      modified_date:
+        format: date-time
+        readOnly: true
+        type: string
+        x-nullable: true
+      deleted:
+        readOnly: true
+        type: boolean
+        x-nullable: true
+      event_id:
+        format: int32
+        type: integer
+      links:
+        type: string
+      row_id:
+        format: int32
+        type: integer
+      status:
+        enum:
+        - invited
+        - rejected
+        - accepted
+        - requested
+        - not_attending
+        - maybe
+        type: string
+      updated_by:
+        format: int32
+        readOnly: true
+        type: integer
+      user_id:
+        format: int32
+        type: integer
+      event:
+        type: object
+        properties:
+          place:
+            type: string
+            x-nullable: true
+            maxLength: 256
+          start_date:
+            type: string
+            format: date-time
+          description:
+            type: string
+            maxLength: 2048
+          company_name:
+            type: string
+            maxLength: 256
+          not_participated:
+            type: integer
+            format: int32
+            readOnly: true
+          end_date:
+            type: string
+            format: date-time
+          modified_date:
+            type: string
+            format: date-time
+            readOnly: true
+            x-nullable: true
+          deleted:
+            type: boolean
+            readOnly: true
+            x-nullable: true
+          rating:
+            type: integer
+            format: int32
+            readOnly: true
+          event_type:
+            type: string
+            enum: [conference, conference_call]
+          updated_by:
+            type: integer
+            format: int32
+            readOnly: true
+          subject:
+            type: string
+            maxLength: 512
+          created_by:
+            type: integer
+            format: int32
+            readOnly: true
+          participant_ids:
+            type: array
+            readOnly: true
+            items:
+              type: integer
+              format: int32
+          row_id:
+            type: integer
+            format: int32
+            readOnly: true
+          participated:
+            type: integer
+            format: int32
+            readOnly: true
+          links:
+            type: string
+            readOnly: true
+          created_date:
+            type: string
+            format: date-time
+            readOnly: true
+            x-nullable: true
+    type: object

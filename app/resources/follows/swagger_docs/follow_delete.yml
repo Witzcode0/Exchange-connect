@@ -1,0 +1,23 @@
+Delete/unfollow Company
+---
+tags:
+  - Follows
+parameters:
+  - in: header
+    name: Authorization
+    type: string
+    required: true
+  - in: path
+    name: row_id
+    type: int
+    required: true
+    description: 'The follow to delete'
+responses:
+  204:
+    description: 'CFollow deleted'
+  401:
+    description: 'Unauthrized'
+  404:
+    description: 'CFollow id: <row_id> does not exist'
+  500:
+    description: 'Some unknown exception!'

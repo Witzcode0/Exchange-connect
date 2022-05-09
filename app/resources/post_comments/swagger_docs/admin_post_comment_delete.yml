@@ -1,0 +1,22 @@
+Delete a Post Comment
+---
+tags:
+  - Post Comments (Admin)
+parameters:
+  - in: header
+    name: Authorization
+    type: string
+    required: true
+  - in: path
+    name: row_id
+    schema:
+      type: int
+    required: true
+    description: 'The post comment to delete'
+responses:
+  204:
+    description: 'post comment deleted'
+  404:
+    description: 'post comment id: <row_id> does not exist'
+  500:
+    description: 'Some unknown exception!'

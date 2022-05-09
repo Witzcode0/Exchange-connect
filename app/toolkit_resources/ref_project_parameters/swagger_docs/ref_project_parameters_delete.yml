@@ -1,0 +1,22 @@
+Delete a reference project parameter
+---
+tags:
+  - Reference Project Parameters
+parameters:
+  - in: header
+    name: Authorization
+    required: true
+    type: string
+  - in: path
+    name: row_id
+    schema:
+      type: int
+    required: true
+    description: 'The reference project parameter to delete'
+responses:
+  204:
+    description: 'reference project parameter deleted'
+  404:
+    description: 'reference project parameter id: <row_id> does not exist'
+  500:
+    description: 'Some unknown exception!'

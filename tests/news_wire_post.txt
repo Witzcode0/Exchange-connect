@@ -1,0 +1,33 @@
+Test Crud Operatios
+
+NewswirePostAPI :
+
+* Post
+    - check add single and multiple file_ids
+    - check file_ids exist or not
+    - check integrity error (logo_file_id does not exist wrf to table
+                             newswire_post_library_file)
+    - check data incorrect error (String fields)
+    - check unknown error
+    - check no errors, data entered successfully
+* Put
+    - check 404 error: Newswire Post id does not exist
+    - check update new file_ids and remove old file_ids
+    - check file_ids exist or not
+    - check integrity error (logo_file_id does not exist wrf to table
+                             newswire_post_library_file)
+    - check data incorrect error (String fields)
+    - check unknown error
+    - check no errors, data entered successfully
+* Get
+    - check 404 error: Newswire Post id does not exist
+    - check found, fetched
+* Delete
+    - check 404 error: Newswire Post id does not exist
+    - check found, deleted
+
+NewswirePostListAPI :
+
+* Get
+    - check found, fetched.
+    - check filters heading and file_ids

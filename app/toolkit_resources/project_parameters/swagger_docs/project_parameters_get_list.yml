@@ -1,0 +1,199 @@
+Get a list of Project Parameters based on query parameters
+---
+tags:
+  - Project Parameter
+parameters:
+  - in: header
+    name: Authorization
+    type: string
+  - in: query
+    schema:
+      $ref: '#/definitions/ProjectParameterReadArgs'
+responses:
+  200:
+    description: Parameter fetched
+    schema:
+      type: object
+      properties:
+        results:
+          type: array
+          items:
+            $ref: '#/definitions/ProjectParameter'
+        total:
+          type: int32
+          default: 1
+  404:
+    description: 'Project Parameter id: <row_id> does not exist'
+  500:
+    description: 'Some unknown exception'
+
+definitions:
+  ProjectParameter:
+    properties:
+      account:
+        properties:
+          account_name:
+            maxLength: 512
+            minLength: 1
+            type: string
+          links:
+            readOnly: true
+            type: string
+          row_id:
+            format: int32
+            readOnly: true
+            type: integer
+        readOnly: true
+        required:
+        - account_name
+        type: object
+      account_id:
+        format: int32
+        readOnly: true
+        type: integer
+      created_by:
+        format: int32
+        readOnly: true
+        type: integer
+      created_date:
+        format: date-time
+        readOnly: true
+        type: string
+        x-nullable: true
+      creator:
+        properties:
+          row_id:
+            format: int32
+            readOnly: true
+            type: integer
+        readOnly: true
+        type: object
+      ended_at:
+        format: date-time
+        type: string
+        x-nullable: true
+      level:
+        format: int32
+        type: integer
+        x-nullable: true
+      links:
+        readOnly: true
+        type: string
+      modified_date:
+        format: date-time
+        readOnly: true
+        type: string
+        x-nullable: true
+      parameter_name:
+        maxLength: 256
+        minLength: 1
+        type: string
+      parameter_value:
+        maxLength: 256
+        type: string
+        x-nullable: true
+      parent_parameter_name:
+        maxLength: 256
+        minLength: 1
+        type: string
+      project:
+        properties:
+          delivery_date:
+            format: date-time
+            type: string
+            x-nullable: true
+          order_date:
+            format: date-time
+            type: string
+            x-nullable: true
+          project_name:
+            maxLength: 256
+            type: string
+            x-nullable: true
+          project_type_id:
+            format: int32
+            type: integer
+          row_id:
+            format: int32
+            readOnly: true
+            type: integer
+        readOnly: true
+        required:
+        - project_type_id
+        type: object
+      project_files:
+        items:
+          type: string
+        type: array
+      project_id:
+        format: int32
+        type: integer
+      project_screen_sharing:
+        items:
+          type: string
+        type: array
+      row_id:
+        format: int32
+        readOnly: true
+        type: integer
+      started_at:
+        format: date-time
+        type: string
+        x-nullable: true
+      updated_by:
+        format: int32
+        readOnly: true
+        type: integer
+    required:
+    - account_id
+    - created_by
+    - parameter_name
+    - parent_parameter_name
+    - project_id
+    - updated_by
+    type: object
+  ProjectParameterReadArgs:
+    properties:
+      created_date_from:
+        format: date-time
+        type: string
+      created_date_to:
+        format: date-time
+        type: string
+      operator:
+        enum:
+        - and
+        - or
+        type: string
+        default: and
+      page:
+        format: int32
+        type: integer
+        default: 1
+      parameter_name:
+        type: string
+      parent_parameter_name:
+        type: string
+      per_page:
+        format: int32
+        type: integer
+        default: 20
+      pfields:
+        items:
+          type: string
+        type: array
+      project_id:
+        format: int32
+        type: integer
+      sort:
+        enum:
+        - asc
+        - dsc
+        type: string
+        default: asc
+      sort_by:
+        items:
+          type: string
+        type: array
+        default: row_id
+    type: object

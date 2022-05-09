@@ -1,0 +1,22 @@
+Delete a comment
+---
+tags:
+  - Comment
+parameters:
+  - in: header
+    name: Authorization
+    required: true
+    type: string
+  - in: path
+    name: row_id
+    schema:
+      type: int
+    required: true
+    description: 'The comment to delete'
+responses:
+  204:
+    description: 'comment deleted'
+  404:
+    description: 'comment id: <row_id> does not exist'
+  500:
+    description: 'Some unknown exception!'

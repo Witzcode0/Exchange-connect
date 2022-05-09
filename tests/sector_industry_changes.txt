@@ -1,0 +1,35 @@
+AccountProfile:
+
+1. Added new fields sector_id and industry_id then given relationship.
+2. changed sector and industry to sector_id and industry_id in basereadargs schema
+    for filters.
+3. checked sector_id and industry_id filters.
+4. Add command to update already available sector_name and industry_name with
+    ids w.r.t sector and industry tables by converting them into lower cases.
+
+CFollow:
+
+1. changed sector and industry to sector_id and industry_id in basereadargs schema
+    for filters.
+2. checked sector_id and industry_id filters.
+
+UserProfile:
+
+1. Add new fields sector_ids and industry_ids
+2. Change sectors to sector_names and industry to industry_names.
+3. Check Validation for sector_ids and industry_ids w.r.t sector and industry tables.
+4. Add command to update already available sector_names and industry_names with
+    ids w.r.t sector and industry tables by converting them into lower cases.
+5. check sector_id and industry_id filters w.r.t account_profile.
+
+User:
+
+1. check filters sector_id and industry_id w.r.t account_profile.
+
+ContactRequest:
+
+1. check filters sector_id and industry_id w.r.t account_profile.
+
+Contact:
+
+1. check filters sector_id and industry_id w.r.t account_profile.

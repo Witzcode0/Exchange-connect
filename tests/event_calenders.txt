@@ -1,0 +1,4 @@
+Get list:
+    - check fetching data from caevent, webinar, webcast for particular user(
+        if user as a creator, invited, collaborated, participated, hosted etc)
+    - check with date filters

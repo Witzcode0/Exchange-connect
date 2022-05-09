@@ -1,0 +1,26 @@
+Test Crud Operations
+
+WebcastSettingAPI :
+
+* Post
+    - check data missing error (required field)
+    - check does not exist error by sending not available webcast_id.
+    - check data incorrect error (field length validations)
+    - check unknown error
+    - check no errors, data entered successfully
+* Put
+    - check not found (webcast setting id does not exist)
+    - check data incorrect error (field length validations)
+    - check unknown error
+    - check no errors, data update successfully
+* Get
+    - check not found (webcast setting id does not exist)
+    - check found, fetched
+* Delete
+    - check not found (webcast setting id does not exist)
+    - check found, deleted
+
+WebcastSettingListAPI :
+
+* Get
+    - check reminder_1,reminder_2,webcast_id filter

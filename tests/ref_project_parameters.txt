@@ -1,0 +1,34 @@
+Test Crud Operations
+
+RefProjectParameterAPI :
+
+* Post
+    - check data missing error (required fields)
+    - check already exist data error (project_type_id, parent_parameter_name
+            and parameter_name should be uniqueconstraints)
+    - check does not exist error by sending not available project_type_id.
+    - check data incorrect error (parent_parameter_name and parameter_name
+            can not be empty and length should not exceed limits.)
+    - check unknown error
+    - check no errors, data entered successfully
+* Put
+    - check already exist data error (project_type_id, parent_parameter_name
+            and parameter_name should be uniqueconstraints)
+    - check does not exist error by sending not available project_type_id.
+    - check data incorrect error (parent_parameter_name and parameter_name
+            can not be empty and length should not exceed limits.)
+    - check unknown error
+    - check unknown error
+    - check no errors, data entered successfully
+* Get
+    - check not found (reference project parameter id does not exist)
+    - check found, fetched
+* Delete
+    - check not found ((reference project parameter id does not exist))
+    - check found, deleted
+
+RefProjectParameterListAPI :
+
+* Get
+    - check found, fetched.
+    - check different tasks by using parent_parameter_name and parameter_name.

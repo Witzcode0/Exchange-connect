@@ -1,0 +1,928 @@
+Get a list of survey based on query parameters
+---
+tags:
+  - Survey
+parameters:
+  - in: header
+    name: Authorization
+    required: true
+    type: string
+  - in: query
+    schema:
+      $ref: '#/definitions/SurveyReadArgs'
+responses:
+  200:
+    description: 'surveys fetched'
+    schema:
+      type: object
+      properties:
+        results:
+          type: array
+          items:
+            $ref: '#/definitions/Survey'
+        total:
+          type: int32
+          default: 1
+  404:
+    description: 'survey id: <row_id> does not exist'
+  500:
+    description: 'Some unknown exception'
+definitions:
+  Survey:
+    properties:
+      account:
+        properties:
+          account_name:
+            maxLength: 512
+            minLength: 1
+            type: string
+          account_type:
+            enum:
+            - corporate
+            - buy-side
+            - sell-side
+            - general investor
+            - admin
+            - guest
+            type: string
+          row_id:
+            format: int32
+            readOnly: true
+            type: integer
+        readOnly: true
+        required:
+        - account_name
+        - account_type
+        type: object
+      account_id:
+        format: int32
+        readOnly: true
+        type: integer
+      agenda:
+        maxLength: 9216
+        type: string
+        x-nullable: true
+      cc_emails:
+        items:
+          format: email
+          type: string
+        type: array
+        x-nullable: true
+      created_by:
+        format: int32
+        readOnly: true
+        type: integer
+      created_date:
+        format: date-time
+        readOnly: true
+        type: string
+        x-nullable: true
+      creator:
+        properties:
+          account:
+            properties:
+              account_name:
+                maxLength: 512
+                minLength: 1
+                type: string
+              account_type:
+                enum:
+                - corporate
+                - buy-side
+                - sell-side
+                - general investor
+                - admin
+                - guest
+                type: string
+              profile:
+                properties:
+                  profile_thumbnail_url:
+                    format: url
+                    readOnly: true
+                    type: string
+                type: object
+              row_id:
+                format: int32
+                readOnly: true
+                type: integer
+            readOnly: true
+            required:
+            - account_name
+            - account_type
+            - profile
+            type: object
+          profile:
+            properties:
+              designation:
+                maxLength: 128
+                type: string
+                x-nullable: true
+              designation_link:
+                properties:
+                  designation_level:
+                    enum:
+                    - bod & top management
+                    - mid-level management
+                    - managers & others
+                    type: string
+                  name:
+                    maxLength: 256
+                    minLength: 1
+                    type: string
+                  row_id:
+                    format: int32
+                    readOnly: true
+                    type: integer
+                readOnly: true
+                required:
+                - designation_level
+                - name
+                type: object
+              first_name:
+                maxLength: 512
+                minLength: 1
+                type: string
+              last_name:
+                maxLength: 512
+                minLength: 1
+                type: string
+              links:
+                readOnly: true
+                type: string
+              profile_photo_url:
+                format: url
+                readOnly: true
+                type: string
+              profile_thumbnail_url:
+                format: url
+                readOnly: true
+                type: string
+            required:
+            - first_name
+            - last_name
+            type: object
+          row_id:
+            format: int32
+            readOnly: true
+            type: integer
+        readOnly: true
+        required:
+        - profile
+        type: object
+      editable:
+        type: boolean
+        x-nullable: true
+      email_ids:
+        items:
+          format: email
+          type: string
+        readOnly: true
+        type: array
+      ended_at:
+        format: date-time
+        type: string
+        x-nullable: true
+      external_invitees:
+        items:
+          properties:
+            designation:
+              maxLength: 128
+              type: string
+              x-nullable: true
+            email:
+              format: email
+              maxLength: 128
+              type: string
+              x-nullable: true
+            first_name:
+              maxLength: 128
+              type: string
+              x-nullable: true
+            invitee:
+              properties:
+                account:
+                  properties:
+                    account_name:
+                      maxLength: 512
+                      minLength: 1
+                      type: string
+                    account_type:
+                      enum:
+                      - corporate
+                      - buy-side
+                      - sell-side
+                      - general investor
+                      - admin
+                      - guest
+                      type: string
+                    row_id:
+                      format: int32
+                      readOnly: true
+                      type: integer
+                  readOnly: true
+                  required:
+                  - account_name
+                  - account_type
+                  type: object
+                profile:
+                  properties:
+                    designation:
+                      maxLength: 128
+                      type: string
+                      x-nullable: true
+                    designation_link:
+                      properties:
+                        designation_level:
+                          enum:
+                          - bod & top management
+                          - mid-level management
+                          - managers & others
+                          type: string
+                        name:
+                          maxLength: 256
+                          minLength: 1
+                          type: string
+                        row_id:
+                          format: int32
+                          readOnly: true
+                          type: integer
+                      readOnly: true
+                      required:
+                      - designation_level
+                      - name
+                      type: object
+                    first_name:
+                      maxLength: 512
+                      minLength: 1
+                      type: string
+                    last_name:
+                      maxLength: 512
+                      minLength: 1
+                      type: string
+                    links:
+                      readOnly: true
+                      type: string
+                    profile_photo_url:
+                      format: url
+                      readOnly: true
+                      type: string
+                    profile_thumbnail_url:
+                      format: url
+                      readOnly: true
+                      type: string
+                  required:
+                  - first_name
+                  - last_name
+                  type: object
+                row_id:
+                  format: int32
+                  readOnly: true
+                  type: integer
+              readOnly: true
+              required:
+              - profile
+              type: object
+            last_name:
+              maxLength: 128
+              type: string
+              x-nullable: true
+            row_id:
+              format: int32
+              readOnly: true
+              type: integer
+          type: object
+        type: array
+      invite_text:
+        maxLength: 4096
+        type: string
+        x-nullable: true
+      invited:
+        properties:
+          created_date:
+            format: date-time
+            readOnly: true
+            type: string
+            x-nullable: true
+          designation:
+            maxLength: 128
+            type: string
+            x-nullable: true
+          email:
+            format: email
+            maxLength: 128
+            type: string
+            x-nullable: true
+          first_name:
+            maxLength: 128
+            type: string
+            x-nullable: true
+          invitee:
+            properties:
+              account:
+                properties:
+                  account_name:
+                    maxLength: 512
+                    minLength: 1
+                    type: string
+                  account_type:
+                    enum:
+                    - corporate
+                    - buy-side
+                    - sell-side
+                    - general investor
+                    - admin
+                    - guest
+                    type: string
+                  row_id:
+                    format: int32
+                    readOnly: true
+                    type: integer
+                readOnly: true
+                required:
+                - account_name
+                - account_type
+                type: object
+              profile:
+                properties:
+                  designation:
+                    maxLength: 128
+                    type: string
+                    x-nullable: true
+                  designation_link:
+                    properties:
+                      designation_level:
+                        enum:
+                        - bod & top management
+                        - mid-level management
+                        - managers & others
+                        type: string
+                      name:
+                        maxLength: 256
+                        minLength: 1
+                        type: string
+                      row_id:
+                        format: int32
+                        readOnly: true
+                        type: integer
+                    readOnly: true
+                    required:
+                    - designation_level
+                    - name
+                    type: object
+                  first_name:
+                    maxLength: 512
+                    minLength: 1
+                    type: string
+                  last_name:
+                    maxLength: 512
+                    minLength: 1
+                    type: string
+                  links:
+                    readOnly: true
+                    type: string
+                  profile_photo_url:
+                    format: url
+                    readOnly: true
+                    type: string
+                  profile_thumbnail_url:
+                    format: url
+                    readOnly: true
+                    type: string
+                required:
+                - first_name
+                - last_name
+                type: object
+              row_id:
+                format: int32
+                readOnly: true
+                type: integer
+            readOnly: true
+            required:
+            - profile
+            type: object
+          last_name:
+            maxLength: 128
+            type: string
+            x-nullable: true
+          links:
+            readOnly: true
+            type: string
+          row_id:
+            format: int32
+            readOnly: true
+            type: integer
+          status:
+            enum:
+            - unanswered
+            - partial
+            - answered
+            type: string
+            x-nullable: true
+          user_id:
+            format: int32
+            type: integer
+            x-nullable: true
+        readOnly: true
+        type: object
+      invitee_ids:
+        items:
+          format: int32
+          type: integer
+        readOnly: true
+        type: array
+      invitees:
+        items:
+          properties:
+            account:
+              properties:
+                account_name:
+                  maxLength: 512
+                  minLength: 1
+                  type: string
+                account_type:
+                  enum:
+                  - corporate
+                  - buy-side
+                  - sell-side
+                  - general investor
+                  - admin
+                  - guest
+                  type: string
+                row_id:
+                  format: int32
+                  readOnly: true
+                  type: integer
+              readOnly: true
+              required:
+              - account_name
+              - account_type
+              type: object
+            profile:
+              properties:
+                designation:
+                  maxLength: 128
+                  type: string
+                  x-nullable: true
+                designation_link:
+                  properties:
+                    designation_level:
+                      enum:
+                      - bod & top management
+                      - mid-level management
+                      - managers & others
+                      type: string
+                    name:
+                      maxLength: 256
+                      minLength: 1
+                      type: string
+                    row_id:
+                      format: int32
+                      readOnly: true
+                      type: integer
+                  readOnly: true
+                  required:
+                  - designation_level
+                  - name
+                  type: object
+                first_name:
+                  maxLength: 512
+                  minLength: 1
+                  type: string
+                last_name:
+                  maxLength: 512
+                  minLength: 1
+                  type: string
+                links:
+                  readOnly: true
+                  type: string
+                profile_photo_url:
+                  format: url
+                  readOnly: true
+                  type: string
+                profile_thumbnail_url:
+                  format: url
+                  readOnly: true
+                  type: string
+              required:
+              - first_name
+              - last_name
+              type: object
+            row_id:
+              format: int32
+              readOnly: true
+              type: integer
+          readOnly: true
+          required:
+          - profile
+          type: object
+        type: array
+      invites:
+        items:
+          properties:
+            created_date:
+              format: date-time
+              readOnly: true
+              type: string
+              x-nullable: true
+            designation:
+              maxLength: 128
+              type: string
+              x-nullable: true
+            email:
+              format: email
+              maxLength: 128
+              type: string
+              x-nullable: true
+            first_name:
+              maxLength: 128
+              type: string
+              x-nullable: true
+            invitee:
+              properties:
+                account:
+                  properties:
+                    account_name:
+                      maxLength: 512
+                      minLength: 1
+                      type: string
+                    account_type:
+                      enum:
+                      - corporate
+                      - buy-side
+                      - sell-side
+                      - general investor
+                      - admin
+                      - guest
+                      type: string
+                    row_id:
+                      format: int32
+                      readOnly: true
+                      type: integer
+                  readOnly: true
+                  required:
+                  - account_name
+                  - account_type
+                  type: object
+                profile:
+                  properties:
+                    designation:
+                      maxLength: 128
+                      type: string
+                      x-nullable: true
+                    designation_link:
+                      properties:
+                        designation_level:
+                          enum:
+                          - bod & top management
+                          - mid-level management
+                          - managers & others
+                          type: string
+                        name:
+                          maxLength: 256
+                          minLength: 1
+                          type: string
+                        row_id:
+                          format: int32
+                          readOnly: true
+                          type: integer
+                      readOnly: true
+                      required:
+                      - designation_level
+                      - name
+                      type: object
+                    first_name:
+                      maxLength: 512
+                      minLength: 1
+                      type: string
+                    last_name:
+                      maxLength: 512
+                      minLength: 1
+                      type: string
+                    links:
+                      readOnly: true
+                      type: string
+                    profile_photo_url:
+                      format: url
+                      readOnly: true
+                      type: string
+                    profile_thumbnail_url:
+                      format: url
+                      readOnly: true
+                      type: string
+                  required:
+                  - first_name
+                  - last_name
+                  type: object
+                row_id:
+                  format: int32
+                  readOnly: true
+                  type: integer
+              readOnly: true
+              required:
+              - profile
+              type: object
+            last_name:
+              maxLength: 128
+              type: string
+              x-nullable: true
+            links:
+              readOnly: true
+              type: string
+            row_id:
+              format: int32
+              readOnly: true
+              type: integer
+            status:
+              enum:
+              - unanswered
+              - partial
+              - answered
+              type: string
+              x-nullable: true
+            user_id:
+              format: int32
+              type: integer
+              x-nullable: true
+          readOnly: true
+          type: object
+        type: array
+      links:
+        readOnly: true
+        type: string
+      modified_date:
+        format: date-time
+        readOnly: true
+        type: string
+        x-nullable: true
+      non_respondents:
+        items:
+          properties:
+            account:
+              properties:
+                account_name:
+                  maxLength: 512
+                  minLength: 1
+                  type: string
+                account_type:
+                  enum:
+                  - corporate
+                  - buy-side
+                  - sell-side
+                  - general investor
+                  - admin
+                  - guest
+                  type: string
+                row_id:
+                  format: int32
+                  readOnly: true
+                  type: integer
+              readOnly: true
+              required:
+              - account_name
+              - account_type
+              type: object
+            profile:
+              properties:
+                designation:
+                  maxLength: 128
+                  type: string
+                  x-nullable: true
+                designation_link:
+                  properties:
+                    designation_level:
+                      enum:
+                      - bod & top management
+                      - mid-level management
+                      - managers & others
+                      type: string
+                    name:
+                      maxLength: 256
+                      minLength: 1
+                      type: string
+                    row_id:
+                      format: int32
+                      readOnly: true
+                      type: integer
+                  readOnly: true
+                  required:
+                  - designation_level
+                  - name
+                  type: object
+                first_name:
+                  maxLength: 512
+                  minLength: 1
+                  type: string
+                last_name:
+                  maxLength: 512
+                  minLength: 1
+                  type: string
+                links:
+                  readOnly: true
+                  type: string
+                profile_photo_url:
+                  format: url
+                  readOnly: true
+                  type: string
+                profile_thumbnail_url:
+                  format: url
+                  readOnly: true
+                  type: string
+              required:
+              - first_name
+              - last_name
+              type: object
+            row_id:
+              format: int32
+              readOnly: true
+              type: integer
+          readOnly: true
+          required:
+          - profile
+          type: object
+        type: array
+      not_responded:
+        format: int32
+        readOnly: true
+        type: integer
+      notifications:
+        items:
+          type: string
+        type: array
+      questions:
+        type: object
+        x-nullable: true
+      responded:
+        format: int32
+        readOnly: true
+        type: integer
+      respondents:
+        items:
+          properties:
+            account:
+              properties:
+                account_name:
+                  maxLength: 512
+                  minLength: 1
+                  type: string
+                account_type:
+                  enum:
+                  - corporate
+                  - buy-side
+                  - sell-side
+                  - general investor
+                  - admin
+                  - guest
+                  type: string
+                row_id:
+                  format: int32
+                  readOnly: true
+                  type: integer
+              readOnly: true
+              required:
+              - account_name
+              - account_type
+              type: object
+            profile:
+              properties:
+                designation:
+                  maxLength: 128
+                  type: string
+                  x-nullable: true
+                designation_link:
+                  properties:
+                    designation_level:
+                      enum:
+                      - bod & top management
+                      - mid-level management
+                      - managers & others
+                      type: string
+                    name:
+                      maxLength: 256
+                      minLength: 1
+                      type: string
+                    row_id:
+                      format: int32
+                      readOnly: true
+                      type: integer
+                  readOnly: true
+                  required:
+                  - designation_level
+                  - name
+                  type: object
+                first_name:
+                  maxLength: 512
+                  minLength: 1
+                  type: string
+                last_name:
+                  maxLength: 512
+                  minLength: 1
+                  type: string
+                links:
+                  readOnly: true
+                  type: string
+                profile_photo_url:
+                  format: url
+                  readOnly: true
+                  type: string
+                profile_thumbnail_url:
+                  format: url
+                  readOnly: true
+                  type: string
+              required:
+              - first_name
+              - last_name
+              type: object
+            row_id:
+              format: int32
+              readOnly: true
+              type: integer
+          readOnly: true
+          required:
+          - profile
+          type: object
+        type: array
+      row_id:
+        format: int32
+        readOnly: true
+        type: integer
+      started_at:
+        format: date-time
+        type: string
+        x-nullable: true
+      status:
+        enum:
+        - open
+        - running
+        - closed
+        type: string
+        x-nullable: true
+      success_message:
+        maxLength: 512
+        type: string
+        x-nullable: true
+      title:
+        maxLength: 512
+        minLength: 1
+        type: string
+      updated_by:
+        format: int32
+        readOnly: true
+        type: integer
+      welcome_message:
+        maxLength: 512
+        type: string
+        x-nullable: true
+    required:
+    - account_id
+    - created_by
+    - title
+    - updated_by
+    type: object
+  SurveyReadArgs:
+    properties:
+      created_date_from:
+        format: date-time
+        type: string
+      created_date_to:
+        format: date-time
+        type: string
+      editable:
+        type: boolean
+      operator:
+        enum:
+        - and
+        - or
+        type: string
+        default: and
+      page:
+        format: int32
+        type: integer
+        default: 1
+      per_page:
+        format: int32
+        type: integer
+        default: 20
+      pfields:
+        items:
+          type: string
+        type: array
+      sort:
+        enum:
+        - asc
+        - dsc
+        type: string
+        default: asc
+      sort_by:
+        items:
+          type: string
+        type: array
+        default: row_id
+      status:
+        enum:
+        - open
+        - running
+        - closed
+        type: string
+      title:
+        type: string
+    type: object

@@ -1,0 +1,28 @@
+Fetch Webinar stats overall
+---
+tags:
+  - Webinar Stats
+parameters:
+  - in: header
+    name: Authorization
+    required: true
+    type: string
+responses:
+  200:
+    description: Webinar stats fetched
+    schema:
+      $ref: '#/definitions/WebinarStatsOverall'
+  404:
+    description: 'No matching webinar stats found'
+  500:
+    description: 'Some unknown exception!'
+definitions:
+  WebinarStatsOverall:
+    properties:
+      total_webinar_participants:
+        format: int32
+        type: integer
+      total_webinars:
+        format: int32
+        type: integer
+    type: object

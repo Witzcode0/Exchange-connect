@@ -1,0 +1,29 @@
+# the model definition
+# #TODO: this is not working at the moment!!
+definitions:
+  Login:
+    type: object
+    required:
+      - email
+      - password
+    properties:
+      email:
+        format: email
+        type: string
+      password:
+        type: string
+  EmailSchema:
+    type: object
+    required:
+      - email
+    properties:
+      email:
+        format: email
+        type: string
+  TokenVerification:
+    properties:
+      user_token:
+        type: string
+    required:
+    - user_token
+    type: object

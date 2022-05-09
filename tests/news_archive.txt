@@ -1,0 +1,12 @@
+Test CRUD
+1. Post
+ - test add news archive by news id
+ - test add same news id in two times
+
+2. Delete
+ - test delete by id
+
+3. Get
+ - test fetch by row_id
+ - test fetch by arguments
+ - test fetch news archive by another user

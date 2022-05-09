@@ -1,0 +1,101 @@
+For creating new company page file
+---
+tags:
+  - Company Page Library Files
+parameters:
+  - in: header
+    name: Authorization
+    required: true
+    type: string
+  - name: filename
+    in: formData
+    type: file
+    required: true
+responses:
+  201:
+    description: 'file has been created'
+    schema:
+      content:
+        application/json:
+      schema:
+        type: object
+        required:
+          - message
+          - row_id
+        properties:
+          message:
+            type: string
+            default: 'File added'
+          row_id:
+            type: int32
+            description: 'row id of the File'
+            default: 1
+  400:
+    description: 'No data sent or No file provided'
+  422:
+    description: 'File type not allowed'
+definitions:
+  CompanyPageLibraryFile:
+    properties:
+      account:
+        type: string
+        x-nullable: true
+      account_id:
+        format: int32
+        readOnly: true
+        type: integer
+      created_by:
+        format: int32
+        readOnly: true
+        type: integer
+      created_date:
+        format: date-time
+        readOnly: true
+        type: string
+        x-nullable: true
+      creator:
+        type: string
+        x-nullable: true
+      deleted:
+        readOnly: true
+        type: boolean
+        x-nullable: true
+      file_type:
+        maxLength: 256
+        type: string
+        x-nullable: true
+      file_url:
+        format: url
+        readOnly: true
+        type: string
+      filename:
+        type: string
+        x-nullable: true
+      links:
+        readOnly: true
+        type: string
+      modified_date:
+        format: date-time
+        readOnly: true
+        type: string
+        x-nullable: true
+      row_id:
+        format: int32
+        readOnly: true
+        type: integer
+      thumbnail_name:
+        type: string
+        x-nullable: true
+      thumbnail_url:
+        format: url
+        readOnly: true
+        type: string
+      updated_by:
+        format: int32
+        readOnly: true
+        type: integer
+    required:
+    - account_id
+    - created_by
+    - updated_by
+    type: object

@@ -1,0 +1,100 @@
+CRUD TEST
+1. POST
+   - test with form data without any data pass
+   - test give random value of variables
+   - test upload files all with data
+   - test upload files only one or one without data
+   - test upload files video, audio other extension
+   - test add hosts with user id
+   - test add invitees with contact id
+   - add only own company user
+   - test add user another company users
+   - test adding rsvps to webcast
+   - test with invitee for guest user, send mail with webcast verification token
+   - test add external invitees
+   - test add external hosts
+   - test add external participants
+   - check upload different files(logo, banner,txt)
+   - check with multiple files(text, ppt) etc
+   - if data entered, add and update the webcast_stats table for the webcast
+   - check with participant and sequence id
+   - check with rsvp and sequence id
+   - check with giving zero value to sequence id in participant or rsvp object
+   - check with same user in host_ids with user id and external host with user email
+   - check with same user in invitee_ids with user id and external invitee with user email
+   - check with same user in participant with user id and external participant with email
+   - check with external invitee which is already system user
+   - check with group account type user with participant_ids and host_ids for
+        both account child and group account team member
+   - check request url from third party api and then store to database in launch time
+
+1. PUT
+  - test upload files with form data
+  - test logo, banner as a text for delete file
+  - test upload two files and two as text
+  - test blank data upload via form data
+  - test add more or less participants
+  - test add more or less invitees
+  - test add more or less hosts
+  - check rsvp using row_id, not found
+  - check rsvps using row_id, found and updated
+  - add rsvps if no row_id
+  - check external invitees using row_id, not found
+  - check external invitees using row_id, found, updated
+  - add external invitees if no row_id
+  - check external hosts using row_id, not found
+  - check external hosts using row_id, found, updated
+  - add external hosts if no row_id
+  - check external participants using row_id, not found
+  - check external participants using row_id, found, updated
+  - add external participants if no row_id
+  - check upload different files(logo, banner,txt)
+  - check with multiple files(text, ppt) etc
+  - check if new parameters i.e. hosts, invitees, participants, attendees, rsvps, ques, ans are
+      updated then update the webcast_stats for the webcast_id
+  - try to change sequence id
+  - try with same sequence id in many rsvp for particular webcast
+  - test with invitee for guest user, send mail with webcast verification token
+  - check with same user in participant with user id and external participant with email
+  - check with group account type user with participant_ids and host_ids for
+        both account child and group account team member
+  - check request url from third party api and then store to database
+
+3. DELETE
+  - test delete data by row_id
+  - if webcast is deleted, delete the webcast_stats row with respective webcast_id
+
+4. GET
+  - test fetch data by row_id
+  - check
+        if login user is invitee,
+            invited object display with login user(invitee) details
+        if not invitee, invited = null
+  - test fetch all data of webcast
+  - test fetch data according to is_draft true or false
+  - test fetch data according to started_at_from,started_at_to,
+    ended_at_from,ended_at_to
+  - test fetch data
+  - check main_filter(invited, participated, hosted, all and mine)
+  - check main_filter with guest user
+  - check invited field(if current user invited particular webcast invited)
+  - check with webcast verification token with guest user,
+      for book particular webcast(means update user_id in webcast invitee model)
+
+Webcast Cancelled API:-
+PUT:-
+  - check does not exist error
+  - check cancelled flag true is update
+  - check webcast in is_draft mode then can't be cancelled
+  - check conference related fields to null on successful webcast cancellation.
+
+ReSendMailToWebcastInvitee:-
+PUT:-
+  - check not exist error
+  - check unauthorized access
+  - check if only the recepients (invitees, hosts, rsvp's and participants) to
+    whome we did not sent the mail earlier will get the mail
+  - check if task is already running in background by acquiring webcast lock
+    (is_in_process) , don't add in task queue
+  - check if webcast lock is released after the task is finished and/or
+     exception is raised

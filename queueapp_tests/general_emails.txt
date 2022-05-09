@@ -1,0 +1,21 @@
+Welcome email:
+    - using place: in RegistrationRequestAddUserAPI
+    - send a welcome email to user after admin accepted request.
+        last synced on 15/06/18 12:45:00
+Helpdesk email:
+    - using place: TicketAPI - post
+    - send confirmation to email of ticket generation.
+        last synced on 15/06/18 15:00:00
+Change password email:
+    - using place: ChangePasswordAPI
+    - email sending to the user email after password successfully changed.
+Forgot password email:
+    - using place: ForgotPasswordAPI
+    - email sending with link to user email.
+        last synced on 15/06/18 15:35:00
+Inquiry contact us email:
+    - using place: InquiryContactUsPostAPI
+    - if anyone inquire for some info then send email to inquire admins.
+Inquiry plan email:
+    - using place: InquiryPlanPostAPI
+    - if existing user inquire about plans, then send email to inquire admins.

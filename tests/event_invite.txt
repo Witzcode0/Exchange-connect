@@ -1,0 +1,12 @@
+TEST CRUD
+1. Post
+    - Test creation of event invite
+2. Put
+    - Test accept of event invite
+    - Test reject of event invite
+3. Get
+    - Get event request
+4. Delete
+    - Delete event request
+5. Get list:
+    - get list of event invites

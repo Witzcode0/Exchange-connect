@@ -1,0 +1,103 @@
+Get a list of Activities based on query parameters
+---
+tags:
+  - Activities
+parameters:
+  - in: header
+    name: Authorization
+    type: string
+  - in: query
+    schema:
+      $ref: '#/definitions/GlobalActivityReadArgs'
+responses:
+  200:
+    description: Activities fetched
+    schema:
+      type: object
+      properties:
+        results:
+          type: array
+          items:
+            $ref: '#/definitions/GlobalActitvity'
+        total:
+          type: int32
+          default: 1
+  404:
+    description: 'Activities id: <row_id> does not exist'
+  500:
+    description: 'Some unknown exception'
+definitions:
+  GlobalActitvity:
+    properties:
+      activity_type:
+        readOnly: true
+        enum:
+          - corporate access event
+          - webcast
+          - webinar
+          - user profile
+          - account profile
+        type: string
+      created_date:
+        format: date-time
+        readOnly: true
+        type: string
+      creator_name:
+        readOnly: true
+        type: string
+      link:
+        format: url
+        readOnly: true
+        type: string
+      modified_date:
+        format: date-time
+        readOnly: true
+        type: string
+      modifier_name:
+        readOnly: true
+        type: string
+      name:
+        readOnly: true
+        type: string
+      row_id:
+        format: int32
+        readOnly: true
+        type: integer
+    type: object
+  GlobalActivityReadArgs:
+    properties:
+      created_date_from:
+        format: date-time
+        type: string
+      created_date_to:
+        format: date-time
+        type: string
+      operator:
+        enum:
+        - and
+        - or
+        type: string
+      page:
+        format: int32
+        type: integer
+        default: 1
+      per_page:
+        format: int32
+        type: integer
+        default: 20
+      pfields:
+        items:
+          type: string
+        type: array
+      sort:
+        enum:
+        - asc
+        - dsc
+        type: string
+        default: asc
+      sort_by:
+        items:
+          type: string
+        type: array
+        default: row_id
+    type: object

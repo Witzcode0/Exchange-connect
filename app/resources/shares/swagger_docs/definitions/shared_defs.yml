@@ -1,0 +1,160 @@
+definitions:
+  PostShare:
+    type: object
+    required:
+    - account_id
+    - created_by
+    - updated_by
+    properties:
+      account_id:
+        readOnly: true
+        format: int32
+        type: integer
+      created_date:
+        readOnly: true
+        x-nullable: true
+        format: date-time
+        type: string
+      files:
+        items:
+          type: object
+          properties:
+            file_major_type:
+              readOnly: true
+              x-nullable: true
+              maxLength: 128
+              type: string
+            filename:
+              x-nullable: true
+              type: string
+            file_type:
+              maxLength: 256
+              x-nullable: true
+              type: string
+            row_id:
+              readOnly: true
+              format: int32
+              type: integer
+            file_url:
+              readOnly: true
+              format: url
+              type: string
+        type: array
+      updated_by:
+        readOnly: true
+        format: int32
+        type: integer
+      description:
+        maxLength: 2048
+        x-nullable: true
+        type: string
+      links:
+        readOnly: true
+        type: string
+      slug:
+        readOnly: true
+        x-nullable: true
+        maxLength: 256
+        type: string
+      modified_date:
+        readOnly: true
+        x-nullable: true
+        format: date-time
+        type: string
+      row_id:
+        readOnly: true
+        format: int32
+        type: integer
+      shared:
+        readOnly: true
+        x-nullable: true
+        type: boolean
+      created_by:
+        readOnly: true
+        format: int32
+        type: integer
+      posts:
+        items:
+          type: string
+        type: array
+      account:
+        type: object
+        readOnly: true
+        required:
+        - account_name
+        properties:
+          account_name:
+            minLength: 1
+            type: string
+      deleted:
+        readOnly: true
+        x-nullable: true
+        type: boolean
+      title:
+        maxLength: 512
+        x-nullable: true
+        type: string
+      edited:
+        x-nullable: true
+        type: boolean
+      shared_post:
+        readOnly: true
+        allOf:
+        - "$ref": "#/definitions/PostShare"
+      creator:
+        type: object
+        readOnly: true
+        required:
+        - profile
+        properties:
+          profile:
+            type: object
+            required:
+            - first_name
+            - last_name
+            properties:
+              profile_photo_url:
+                readOnly: true
+                format: url
+                type: string
+              links:
+                readOnly: true
+                type: string
+              last_name:
+                minLength: 1
+                type: string
+              designation:
+                maxLength: 128
+                x-nullable: true
+                type: string
+              first_name:
+                minLength: 1
+                type: string
+          row_id:
+            readOnly: true
+            format: int32
+            type: integer
+      post_shared_id:
+        x-nullable: true
+        format: int32
+        required: true
+        type: integer
+      file_ids:
+        readOnly: true
+        items:
+          format: int32
+          type: integer
+        type: array
+      shared_url_preview:
+        type: object
+        properties:
+          reference_url:
+            format: url
+            type: string
+          image:
+            format: url
+            type: string
+          title:
+            type: string
+          description:
+            type: string

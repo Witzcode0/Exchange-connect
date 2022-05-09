@@ -1,0 +1,27 @@
+Test Crud Operations
+
+CARefEventTypeAPI :
+
+* Post
+    - check data missing error (required field)
+    - check already exist data error (name should be unique)
+    - check data incorrect error (name and description length validations)
+    - check unknown error
+    - check no errors, data entered successfully
+* Put
+    - check not found (reference event type id does not exist)
+    - check already exist data error (name should be unique)
+    - check data incorrect error (name and description length validations)
+    - check unknown error
+    - check no errors, data entered successfully
+* Get
+    - check not found (reference event type id does not exist)
+    - check found, fetched
+* Delete
+    - check not found (reference event type id does not exist)
+    - check found, deleted
+
+CARefEventTypeListAPI :
+
+* Get
+    - check found, fetched.

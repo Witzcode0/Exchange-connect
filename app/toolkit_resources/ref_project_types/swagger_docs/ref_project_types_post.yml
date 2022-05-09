@@ -1,0 +1,77 @@
+For creating new reference project type by user
+---
+tags:
+  - Reference Project Types
+parameters:
+  - in: header
+    name: Authorization
+    type: string
+  - in: body
+    name: body
+    schema:
+      $ref: '#/definitions/RefProjectType'
+responses:
+  201:
+    description: 'reference project type has been created'
+    schema:
+      content:
+        application/json:
+      schema:
+        type: object
+        required:
+          - message
+          - row_id
+        properties:
+          name:
+            type: string
+            default: 'reference project type been created'
+          row_id:
+            type: int32
+            description: 'row id of the generated reference project type'
+            default: 1
+  400:
+    description: 'No data sent'
+  422:
+    description: 'Error in data'
+  500:
+    description: 'Some unknown exception!'
+definitions:
+  RefProjectType:
+    type: object
+    properties:
+      project_type_name:
+        type: string
+        minLength: 1
+      created_date:
+        type: string
+        format: date-time
+        readOnly: true
+        x-nullable: true
+      modified_date:
+        type: string
+        format: date-time
+        readOnly: true
+        x-nullable: true
+      row_id:
+        type: integer
+        format: int32
+        readOnly: true
+      links:
+        type: string
+        readOnly: true
+      estimated_delivery_days:
+        type: integer
+        format: int32
+      updated_by:
+        type: integer
+        format: int32
+        readOnly: true
+      created_by:
+        type: integer
+        format: int32
+        readOnly: true
+    required:
+    - created_by
+    - estimated_delivery_days
+    - project_type_name
+    - updated_by

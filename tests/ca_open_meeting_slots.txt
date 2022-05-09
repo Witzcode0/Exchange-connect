@@ -1,0 +1,19 @@
+Test Crud Operations
+
+CAOpenMeetingSlotAPI :
+
+* Get
+    - check not found (does not exist error).
+    - check found, fetched.
+
+* Delete
+    - check not found (does not exist error).
+    - check only creator can delete a slot.
+    - check if CA Open meeting is cancelled, then cannot delete a slot.
+    - check found, deleted.
+
+CAOpenMeetingSlotListAPI :
+
+* Get
+    - check found, fetched.
+    - check event_id and account_id filters.

@@ -1,0 +1,47 @@
+For creating new project file archive
+---
+tags:
+  - Project Archive Files
+parameters:
+  - in: header
+    name: Authorization
+    required: true
+    type: string
+  - name: filename
+    in: formData
+    type: file
+  - name: project_id
+    in: formData
+    type: integer
+  - name: project_parameter_id
+    in: formData
+    type: integer
+  - name: remarks
+    in: formData
+    type: string
+  - name: version
+    in: formData
+    type: string
+responses:
+  201:
+    description: 'file has been created'
+    schema:
+      content:
+        application/json:
+      schema:
+        type: object
+        required:
+          - message
+          - row_id
+        properties:
+          message:
+            type: string
+            default: 'File added'
+          row_id:
+            type: int32
+            description: 'row id of the File'
+            default: 1
+  400:
+    description: 'No data sent or No file provided'
+  422:
+    description: 'File type not allowed'

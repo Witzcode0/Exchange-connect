@@ -1,0 +1,90 @@
+Edit an Event request details etc.
+---
+tags:
+  - Event Requests
+parameters:
+  - in: header
+    name: Authorization
+    type: string
+  - in: path
+    name: row_id
+    schema:
+      type: int
+    required: true
+    description: 'The event to modify'
+  - in: body
+    name: body
+    schema:
+      $ref: '#/definitions/EventRequest'
+responses:
+  200:
+    description: 'Updated Event Request id: <row_id>'
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            message:
+              type: string
+              description: 'Updated Event Request id: <row_id>'
+  400:
+    description: No data sent
+  404:
+    description: 'Event Request id: <row_id> does not exist'
+  422:
+    description: 'Error in data'
+  500:
+    description: 'Some unknown exception!'
+
+# the model definition
+definitions:
+  EventRequest:
+    required:
+      - created_by
+      - event_id
+      - updated_by
+      - user_id
+    properties:
+      created_by:
+        format: int32
+        readOnly: true
+        type: integer
+      created_date:
+        format: date-time
+        readOnly: true
+        type: string
+        x-nullable: true
+      modified_date:
+        format: date-time
+        readOnly: true
+        type: string
+        x-nullable: true
+      deleted:
+        readOnly: true
+        type: boolean
+        x-nullable: true
+      event_id:
+        format: int32
+        type: integer
+      links:
+        type: string
+      row_id:
+        format: int32
+        type: integer
+      status:
+        enum:
+        - invited
+        - rejected
+        - accepted
+        - requested
+        - not_attending
+        - maybe
+        type: string
+      updated_by:
+        format: int32
+        readOnly: true
+        type: integer
+      user_id:
+        format: int32
+        type: integer
+    type: object

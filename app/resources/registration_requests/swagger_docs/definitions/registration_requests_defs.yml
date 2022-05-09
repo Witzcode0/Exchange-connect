@@ -1,0 +1,149 @@
+definitions:
+  RegistrationRequest:
+    properties:
+      company:
+        maxLength: 256
+        type: string
+        x-nullable: true
+      created_date:
+        format: date-time
+        readOnly: true
+        type: string
+        x-nullable: true
+      deleted:
+        readOnly: true
+        type: boolean
+        x-nullable: true
+      designation:
+        maxLength: 128
+        type: string
+        x-nullable: true
+      email:
+        format: email
+        maxLength: 128
+        type: string
+      first_name:
+        maxLength: 128
+        minLength: 1
+        type: string
+      join_as:
+        enum:
+        - corporate
+        - buy-side
+        - sell-side
+        - general investor
+        - admin
+        type: string
+      last_name:
+        maxLength: 128
+        minLength: 1
+        type: string
+      links:
+        type: string
+      modified_date:
+        format: date-time
+        readOnly: true
+        type: string
+        x-nullable: true
+      password:
+        minLength: 7
+        type: string
+      phone_number:
+        maxLength: 32
+        type: string
+        x-nullable: true
+      row_id:
+        format: int32
+        readOnly: true
+        type: integer
+      status:
+        enum:
+        - unverified
+        - pending
+        - accepted
+        - rejected
+        type: string
+      updated_by:
+        format: int32
+        readOnly: true
+        type: integer
+        x-nullable: true
+    required:
+    - email
+    - first_name
+    - last_name
+    - password
+    type: object
+  RegistrationRequestReadArgs:
+    properties:
+      company:
+        type: string
+      created_date_from:
+        format: date-time
+        type: string
+      created_date_to:
+        format: date-time
+        type: string
+      designation:
+        type: string
+      email:
+        type: string
+      first_name:
+        type: string
+      full_name:
+        type: string
+      join_as:
+        enum:
+        - corporate
+        - buy-side
+        - sell-side
+        - general investor
+        - admin
+        - guest
+        type: string
+      last_name:
+        type: string
+      operator:
+        enum:
+        - and
+        - or
+        type: string
+        default: and
+      page:
+        format: int32
+        type: integer
+        default: 1
+      per_page:
+        format: int32
+        type: integer
+        default: 20
+      pfields:
+        items:
+          type: string
+        type: array
+      phone_number:
+        type: string
+      sort:
+        enum:
+        - asc
+        - dsc
+        type: string
+        default: asc
+      sort_by:
+        items:
+          type: string
+        type: array
+        default: row_id
+      status:
+        items:
+          enum:
+          - unverified
+          - pending
+          - accepted
+          - rejected
+          type: string
+        type: array
+      updated_by:
+        format: int32
+        type: integer
+    type: object

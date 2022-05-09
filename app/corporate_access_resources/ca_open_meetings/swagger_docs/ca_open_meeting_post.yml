@@ -1,0 +1,329 @@
+  For creating new CA Open Meeting by user
+---
+tags:
+  - CA Open Meetings
+parameters:
+  - in: header
+    name: Authorization
+    type: string
+    required: true
+  - name: title
+    in: formData
+    type: string
+    required: true
+  - name: started_at
+    in: formData
+    type: string
+    format: date-time
+  - name: ended_at
+    in: formData
+    type: string
+    format: date-time
+  - name: description
+    in: formData
+    type: string
+  - name: city_id
+    in: formData
+    type: integer
+  - name: state_id
+    in: formData
+    type: integer
+  - name: country_id
+    in: formData
+    type: integer
+  - name: event_type_id
+    in: formData
+    type: integer
+    required: true
+  - name: event_sub_type_id
+    in: formData
+    type: integer
+    required: true
+  - name: ca_open_meeting_participants
+    in: formData
+    schema:
+      $ref: '#/definitions/ca_open_meeting_participants'
+  - name: invitee_ids
+    in: formData
+    schema:
+      $ref: '#/definitions/invitee_ids'
+  - name: slots
+    in: formData
+    schema:
+      $ref: '#/definitions/slots'
+  - name: external_participants
+    in: formData
+    schema:
+      $ref: '#/definitions/external_participants'
+  - name: attachment
+    in: formData
+    type: file
+  - name: open_to_all
+    in: formData
+    type: boolean
+    default: false
+  - name: account_type_preference
+    in: formData
+    schema:
+      $ref: '#/definitions/account_type_preference'
+  - name: designation_preference
+    in: formData
+    schema:
+      $ref: '#/definitions/designation_preference'
+responses:
+  201:
+    description: 'CA Open Meeting has been created'
+    schema:
+      content:
+        application/json:
+      schema:
+        type: object
+        required:
+          - message
+          - row_id
+        properties:
+          name:
+            type: string
+            default: 'CA Open Meeting been created'
+          row_id:
+            type: int32
+            description: 'row id of the generated CA Open Meeting'
+            default: 1
+  400:
+    description: 'No data sent'
+  422:
+    description: 'Error in data'
+  500:
+    description: 'Some unknown exception!'
+definitions:
+  invitee_ids:
+    type: array
+    items:
+      type: integer
+  ca_open_meeting_participants:
+    items:
+      properties:
+        participant:
+          properties:
+            account:
+              properties:
+                account_name:
+                  maxLength: 512
+                  minLength: 1
+                  type: string
+                account_type:
+                  enum:
+                  - corporate
+                  - buy-side
+                  - sell-side
+                  - general investor
+                  - admin
+                  - guest
+                  type: string
+                row_id:
+                  format: int32
+                  readOnly: true
+                  type: integer
+              readOnly: true
+              required:
+              - account_name
+              - account_type
+              type: object
+            profile:
+              properties:
+                designation:
+                  maxLength: 128
+                  type: string
+                  x-nullable: true
+                designation_link:
+                  properties:
+                    designation_level:
+                      enum:
+                      - bod & top management
+                      - mid-level management
+                      - managers & others
+                      type: string
+                    name:
+                      maxLength: 256
+                      minLength: 1
+                      type: string
+                    row_id:
+                      format: int32
+                      readOnly: true
+                      type: integer
+                  readOnly: true
+                  required:
+                  - designation_level
+                  - name
+                  type: object
+                first_name:
+                  maxLength: 512
+                  minLength: 1
+                  type: string
+                last_name:
+                  maxLength: 512
+                  minLength: 1
+                  type: string
+                links:
+                  readOnly: true
+                  type: string
+                profile_photo_url:
+                  format: url
+                  readOnly: true
+                  type: string
+                profile_thumbnail_url:
+                  format: url
+                  readOnly: true
+                  type: string
+              required:
+              - first_name
+              - last_name
+              type: object
+            row_id:
+              format: int32
+              readOnly: true
+              type: integer
+          readOnly: true
+          required:
+          - profile
+          type: object
+        participant_designation:
+          maxLength: 128
+          type: string
+          x-nullable: true
+        participant_email:
+          maxLength: 128
+          type: string
+          x-nullable: true
+        participant_first_name:
+          maxLength: 128
+          type: string
+          x-nullable: true
+        participant_id:
+          format: int32
+          type: integer
+          x-nullable: true
+        participant_last_name:
+          maxLength: 128
+          type: string
+          x-nullable: true
+        row_id:
+          format: int32
+          readOnly: true
+          type: integer
+        sequence_id:
+          format: int32
+          minimum: 1
+          type: integer
+          x-nullable: true
+      type: object
+    type: array
+  slots:
+    items:
+      properties:
+        address:
+          maxLength: 256
+          type: string
+          x-nullable: true
+        available_seats:
+          format: int32
+          readOnly: true
+          type: integer
+        bookable_seats:
+          format: int32
+          type: integer
+          x-nullable: true
+        booked_seats:
+          format: int32
+          type: integer
+          x-nullable: true
+        description:
+          maxLength: 256
+          type: string
+          x-nullable: true
+        ended_at:
+          format: date-time
+          type: string
+          x-nullable: true
+        row_id:
+          format: int32
+          readOnly: true
+          type: integer
+        slot_name:
+          maxLength: 256
+          type: string
+          x-nullable: true
+        slot_type:
+          enum:
+          - one
+          - group
+          type: string
+        started_at:
+          format: date-time
+          type: string
+          x-nullable: true
+        text_1:
+          maxLength: 256
+          type: string
+          x-nullable: true
+        text_2:
+          maxLength: 256
+          type: string
+          x-nullable: true
+      type: object
+    type: array
+  external_participants:
+    items:
+      properties:
+        participant_designation:
+          maxLength: 128
+          type: string
+          x-nullable: true
+        participant_email:
+          maxLength: 128
+          type: string
+          x-nullable: true
+        participant_first_name:
+          maxLength: 128
+          type: string
+          x-nullable: true
+        participant_last_name:
+          maxLength: 128
+          type: string
+          x-nullable: true
+        row_id:
+          format: int32
+          readOnly: true
+          type: integer
+        sequence_id:
+          format: int32
+          minimum: 1
+          type: integer
+          x-nullable: true
+      readOnly: true
+      type: object
+    type: array
+  account_type_preference:
+        items:
+          enum:
+          - corporate
+          - buy-side
+          - sell-side
+          - general investor
+          - admin
+          - guest
+          - private
+          - sme
+          - corporate-group
+          type: string
+          x-nullable: true
+        type: array
+  designation_preference:
+        items:
+          enum:
+          - bod & top management
+          - mid-level management
+          - managers & others
+          type: string
+          x-nullable: true
+        type: array

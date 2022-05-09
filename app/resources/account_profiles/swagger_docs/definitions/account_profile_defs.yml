@@ -1,0 +1,343 @@
+definitions:
+  AccountProfile:
+    properties:
+      account:
+        properties:
+          account_name:
+            maxLength: 512
+            minLength: 1
+            type: string
+          account_type:
+            enum:
+            - corporate
+            - buy-side
+            - sell-side
+            - general investor
+            - admin
+            - guest
+            type: string
+          is_account_active:
+            readOnly: true
+            type: boolean
+          isin_number:
+            maxLength: 128
+            type: string
+            x-nullable: true
+        readOnly: true
+        required:
+        - account_name
+        - account_type
+        type: object
+      account_id:
+        format: int32
+        type: integer
+      address_city:
+        maxLength: 128
+        type: string
+        x-nullable: true
+      address_country:
+        maxLength: 128
+        type: string
+        x-nullable: true
+      address_state:
+        maxLength: 128
+        type: string
+        x-nullable: true
+      address_street_one:
+        maxLength: 256
+        type: string
+        x-nullable: true
+      address_street_two:
+        maxLength: 256
+        type: string
+        x-nullable: true
+      address_zip_code:
+        maxLength: 128
+        type: string
+        x-nullable: true
+      cap_group:
+        enum:
+        - small cap
+        - mid cap
+        - large cap
+        type: string
+        x-nullable: true
+      country:
+        maxLength: 128
+        type: string
+        x-nullable: true
+      cover_photo:
+        type: string
+        x-nullable: true
+      cover_photo_url:
+        format: url
+        readOnly: true
+        type: string
+      cover_thumbnail:
+        type: string
+        x-nullable: true
+      cover_thumbnail_url:
+        format: url
+        readOnly: true
+        type: string
+      created_date:
+        format: date-time
+        readOnly: true
+        type: string
+        x-nullable: true
+      currency:
+        maxLength: 32
+        type: string
+        x-nullable: true
+      deleted:
+        readOnly: true
+        type: boolean
+        x-nullable: true
+      description:
+        maxLength: 9216
+        type: string
+        x-nullable: true
+      followed:
+        properties:
+          links:
+            readOnly: true
+            type: string
+          row_id:
+            format: int32
+            readOnly: true
+            type: integer
+        readOnly: true
+        type: object
+      industry:
+        properties:
+          name:
+            maxLength: 256
+            minLength: 1
+            type: string
+          row_id:
+            format: int32
+            readOnly: true
+            type: integer
+        readOnly: true
+        required:
+        - name
+        type: object
+      industry_id:
+        format: int32
+        type: integer
+        x-nullable: true
+      institution_style:
+        maxLength: 256
+        type: string
+        x-nullable: true
+      institution_type:
+        maxLength: 256
+        type: string
+        x-nullable: true
+      links:
+        readOnly: true
+        type: string
+      management_profiles:
+        items:
+          properties:
+            account_profile:
+              type: string
+              x-nullable: true
+            created_date:
+              format: date-time
+              readOnly: true
+              type: string
+              x-nullable: true
+            description:
+              maxLength: 9216
+              type: string
+              x-nullable: true
+            designation:
+              maxLength: 128
+              type: string
+              x-nullable: true
+            links:
+              readOnly: true
+              type: string
+            modified_date:
+              format: date-time
+              readOnly: true
+              type: string
+              x-nullable: true
+            name:
+              maxLength: 256
+              type: string
+              x-nullable: true
+            profile_photo:
+              type: string
+              x-nullable: true
+            profile_photo_url:
+              format: url
+              readOnly: true
+              type: string
+            row_id:
+              format: int32
+              readOnly: true
+              type: integer
+            user_id:
+              format: int32
+              type: integer
+              x-nullable: true
+          type: object
+        type: array
+      market_cap:
+        format: int32
+        readOnly: true
+        type: integer
+        x-nullable: true
+      modified_date:
+        format: date-time
+        readOnly: true
+        type: string
+        x-nullable: true
+      number_of_holdings:
+        format: int32
+        type: integer
+        x-nullable: true
+      phone_alternate:
+        maxLength: 32
+        type: string
+        x-nullable: true
+      phone_primary:
+        maxLength: 32
+        type: string
+        x-nullable: true
+      phone_secondary:
+        maxLength: 32
+        type: string
+        x-nullable: true
+      profile_photo:
+        type: string
+        x-nullable: true
+      profile_photo_url:
+        format: url
+        readOnly: true
+        type: string
+      profile_thumbnail:
+        type: string
+        x-nullable: true
+      profile_thumbnail_url:
+        format: url
+        readOnly: true
+        type: string
+      region:
+        maxLength: 128
+        type: string
+        x-nullable: true
+      row_id:
+        format: int32
+        readOnly: true
+        type: integer
+      sector:
+        properties:
+          name:
+            maxLength: 256
+            minLength: 1
+            type: string
+          row_id:
+            format: int32
+            readOnly: true
+            type: integer
+        readOnly: true
+        required:
+        - name
+        type: object
+      sector_id:
+        format: int32
+        type: integer
+        x-nullable: true
+      top_ten_holdings_percentage:
+        type: number
+        x-nullable: true
+      turnover:
+        maxLength: 256
+        type: string
+        x-nullable: true
+    required:
+    - account_id
+    type: object
+  AccountProfileReadArgs:
+    properties:
+      account_name:
+        type: string
+      account_type:
+        enum:
+        - corporate
+        - buy-side
+        - sell-side
+        - general investor
+        - admin
+        - guest
+        type: string
+      cap_group:
+        enum:
+        - small cap
+        - mid cap
+        - large cap
+        type: string
+      country:
+        type: string
+      created_date_from:
+        format: date-time
+        type: string
+      created_date_to:
+        format: date-time
+        type: string
+      currency:
+        type: string
+      industry_id:
+        format: int32
+        type: integer
+      institution_style:
+        type: string
+      institution_type:
+        type: string
+      not_of_account_type:
+        enum:
+        - corporate
+        - buy-side
+        - sell-side
+        - general investor
+        - admin
+        - guest
+        type: string
+      operator:
+        enum:
+        - and
+        - or
+        type: string
+        default: and
+      page:
+        format: int32
+        type: integer
+        default: 1
+      per_page:
+        format: int32
+        type: integer
+        default: 20
+      pfields:
+        items:
+          type: string
+        type: array
+      region:
+        type: string
+      sector_id:
+        format: int32
+        type: integer
+      sort:
+        enum:
+        - asc
+        - dsc
+        type: string
+        default: asc
+      sort_by:
+        items:
+          type: string
+        type: array
+        default: row_id
+    type: object

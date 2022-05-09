@@ -1,0 +1,81 @@
+Fetch a City
+---
+tags:
+  - City
+parameters:
+  - in: header
+    name: Authorization
+    required: true
+    type: string
+  - in: path
+    name: row_id
+    schema:
+      type: int
+    required: true
+    description: 'The City id to fetch'
+responses:
+  200:
+    description: City fetched
+    schema:
+      $ref: '#/definitions/City'
+  404:
+    description: 'City id: <row_id> does not exist'
+  500:
+    description: 'Some unknown exception!'
+definitions:
+  City:
+    properties:
+      city_name:
+        maxLength: 128
+        minLength: 1
+        type: string
+      country_id:
+        format: int32
+        type: integer
+      created_by:
+        format: int32
+        readOnly: true
+        type: integer
+      created_date:
+        format: date-time
+        readOnly: true
+        type: string
+        x-nullable: true
+      creator:
+        properties:
+          row_id:
+            format: int32
+            readOnly: true
+            type: integer
+        readOnly: true
+        type: object
+      deleted:
+        readOnly: true
+        type: boolean
+        x-nullable: true
+      links:
+        readOnly: true
+        type: string
+      modified_date:
+        format: date-time
+        readOnly: true
+        type: string
+        x-nullable: true
+      row_id:
+        format: int32
+        readOnly: true
+        type: integer
+      state_id:
+        format: int32
+        type: integer
+      updated_by:
+        format: int32
+        readOnly: true
+        type: integer
+    required:
+    - city_name
+    - country_id
+    - created_by
+    - state_id
+    - updated_by
+    type: object

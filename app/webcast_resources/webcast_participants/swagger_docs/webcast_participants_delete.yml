@@ -1,0 +1,23 @@
+Delete a webcast participant
+---
+tags:
+  - Webcast Participants
+parameters:
+  - in: header
+    name: Authorization
+    required: true
+    type: string
+  - in: path
+    name: row_id
+    schema:
+      type: int
+    required: true
+    description: 'The webcast participant to delete'
+responses:
+  204:
+    description: 'webcast participant deleted'
+  404:
+    description: 'webcast participant id: <row_id> does not exist'
+  500:
+    description: 'Some unknown exception!'
+

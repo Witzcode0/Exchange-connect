@@ -1,0 +1,126 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Untitled Document</title>
+</head>
+
+<body>
+
+ <table width="100%" style="max-width: 580px;border: 1px solid #ccc; font-family:Arial,' sans-serif'; font-size: 14px;" cellpadding="0" border="0" cellspacing="0" bgcolor="#fff" align="center">
+  <tbody>
+    <tr>
+      <td align="center"><img src="{logo_url}" style=" display: block; width: 264px; margin: 0 auto"></td>
+    </tr>
+    <tr>
+    	<td bgcolor="#870d14" style="color: #fff; text-align: center; padding: 10px;">
+    		Hi {user_name}
+    	</td>
+    </tr>
+    <tr>
+    	<td align="center" style="padding: 10px;">
+    		Your webinar has been created – Topic for event is {webinar}.<br/>
+            Please find the event details below:
+    	</td>
+    </tr>
+    <tr>
+    	<td><hr></td>
+    </tr>
+<!--      <tr>-->
+<!--    	<td align="center">-->
+<!--    		{participant_list}<br>-->
+<!--    	</td>-->
+<!--    </tr>-->
+    <tr>
+        <td align=center>
+            {speaker_list}<br>
+        </td>
+    </tr>
+    <tr>
+    <tr>
+    	<td style="padding: 10px;">
+    		<table width="560px" style="border: 1px solid #870d14; padding: 10px;">
+			  <tbody>
+				<tr>
+					<td colspan="3" align="center"><strong>Webinar Details</strong></td>
+				</tr>
+			  <tr>
+				  <td width="110px">Topic/Title</td>
+				  <td width="30px">:</td>
+				  <td>{webinar}</td>
+				</tr>
+				<tr>
+				  <td width="110px">Date</td>
+				  <td width="30px">:</td>
+				  <td>{date}</td>
+				</tr>
+				<tr>
+				  <td width="110px">Time</td>
+				  <td width="30px">:</td>
+				  <td>{time}</td>
+				</tr>
+			  </tbody>
+			</table>
+    	</td>
+    </tr>
+    <tr>
+    	<td height="20">
+    	</td>
+    </tr>
+	<tr>
+      <td align="center">
+        <a href="{link}" style=" background: #870d14; color: #fff; padding: 10px; text-decoration: none;">Go to webinar</a>
+      </td>
+    </tr>
+    <tr>
+      <td height="20">
+
+      </td>
+    </tr>
+<!--    <tr>-->
+<!--    	<td style="padding: 10px;{rsvp_block_style}">-->
+<!--    		<table width="560px" bgcolor="#E6E7E8" style="padding: 10px;">-->
+<!--			  <tbody>-->
+<!--				<tr>-->
+<!--					<td colspan="3" align="center"><strong>RSVP</strong></td>-->
+<!--				</tr>-->
+<!--			  <tr>-->
+<!--				  <td width="110px">Contact Person</td>-->
+<!--				  <td width="30px">:</td>-->
+<!--				  <td>{contact_person}</td>-->
+<!--				</tr>-->
+<!--				<tr>-->
+<!--				  <td width="110px">Contact Email</td>-->
+<!--				  <td width="30px">:</td>-->
+<!--				  <td>{email}</td>-->
+<!--				</tr>-->
+<!--				<tr>-->
+<!--				  <td width="110px">Contact Number</td>-->
+<!--				  <td width="30px">:</td>-->
+<!--				  <td>{contact_number}</td>-->
+<!--				</tr>-->
+<!--			  </tbody>-->
+<!--			</table>-->
+<!--    	</td>-->
+<!--    </tr>-->
+    <tr>
+        <td style="padding: 10px;">
+        Please let us know if you have any queries by emailing us on {helpdesk_email} or call us {helpdesk_number}.
+      </td>
+    </tr>
+	<tr>
+    	<td style="padding:0 10px 10px 10px; font-family:Arial,' sans-serif'; font-size: 14px; line-height:20px">
+		Thank You,<br/>
+        {sign_off_name}
+    	</td>
+    </tr>
+  <tr>
+      <td style="padding: 0 10px 10px 10px;font-size: 10px;display:block;padding-bottom:8px;color:#999">
+        If you don't want to receive this type of email in the future, please
+        <a href="{unsubscribe}">unsubscribe.</a>
+      </td>
+    </tr>
+  </tbody>
+</table>
+</body>
+</html>

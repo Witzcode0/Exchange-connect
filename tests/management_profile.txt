@@ -1,0 +1,71 @@
+AdminManagementProfileAPI:
+
+* Post
+    - check 403 error(only admin have access)
+    - check 422 error(Missing data for required field)
+    - check if account_id and user_id combination already exists, if yes then raise
+        already exists error.
+    - check upload data with and without profile_photo
+    - check no errors, data entered successfully
+    - check if profile photo is given thumbnail image is also generated
+
+* Put
+    - check 404 error(Management Profile id:88 does not exist)
+    - check 403 error(only admin have access)
+    - check if account_id and user_id combination already exists, if yes then raise
+        already exists error.
+    - check upload data with and without profile_photo
+    - check no errors, data updated successfully
+    - check if profile photo is given thumbnail image is generated and privious thumbnail is
+        deleted if present
+
+* Delete
+    - check permissions(only admin have access)
+    - check found, deleted
+    - check not found
+
+* Order(PUT)
+    - check if management_profiles exists for the all provided row_ids, else raise error
+    - check if all management_profile have same account_profile, else raise error
+    - check no errors, update the sequence_id according to the row_ids provided
+        in the input.
+
+
+ManagementProfileAPI:
+
+* Post
+    - check 422 error(Missing data for required field)
+    - check if account_id and user_id combination already exists, if yes then raise
+        already exists error.
+    - check upload data with and without profile_photo
+    - check no errors, data entered successfully
+    - check if profile photo is given thumbnail image is generated
+
+* Put
+    - check 404 error(Management Profile id:88 does not exist)
+    - check if account_id and user_id combination already exists, if yes then raise
+        already exists error.
+    - check upload data with and without profile_photo
+    - check no errors, data updated successfully
+    - check if profile photo is given thumbnail image is generated and privious thumbnail is
+        deleted if present
+
+* Delete
+    - check found, deleted
+    - check not found
+
+* Get
+    - check not found
+    - check found, data fetched
+
+* GetList
+    - check found, get the management profile according to the sorted order of sequence_id
+        of each account.
+
+* Order(PUT)
+    - check if management_profiles exists for the all provided row_ids, else raise error
+    - check if all management_profile have same account_profile, else raise error
+    - check if current_user account_id is same as account_id associated with
+        account_profile_id of management_profile, else raise error
+    - check no errors, update the sequence_id according to the row_ids provided
+        in the input.

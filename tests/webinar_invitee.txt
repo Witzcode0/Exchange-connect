@@ -1,0 +1,58 @@
+Test CRUD
+1. Post
+    - check only webinar creator can create
+    - creating a webinar invitee - PASS
+    - testing below validations:
+        - Testing for validation of invitee_email:
+            - Testing for valid email address
+            - Testing for 128 characters limit
+        - check length validations for invitee_first_name,
+            invitee_last_name, invitee_designation
+        - checking for valid webinar_id (FK refer to webinar)
+        - check for unique constraint in webinar_id, invitee_id and invitee_email
+        - check whether invitee_id OR invitee_email is not NULL
+        - check if invitee_id is given, invitee_email should not be there and vice versa.
+        - check if invitee_id is given, any detail belongs to external invitee of invitee_first_name, invitee_last_name and invitee_designation should not be there and vice versa.
+    - update the webinar_stats table for the webinar_id
+    - send registration successful message email to invitee email, only after webinar launch.
+2. Put
+    - check only webinar creator can update
+    - updating a webinar invitee - PASS
+    - testing below validations:
+        - Testing for validation of invitee_email:
+            - Testing for valid email address
+            - Testing for 128 characters limit
+        - check length validations for invitee_first_name,
+            invitee_last_name, invitee_designation
+        - checking for valid webinar_id (FK refer to webinar)
+        - check for unique constraint in webinar_id, invitee_id and invitee_email
+        - check whether invitee_id OR invitee_email is not NULL
+        - check if invitee_id is given, invitee_email should not be there and vice versa.
+        - check if invitee_id is given, any detail belongs to external invitee of invitee_first_name, invitee_last_name and invitee_designation should not be there and vice versa.
+    - check if webinar_id is changed then update the webinar_stats for the new webinar_id and old
+        webinar_id
+3. Delete
+    - deleting a single webinar invitee = PASS
+    - only webinar or invitee creator can delete.
+4. Get
+    - fetching all webinar invitee lists = PASS
+    - fetching a single webinar invitee by id = PASS
+
+WebinarInviteeRegisterAPI:
+
+Post:
+    - check if webinar cancelled, raise 422 error.
+    - check if already invitee(having 'invited' status) then change status to 'registered'.
+    - check if current user is not an invitee,
+        1. check whether webinar is open_to_account_types, if not 403.
+        2. if open to account_types but not open to current user account_type then 403.
+        3. if open to account_types and open to current user account_type, then
+            add with status 'registered', then send email of registration, only after webinar launch.
+    - if all good, conference registration for invitee.
+    - check webinar stats, updated with invitees count.
+
+Delete:
+    - check if webinar cancelled, raise 422 error.
+    - check only that particular invitee can deregister.
+    - check status updated to 'invited'.
+    - on successful deregistration, delete conference related in table.

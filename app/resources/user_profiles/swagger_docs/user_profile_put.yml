@@ -1,0 +1,158 @@
+Edit a User Profile, udpate details etc.
+---
+tags:
+  - User Profiles
+parameters:
+  - in: header
+    name: Authorization
+    required: true
+    type: string
+  - name: cover_photo
+    in: formData
+    type: file
+  - name: profile_photo
+    in: formData
+    type: file
+  - name: first_name
+    in: formData
+    required: true
+    type: string
+  - name: last_name
+    in: formData
+    required: true
+    type: string
+  - name: company
+    in: formData
+    type: string
+  - name: designation
+    in: formData
+    type: string
+  - name: phone_number
+    in: formData
+    type: string
+  - name: fax
+    in: formData
+    type: string
+  - name: about
+    in: formData
+    type: string
+  - name: address_street_one
+    in: formData
+    type: string
+  - name: address_street_two
+    in: formData
+    type: string
+  - name: address_city
+    in: formData
+    type: string
+  - name: address_zip_code
+    in: formData
+    type: string
+  - name: address_country
+    in: formData
+    type: string
+  - name: experiences
+    in: formData
+    description: 'stringify json'
+    schema:
+      $ref: '#/definitions/experience'
+  - name: educations
+    in: formData
+    description: 'stringify json'
+    schema:
+      $ref: '#/definitions/education'
+  - name: skills
+    in: formData
+    schema:
+      $ref: '#/definitions/skills'
+  - name: sector_ids
+    in: formData
+    schema:
+      $ref: '#/definitions/sector_ids'
+  - name: industry_ids
+    in: formData
+    schema:
+      $ref: '#/definitions/industry_ids'
+  - name: interests
+    in: formData
+    schema:
+      $ref: '#/definitions/interests'
+responses:
+  200:
+    description: 'Updated UserProfile id: <user_id>'
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            message:
+              type: string
+              description: 'Updated UserProfile id: <user_id>'
+  400:
+    description: No data sent
+  404:
+    description: 'UserProfile id: <user_id> does not exist'
+  422:
+    description: 'Error in data'
+  500:
+    description: 'Some unknown exception!'
+definitions:
+  experience:
+    type: array
+    items:
+      properties:
+        start_date:
+          format: date-time
+          type: string
+        designation:
+          type: string
+        company:
+          type: string
+        company_logo:
+          type: string
+        currently_working:
+          default: false
+          type: boolean
+        designation:
+          type: string
+        end_date:
+          format: date-time
+          type: string
+        location:
+          type: string
+      type: object
+  education:
+    type: array
+    items:
+      properties:
+        university:
+          type: string
+        degree_name:
+          type: string
+        start_date:
+          format: date-time
+          type: string
+        university_logo:
+          type: string
+        end_date:
+          format: date-time
+          type: string
+        location:
+          type: string
+      type: object
+  skills:
+    type: array
+    items:
+      type: string
+  sector_ids:
+    type: array
+    items:
+      type: integer
+  industry_ids:
+    type: array
+    items:
+      type: integer
+  interests:
+    type: array
+    items:
+      type: string

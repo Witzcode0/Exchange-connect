@@ -1,0 +1,20 @@
+Delete/cancel ContactRequest
+---
+tags:
+  - Contact Requests
+parameters:
+  - in: header
+    name: Authorization
+    type: string
+  - in: path
+    name: row_id
+    type: int
+    required: true
+    description: 'The contact request to delete'
+responses:
+  204:
+    description: 'Contact Request deleted'
+  404:
+    description: 'ContactRequest id: <row_id> does not exist'
+  500:
+    description: 'Some unknown exception!'

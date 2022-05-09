@@ -1,0 +1,22 @@
+Delete a corporate access event
+---
+tags:
+  - Corporate Access Events
+parameters:
+  - in: header
+    name: Authorization
+    required: true
+    type: string
+  - in: path
+    name: row_id
+    schema:
+      type: int
+    required: true
+    description: 'The corporate access event to delete'
+responses:
+  204:
+    description: 'corporate access event deleted'
+  404:
+    description: 'corporate access event id: <row_id> does not exist'
+  500:
+    description: 'Some unknown exception!'

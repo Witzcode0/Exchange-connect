@@ -1,0 +1,86 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Untitled Document</title>
+</head>
+
+<body>
+
+ <table width="100%" style="max-width: 580px;border: 1px solid #ccc; font-family:Arial,' sans-serif'; font-size: 14px;" cellpadding="0" border="0" cellspacing="0" bgcolor="#fff" align="center">
+  <tbody>
+    <tr>
+      <td align="center"><img src="{logo_url}" style=" display: block; width: 264px; margin: 0 auto"></td>
+    </tr>
+    <tr>
+      <td bgcolor="#870d14" style="color: #fff; text-align: center; padding: 10px;">
+        Hi {user_name}
+      </td>
+    </tr>
+    <tr>
+      <td align="center" style="padding: 10px;">
+        You have been invited for the event – {event_type} of {company_name}.<br/>Please find the event details below:
+      </td>
+    </tr>
+    <tr>
+      <td><hr></td>
+    </tr>
+    {show_participant_list}
+    <tr>
+    </tr>
+    {show_speaker_list}
+    <tr>
+    </tr>
+    <tr>
+    <tr>
+      <td style="padding: 10px;">
+        <table width="560px" style="border: 1px solid #870d14; padding: 10px;">
+        <tbody>
+        <tr>
+          <td colspan="3" align="center"><strong>Event Details</strong></td>
+        </tr>
+        <tr>
+          <td width="175px">Event Type</td>
+          <td width="30px">:</td>
+          <td>{event_type}</td>
+        </tr>
+        <tr>
+          <td width="175px">{show_date_time}</td>
+          <td width="30px">:</td>
+          <td>{date_time}</td>
+        </tr>
+        {venue_html}
+        {dial_in_detail_html}
+        {alternative_dial_in_detail_html}
+        </tbody>
+      </table>
+      </td>
+    </tr>
+    {agenda_list}
+    <tr>
+      <td height="20">
+
+      </td>
+    {show_rsvp_list}
+    <tr>
+      <td style="padding: 10px;">
+        Please let us know if you have any queries by emailing us on {helpdesk_email} or call us {helpdesk_number}.
+      </td>
+    </tr><br/>
+
+   <tr>
+      <td style="padding: 0 10px 10px 10px; font-family:Arial,' sans-serif'; font-size: 14px; line-height:20px">
+        Thank You,<br/>
+        {sign_off_name}
+      </td>
+    </tr>
+   <tr>
+      <td style="padding: 0 10px 10px 10px;font-size: 10px;display:block;padding-bottom:8px;color:#999">
+        If you don't want to receive this type of email in the future, please
+        <a href="{unsubscribe}">unsubscribe.</a>
+      </td>
+    </tr>
+  </tbody>
+</table>
+</body>
+</html>

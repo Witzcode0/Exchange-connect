@@ -1,0 +1,47 @@
+Test Crud Operations
+
+EmeetingAPI :
+
+* Post
+    - check data missing error (required field)
+    - check data incorrect error (project_id and invitee_ids)
+    - check invitee_ids exist in project which is given by project_id
+    - check meeting_datetime of emeeting not in past and atleast above 15 minutes of current timing
+    - check add e_meeting_invitee successfully
+    - check no errors, data entered successfully
+    - check request url from third party api and then store to database
+    
+* Put
+    - check not found (Emeeting id does not exist)
+    - check data incorrect error (meeting_datetime and invitee_ids)
+    - check with new invitee_id 
+    - check if new invitee in request than add it successfully or not
+    - check no errors, data entered successfully
+    - test add more or less invitees
+    - check meeting_datetime of emeeting not in past and atleast above 15 minutes of current timing
+    - check request url from third party api and then store to database
+
+* Get
+    - check not found (Emeeting id does not exist)
+    - check found, fetched
+    - check 403 error:
+        who can see the Emeeting:
+            1. Emeeting creator
+            2. And Invitees of that Emeeting.
+
+* Delete
+    - check not found (Emeeting id does not exist)
+    - check found, deleted
+
+EmeetingListAPI :
+
+* Get
+    - check found, fetched
+    - check fetch data according to meeting_datetime_from,meeting_datetime_to
+    - check main_filter(invited, all and mine)
+
+EmeetingCancelAPI:-
+PUT:-
+  - check does not exist error
+  - check cancelled flag true is update
+  - check conference related fields to null on successful Emeeting cancellation.

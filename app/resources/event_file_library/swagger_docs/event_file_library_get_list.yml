@@ -1,0 +1,124 @@
+Get a list of Event library files based on query parameters
+---
+tags:
+  - Event Library Files
+parameters:
+  - in: header
+    name: Authorization
+    type: string
+  - in: query
+    schema:
+      $ref: '#/definitions/EventLibraryFileReadArgs'
+responses:
+  200:
+    description: 'Files fetched'
+    schema:
+      type: object
+      properties:
+        results:
+          type: array
+          items:
+            $ref: '#/definitions/EventLibraryFile'
+        total:
+          type: int32
+          default: 1
+  404:
+    description: 'No matching files found'
+  500:
+    description: 'Some unknown exception'
+definitions:
+  EventLibraryFile:
+    required:
+    - account_id
+    - created_by
+    - updated_by
+    properties:
+      account:
+        x-nullable: true
+        type: string
+      row_id:
+        format: int32
+        readOnly: true
+        type: integer
+      links:
+        readOnly: true
+        type: string
+      filename:
+        x-nullable: true
+        type: string
+      deleted:
+        x-nullable: true
+        readOnly: true
+        type: boolean
+      account_id:
+        format: int32
+        readOnly: true
+        type: integer
+      file_type:
+        x-nullable: true
+        maxLength: 256
+        type: string
+      file_url:
+        format: url
+        readOnly: true
+        type: string
+      updated_by:
+        format: int32
+        readOnly: true
+        type: integer
+      creator:
+        x-nullable: true
+        type: string
+      date_modified:
+        x-nullable: true
+        format: date-time
+        readOnly: true
+        type: string
+      date_created:
+        x-nullable: true
+        format: date-time
+        readOnly: true
+        type: string
+      created_by:
+        format: int32
+        readOnly: true
+        type: integer
+    type: object
+  EventLibraryFileReadArgs:
+    properties:
+      page:
+        format: int32
+        type: integer
+        default: 1
+      pfields:
+        type: array
+        items:
+          type: string
+      date_created_to:
+        format: date-time
+        type: string
+      sort:
+        enum:
+        - asc
+        - dsc
+        type: string
+        default: asc
+      per_page:
+        format: int32
+        type: integer
+        default: 20
+      date_created_from:
+        format: date-time
+        type: string
+      operator:
+        enum:
+        - and
+        - or
+        type: string
+        default: and
+      sort_by:
+        type: array
+        items:
+          type: string
+        default: row_id
+    type: object

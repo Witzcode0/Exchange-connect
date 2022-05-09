@@ -1,0 +1,23 @@
+Test CRUD
+1. Post
+    - creating an industry - PASS
+    - testing below validations:
+        - checking for right sector_id. - PASS
+        - testing for required field for "name" - PASS
+        - testing for max length - PASS
+2. Put
+    - updating an industry - PASS
+    - testing below validations:
+        - checking for right sector_id. - PASS
+        - testing for required field for "name" - PASS
+        - testing for max length - PASS
+3. Delete
+    - deleting a single industry = PASS
+4. Get
+    - fetching a single industry by id = PASS
+
+IndustryListAPI:
+
+Get
+    - fetching all industry lists = PASS
+    - check filter sector_id

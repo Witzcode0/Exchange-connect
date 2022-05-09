@@ -1,0 +1,108 @@
+definitions:
+  SurveyResponse:
+    properties:
+      answers:
+        type: object
+        x-nullable: true
+      created_date:
+        format: date-time
+        readOnly: true
+        type: string
+        x-nullable: true
+      designation:
+        maxLength: 128
+        type: string
+        x-nullable: true
+      email:
+        format: email
+        maxLength: 128
+        type: string
+        x-nullable: true
+      external_invitee:
+        type: string
+        x-nullable: true
+      first_name:
+        maxLength: 128
+        type: string
+        x-nullable: true
+      invitee:
+        type: string
+        x-nullable: true
+      links:
+        readOnly: true
+        type: string
+      modified_date:
+        format: date-time
+        readOnly: true
+        type: string
+        x-nullable: true
+      row_id:
+        format: int32
+        readOnly: true
+        type: integer
+      status:
+        enum:
+        - unanswered
+        - partial
+        - answered
+        type: string
+        x-nullable: true
+      survey:
+        type: string
+        x-nullable: true
+      survey_id:
+        format: int32
+        type: integer
+      user_id:
+        format: int32
+        type: integer
+        x-nullable: true
+    required:
+    - survey_id
+    type: object
+  SurveyResponseReadArgs:
+    properties:
+      answers:
+        type: string
+      created_date_from:
+        format: date-time
+        type: string
+      created_date_to:
+        format: date-time
+        type: string
+      operator:
+        enum:
+        - and
+        - or
+        type: string
+        default: and
+      page:
+        format: int32
+        type: integer
+        default: 1
+      per_page:
+        format: int32
+        type: integer
+        default: 20
+      pfields:
+        items:
+          type: string
+        type: array
+      sort:
+        enum:
+        - asc
+        - dsc
+        type: string
+        default: asc
+      sort_by:
+        items:
+          type: string
+        type: array
+        default: row_id
+      status:
+        enum:
+        - unanswered
+        - partial
+        - answered
+        type: string
+    type: object

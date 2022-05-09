@@ -1,0 +1,36 @@
+For creating new archive file
+---
+tags:
+  - Post Library Files
+parameters:
+  - in: header
+    name: Authorization
+    required: true
+    type: string
+  - name: filename
+    in: formData
+    type: file
+    required: true
+responses:
+  201:
+    description: 'file has been created'
+    schema:
+      content:
+        application/json:
+      schema:
+        type: object
+        required:
+          - message
+          - row_id
+        properties:
+          message:
+            type: string
+            default: 'File added'
+          row_id:
+            type: int32
+            description: 'row id of the File'
+            default: 1
+  400:
+    description: 'No data sent or No file provided'
+  422:
+    description: 'File type not allowed'

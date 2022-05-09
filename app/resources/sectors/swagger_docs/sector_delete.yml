@@ -1,0 +1,22 @@
+Delete Sector
+---
+tags:
+  - Sectors
+parameters:
+  - in: header
+    name: Authorization
+    type: string
+    required: true
+  - in: path
+    name: row_id
+    schema:
+      type: int
+    required: true
+    description: 'The sector to be deleted'
+responses:
+  204:
+    description: 'sector deleted'
+  404:
+    description: 'Sector id: <row_id> does not exist'
+  500:
+    description: Some unknown exception!

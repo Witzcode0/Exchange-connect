@@ -1,0 +1,22 @@
+Delete Company
+---
+tags:
+  - Company
+parameters:
+  - in: header
+    name: Authorization
+    required: true
+    type: string
+  - in: path
+    name: row_id
+    schema:
+      type: int
+    required: true
+    description: 'The company to be deleted'
+responses:
+  204:
+    description: 'Company deleted'
+  404:
+    description: 'Company id: <row_id> does not exist'
+  500:
+    description: Some unknown exception!

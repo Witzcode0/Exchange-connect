@@ -1,0 +1,22 @@
+Delete an Post Star
+---
+tags:
+  - Post Stars
+parameters:
+  - in: header
+    name: Authorization
+    type: string
+    required: true
+  - in: path
+    name: row_id
+    schema:
+      type: int
+    required: true
+    description: 'The post star to delete'
+responses:
+  204:
+    description: 'Post star deleted'
+  404:
+    description: 'Post star id: <row_id> does not exist'
+  500:
+    description: 'Some unknown exception!'

@@ -1,0 +1,85 @@
+Fetch a Archive File
+---
+tags:
+  - Archive Files
+parameters:
+  - in: header
+    name: Authorization
+    required: true
+    type: string
+  - in: path
+    name: row_id
+    required: true
+    schema:
+      type: int
+responses:
+  200:
+    description: File fetched
+    schema:
+      $ref: '#/definitions/ArchiveFile'
+  404:
+    description: 'File id: <row_id> does not exist'
+  500:
+    description: 'Some unknown exception!'
+definitions:
+  ArchiveFile:
+    properties:
+      created_by:
+        type: integer
+        format: int32
+        readOnly: true
+      links:
+        type: string
+        readOnly: true
+      account:
+        type: string
+        x-nullable: true
+      creator:
+        type: string
+        x-nullable: true
+      modified_date:
+        x-nullable: true
+        type: string
+        format: date-time
+        readOnly: true
+      row_id:
+        type: integer
+        format: int32
+        readOnly: true
+      account_id:
+        type: integer
+        format: int32
+        readOnly: true
+      updated_by:
+        type: integer
+        format: int32
+        readOnly: true
+      deleted:
+        type: boolean
+        x-nullable: true
+        readOnly: true
+      filename:
+        type: string
+        x-nullable: true
+      file_url:
+        type: string
+        format: url
+        readOnly: true
+      file_type:
+        maxLength: 256
+        type: string
+        x-nullable: true
+      file_major_type:
+        maxLength: 128
+        type: string
+        x-nullable: true
+      created_date:
+        x-nullable: true
+        type: string
+        format: date-time
+        readOnly: true
+    type: object
+    required:
+    - account_id
+    - created_by
+    - updated_by

@@ -1,0 +1,28 @@
+Test Crud Operatios
+
+SurveyResponseAPI :
+
+* Put
+    - check data missing error (Json format)
+    - check data incorrect error (String fields)
+    - check unknown error
+    - check no errors, data entered successfully
+    - check if survey is completed then send mail to responded user
+    - check if token provided and is valid, if yes, return the survey-response for the
+        token
+    - check unique constraint with survey_id vs user_id and survey_id vs email.
+    - check integrity errors, if survey_id not available and survey_id, invitee already exists.
+* Get
+    - check not found
+    - check found, fetched
+    - check if token provided and is valid, if yes, return the survey-response for the
+        token
+    - check if token not provided, return the survey-response for the provided row_id
+* Delete
+    - check not found
+    - check found, deleted
+
+SurveyResponseReadArgsAPI :
+
+* Get
+    - check found, fetched.

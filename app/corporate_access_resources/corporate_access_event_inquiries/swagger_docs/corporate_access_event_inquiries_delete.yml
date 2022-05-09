@@ -1,0 +1,22 @@
+Delete a corporate access event inquiry
+---
+tags:
+  - Corporate Access Event Inquiries
+parameters:
+  - in: header
+    name: Authorization
+    required: true
+    type: string
+  - in: path
+    name: row_id
+    schema:
+      type: int
+    required: true
+    description: 'The corporate access event inquiry to delete'
+responses:
+  204:
+    description: 'corporate access event inquiry deleted'
+  404:
+    description: 'corporate access event inquiry id: <row_id> does not exist'
+  500:
+    description: 'Some unknown exception!'

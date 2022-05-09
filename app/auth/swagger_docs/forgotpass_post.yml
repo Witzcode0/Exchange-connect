@@ -1,0 +1,39 @@
+Generate link for reset password and send email
+---
+tags:
+  - Authentication & Password Assistance
+parameters:
+  - in: body
+    name: body
+    schema:
+      $ref: '#/definitions/EmailSchema'
+responses:
+  200:
+    description: Sent email with password reset link
+    content:
+      application/json:
+      schema:
+        type: object
+        properties:
+          message:
+            type: string
+            description: 'For your security, we need to verify your identity. We have sent a password reset link to the email: <email>'
+  400:
+    description: No data sent
+  401:
+    description: Bad email or password
+  422:
+    description: Error in data or Email not found
+  500:
+    description: Some unknown exception!
+
+# the model definition
+definitions:
+  EmailSchema:
+    type: object
+    required:
+      - email
+    properties:
+      email:
+        format: email
+        type: string

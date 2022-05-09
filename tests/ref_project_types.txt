@@ -1,0 +1,29 @@
+Test Crud Operations
+
+RefProjectTypeAPI :
+
+* Post
+    - check data missing error (required field)
+    - check already exist data error (project_type_name should be unique)
+    - check data incorrect error (Estimation delivery days must be Integer field and
+            project_type_name can not be empty)
+    - check unknown error
+    - check no errors, data entered successfully
+* Put
+    - check already exist data error (project_type_name should be unique)
+    - check data incorrect error (Estimation delivery days must be Integer field and
+            project_type_name can not be empty)
+    - check unknown error
+    - check no errors, data entered successfully
+* Get
+    - check not found (reference project type id does not exist)
+    - check found, fetched
+* Delete
+    - check not found ((reference project type id does not exist))
+    - check found, deleted
+
+RefProjectTypeListAPI :
+
+* Get
+    - check found, fetched.
+    - check different tasks by using project_type_name, estimation delivery days

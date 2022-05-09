@@ -1,0 +1,50 @@
+Edit a Management Profile udpate details etc.
+---
+tags:
+  - Management Profile (Admin)
+parameters:
+  - in: header
+    name: Authorization
+    type: string
+    required: true
+  - in: path
+    name : row_id
+    required: true
+    type: integer
+  - name: profile_photo
+    in: formData
+    type: file
+  - name: name
+    in: formData
+    type: string
+  - name: designation
+    in: formData
+    type: string
+  - name: description
+    in: formData
+    type: string
+  - name: account_profile_id
+    in: formData
+    type: integer
+  - name: user_id
+    in: formData
+    type: integer
+responses:
+  200:
+    description: 'Updated Management Profile id: <row_id>'
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            message:
+              type: string
+              description: 'Updated Management Profile id: <row_id>'
+  400:
+    description: No data sent
+  404:
+    description: 'Management Profile id: <row_id> does not exist'
+  422:
+    description: 'Error in data'
+  500:
+    description: 'Some unknown exception!'

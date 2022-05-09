@@ -1,0 +1,91 @@
+For creating scheduled report log
+---
+tags:
+  - Scheduled reports
+parameters:
+  - in: header
+    name: Authorization
+    type: string
+  - in: body
+    name: body
+    schema:
+      $ref: '#/definitions/ScheduledReportLog'
+responses:
+  201:
+    description: 'Scheduled report log has been created'
+    schema:
+      content:
+        application/json:
+      schema:
+        type: object
+        required:
+          - message
+          - row_id
+        properties:
+          message:
+            type: string
+            default: 'Scheduled report log has been created'
+          row_id:
+            type: int32
+            description: 'row id of the generated Scheduled report'
+            default: 1
+  400:
+    description: 'No data sent'
+  422:
+    description: 'Error in data'
+  500:
+    description: 'Some unknown exception!'
+definitions:
+  ScheduledReportLog:
+    properties:
+      account_id:
+        format: int32
+        readOnly: true
+        type: integer
+      api_calls:
+        items:
+          $ref: '#/definitions/ApiCalls'
+        type: array
+      created_by:
+        format: int32
+        readOnly: true
+        type: integer
+      created_date:
+        format: date-time
+        readOnly: true
+        type: string
+        x-nullable: true
+      modified_date:
+        format: date-time
+        readOnly: true
+        type: string
+        x-nullable: true
+      report:
+        type: string
+        x-nullable: true
+      report_id:
+        format: int32
+        readOnly: true
+        type: integer
+        x-nullable: true
+      response_body:
+        type: string
+        x-nullable: true
+      response_code:
+        format: int32
+        type: integer
+        x-nullable: true
+      row_id:
+        format: int32
+        readOnly: true
+        type: integer
+      sent_at:
+        format: date-time
+        type: string
+        x-nullable: true
+      status:
+        type: string
+    required:
+      - account_id
+      - created_by
+    type: object

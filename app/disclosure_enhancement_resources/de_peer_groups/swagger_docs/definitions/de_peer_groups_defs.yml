@@ -1,0 +1,194 @@
+definitions:
+  DePeerGroup:
+    properties:
+      companies:
+        items:
+          properties:
+            isin_number:
+              maxLength: 128
+              type: string
+              x-nullable: true
+            sedol:
+              maxLength: 128
+              type: string
+              x-nullable: true
+            address:
+              maxLength: 512
+              type: string
+              x-nullable: true
+            city:
+              maxLength: 128
+              type: string
+              x-nullable: true
+            company_name:
+              maxLength: 256
+              minLength: 1
+              type: string
+            country:
+              maxLength: 128
+              type: string
+              x-nullable: true
+            identifier:
+              maxLength: 128
+              type: string
+              x-nullable: true
+            industry_id:
+              format: int32
+              type: integer
+              x-nullable: true
+            permanent_security_identifier:
+              maxLength: 128
+              type: string
+              x-nullable: true
+            row_id:
+              format: int32
+              readOnly: true
+              type: integer
+            sector_id:
+              format: int32
+              type: integer
+              x-nullable: true
+          required:
+          - company_name
+          type: object
+        type: array
+      company_id:
+        format: int32
+        type: integer
+      company_ids:
+        items:
+          format: int32
+          type: integer
+        readOnly: true
+        type: array
+      created_by:
+        format: int32
+        readOnly: true
+        type: integer
+      created_date:
+        format: date-time
+        readOnly: true
+        type: string
+        x-nullable: true
+      creator:
+        properties:
+          row_id:
+            format: int32
+            readOnly: true
+            type: integer
+        readOnly: true
+        type: object
+      links:
+        readOnly: true
+        type: string
+      modified_date:
+        format: date-time
+        readOnly: true
+        type: string
+        x-nullable: true
+      name:
+        maxLength: 256
+        type: string
+      primary_company:
+        properties:
+          isin_number:
+            maxLength: 128
+            type: string
+            x-nullable: true
+          sedol:
+            maxLength: 128
+            type: string
+            x-nullable: true
+          address:
+            maxLength: 512
+            type: string
+            x-nullable: true
+          city:
+            maxLength: 128
+            type: string
+            x-nullable: true
+          company_name:
+            maxLength: 256
+            minLength: 1
+            type: string
+          country:
+            maxLength: 128
+            type: string
+            x-nullable: true
+          identifier:
+            maxLength: 128
+            type: string
+            x-nullable: true
+          industry_id:
+            format: int32
+            type: integer
+            x-nullable: true
+          permanent_security_identifier:
+            maxLength: 128
+            type: string
+            x-nullable: true
+          row_id:
+            format: int32
+            readOnly: true
+            type: integer
+          sector_id:
+            format: int32
+            type: integer
+            x-nullable: true
+        required:
+        - company_name
+        type: object
+      row_id:
+        format: int32
+        readOnly: true
+        type: integer
+      updated_by:
+        format: int32
+        readOnly: true
+        type: integer
+    required:
+    - company_id
+    - created_by
+    - name
+    - updated_by
+    type: object
+  DePeerGroupReadArgs:
+    properties:
+      created_date_from:
+        format: date-time
+        type: string
+      created_date_to:
+        format: date-time
+        type: string
+      name:
+        type: string
+      operator:
+        enum:
+        - and
+        - or
+        type: string
+        default: and
+      page:
+        format: int32
+        type: integer
+        default: 1
+      per_page:
+        format: int32
+        type: integer
+        default: 20
+      pfields:
+        items:
+          type: string
+        type: array
+      sort:
+        enum:
+        - asc
+        - dsc
+        type: string
+        default: asc
+      sort_by:
+        items:
+          type: string
+        type: array
+        default: row_id
+    type: object

@@ -1,0 +1,6 @@
+Notifications:
+
+1. When invitee inquires any slot then send notification to the ca open meeting creator.
+2. When creator of ca open meeting confirms inquiry then send notification to the inquirer.
+3. When Slot deletes then send notification to the slot confirmed inquirers.
+4. When ca open meeting cancelled then send notification to the slots confirmed inquirers.

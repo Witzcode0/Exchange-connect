@@ -1,0 +1,76 @@
+Fetch a Role
+---
+tags:
+  - Roles
+parameters:
+  - in: header
+    name: Authorization
+    type: string
+  - in: path
+    name: row_id
+    schema:
+      type: int
+    required: true
+    description: 'The role to fetch'
+responses:
+  200:
+    description: Eventfetched
+    schema:
+      $ref: '#/definitions/Role'
+  400:
+    description: 'No data sent'
+  404:
+    description: 'Role id: <row_id> does not exist'
+  422:
+    description: 'Error in data'
+  500:
+    description: 'Some unknown exception!'
+definitions:
+  Role:
+    properties:
+      created_by:
+        format: int32
+        readOnly: true
+        type: integer
+      created_date:
+        format: date-time
+        readOnly: true
+        type: string
+        x-nullable: true
+      deleted:
+        readOnly: true
+        type: boolean
+        x-nullable: true
+      links:
+        readOnly: true
+        type: string
+      modified_date:
+        format: date-time
+        readOnly: true
+        type: string
+        x-nullable: true
+      name:
+        maxLength: 128
+        minLength: 1
+        type: string
+      permissions:
+        type: string
+      row_id:
+        format: int32
+        readOnly: true
+        type: integer
+      updated_by:
+        format: int32
+        readOnly: true
+        type: integer
+      users:
+        items:
+          type: string
+        readOnly: true
+        type: array
+    required:
+    - created_by
+    - name
+    - permissions
+    - updated_by
+    type: object

@@ -1,0 +1,78 @@
+Edit a reference project type udpate details etc.
+---
+tags:
+  - Reference Project Types
+parameters:
+  - in: header
+    name: Authorization
+    required: true
+    type: string
+  - in: path
+    name: row_id
+    schema:
+      type: int
+    required: true
+    description: 'The reference project type to modify'
+  - in: body
+    name: body
+    schema:
+      $ref: '#/definitions/RefProjectType'
+responses:
+  200:
+    description: 'Updated reference project type id: <row_id>'
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            message:
+              type: string
+              description: 'Updated reference project type id: <row_id>'
+  400:
+    description: No data sent
+  404:
+    description: 'reference project type id: <row_id> does not exist'
+  422:
+    description: 'Error in data'
+  500:
+    description: 'Some unknown exception!'
+definitions:
+  RefProjectType:
+    type: object
+    properties:
+      project_type_name:
+        type: string
+        minLength: 1
+      created_date:
+        type: string
+        format: date-time
+        readOnly: true
+        x-nullable: true
+      modified_date:
+        type: string
+        format: date-time
+        readOnly: true
+        x-nullable: true
+      row_id:
+        type: integer
+        format: int32
+        readOnly: true
+      links:
+        type: string
+        readOnly: true
+      estimated_delivery_days:
+        type: integer
+        format: int32
+      updated_by:
+        type: integer
+        format: int32
+        readOnly: true
+      created_by:
+        type: integer
+        format: int32
+        readOnly: true
+    required:
+    - created_by
+    - estimated_delivery_days
+    - project_type_name
+    - updated_by

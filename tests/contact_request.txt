@@ -1,0 +1,22 @@
+TEST CRUD
+1. Post
+    - Test send request by sender and sendee
+    - only sender can send contact request
+    - Try send request where request already sended
+    - Try send request where requested already accepted
+    - Try send request to self
+2. Put
+    - Test accept or reject by sendee
+    - only sendee can accept or reject request
+    - check contact model when accept request by sendee
+    - when accept the create contact model then change status of request
+    - check contact request when reject request
+3. Get
+    - Get contact request only own requested
+4. Delete
+    - Test cancel request by sendee
+    - only sender can delete or cancel request
+    - check contact request history model created or not when delete request
+5. Get list:
+    - fetch contact request either send or receive
+    - check filter sector and industry w.r.t. account_profile

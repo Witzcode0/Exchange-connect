@@ -1,0 +1,102 @@
+Fetch a Account Setting
+---
+tags:
+  - Account Settings
+parameters:
+  - in: header
+    name: Authorization
+    type: string
+  - in: path
+    name: row_id
+    schema:
+      type: int
+    required: true
+    description: The account to fetch
+responses:
+  200:
+    description: Accountfetched
+    schema:
+      $ref: '#/definitions/AccountSettings'
+  400:
+    description: 'No data sent'
+  404:
+    description: 'Account Setting id: <row_id> does not exist'
+  422:
+    description: 'Error in data'
+  500:
+    description: 'Some unknown exception!'
+# the model definition
+definitions:
+  AccountSettings:
+    properties:
+      account:
+        properties:
+          account_name:
+            maxLength: 512
+            minLength: 1
+            type: string
+          account_type:
+            enum:
+            - corporate
+            - buy-side
+            - sell-side
+            - general investor
+            - admin
+            - guest
+            - private
+            - sme
+            - corporate-group
+            type: string
+          row_id:
+            format: int32
+            readOnly: true
+            type: integer
+        readOnly: true
+        required:
+        - account_name
+        - account_type
+        type: object
+      account_id:
+        format: int32
+        type: integer
+      created_date:
+        format: date-time
+        readOnly: true
+        type: string
+        x-nullable: true
+      deleted:
+        readOnly: true
+        type: boolean
+        x-nullable: true
+      event_sender_domain_verified:
+        readOnly: true
+        type: boolean
+        x-nullable: true
+      event_sender_email:
+        format: email
+        maxLength: 256
+        type: string
+        x-nullable: true
+      event_sender_name:
+        maxLength: 256
+        type: string
+        x-nullable: true
+      event_sender_verified:
+        readOnly: true
+        type: boolean
+        x-nullable: true
+      links:
+        readOnly: true
+        type: string
+      modified_date:
+        format: date-time
+        readOnly: true
+        type: string
+        x-nullable: true
+      row_id:
+        format: int32
+        readOnly: true
+        type: integer
+    required:
+    - account_id
+    type: object

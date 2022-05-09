@@ -1,0 +1,40 @@
+For Token Verification while accessing
+---
+tags:
+  - User Token Verification
+parameters:
+  - in: body
+    name: body
+    schema:
+      $ref: '#/definitions/TokenVerification'
+responses:
+  200:
+    description: Access approved
+    content:
+      application/json:
+      schema:
+        type: object
+        properties:
+          access_token:
+            type: string
+            description: Access permission approved
+  403:
+    description: Access denied
+  400:
+    description: No data sent
+  401:
+    description: Invalid token
+  422:
+    description: Error in data
+  500:
+    description: Some unknown exception!
+
+# the model definition
+definitions:
+  TokenVerification:
+    properties:
+      user_token:
+        type: string
+    required:
+    - user_token
+    type: object

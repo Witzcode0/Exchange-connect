@@ -1,0 +1,41 @@
+Test Crud Operations
+
+WebcastHostAPI :
+
+* Post
+    - check data missing error (required field)
+    - check does not exist error by sending not available webcast_id.
+    - check already exists error (unique constraint: webcast_id and host_id)
+    - check unknown error
+    - check no errors, data entered successfully
+    - check length constraint for host_first_name, host_last_name and
+        host_designation
+    - check if host_id is given and host_email both are given, raise error
+    - check if host_id is given and host_first_name OR host_last_name OR
+        host_designation are given, raise error
+    - if data entered, update the webcast_stats table for the webcast_id
+* Put
+    - check not found (webcast host id does not exist)
+    - check does not exist error by sending not available webcast_id.
+    - check already exists error (unique constraint: webcast_id and host_id)
+    - check unknown error
+    - check no errors, data entered successfully
+    - check length constraint for host_first_name, host_last_name and
+        host_designation
+    - check if host_id is given and host_email both are given, raise error
+    - check if host_id is given and host_first_name OR host_last_name OR
+        host_designation are given, raise error
+    - check if webcast_id is changed and update the webcast_stats for the new webcast_id and old
+        webcast_id
+* Get
+    - check not found (webcast host id does not exist)
+    - check found, fetched
+* Delete
+    - check not found (webcast host id does not exist)
+    - check found, deleted
+    - if webcast_host is deleted, update the webcast_stats for the related webcast_id
+
+WebcastHostListAPI :
+
+* Get
+    - check found, fetched.

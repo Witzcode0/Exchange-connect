@@ -1,0 +1,137 @@
+For creating new reference project parameter by user
+---
+tags:
+  - Reference Project Parameters
+parameters:
+  - in: header
+    name: Authorization
+    type: string
+  - in: body
+    name: body
+    schema:
+      $ref: '#/definitions/RefProjectParameter'
+responses:
+  201:
+    description: 'reference project parameter has been created'
+    schema:
+      content:
+        application/json:
+      schema:
+        type: object
+        required:
+          - message
+          - row_id
+        properties:
+          name:
+            type: string
+            default: 'reference project parameter been created'
+          row_id:
+            type: int32
+            description: 'row id of the generated reference project parameter'
+            default: 1
+  400:
+    description: 'No data sent'
+  422:
+    description: 'Error in data'
+  500:
+    description: 'Some unknown exception!'
+definitions:
+  RefProjectParameter:
+    properties:
+      created_by:
+        format: int32
+        readOnly: true
+        type: integer
+      created_date:
+        format: date-time
+        readOnly: true
+        type: string
+        x-nullable: true
+      has_value:
+        type: boolean
+        x-nullable: true
+      has_yes_no:
+        type: boolean
+        x-nullable: true
+      level:
+        format: int32
+        type: integer
+        x-nullable: true
+      links:
+        readOnly: true
+        type: string
+      modified_date:
+        format: date-time
+        readOnly: true
+        type: string
+        x-nullable: true
+      parameter_name:
+        maxLength: 256
+        minLength: 1
+        type: string
+      parent_parameter_name:
+        maxLength: 256
+        minLength: 1
+        type: string
+      project_type_id:
+        format: int32
+        type: integer
+      ref_project_type:
+        properties:
+          created_by:
+            format: int32
+            readOnly: true
+            type: integer
+          created_date:
+            format: date-time
+            readOnly: true
+            type: string
+            x-nullable: true
+          deleted:
+            type: boolean
+            x-nullable: true
+          estimated_delivery_days:
+            format: int32
+            type: integer
+          links:
+            readOnly: true
+            type: string
+          modified_date:
+            format: date-time
+            readOnly: true
+            type: string
+            x-nullable: true
+          project_type_name:
+            maxLength: 256
+            minLength: 1
+            type: string
+          row_id:
+            format: int32
+            readOnly: true
+            type: integer
+          updated_by:
+            format: int32
+            readOnly: true
+            type: integer
+        readOnly: true
+        required:
+        - created_by
+        - estimated_delivery_days
+        - project_type_name
+        - updated_by
+        type: object
+      row_id:
+        format: int32
+        readOnly: true
+        type: integer
+      updated_by:
+        format: int32
+        readOnly: true
+        type: integer
+    required:
+    - created_by
+    - parameter_name
+    - parent_parameter_name
+    - project_type_id
+    - updated_by
+    type: object

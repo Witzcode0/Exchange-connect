@@ -1,0 +1,22 @@
+Delete a corporate announcement
+---
+tags:
+  - Corporate Announcements
+parameters:
+  - in: header
+    name: Authorization
+    required: true
+    type: string
+  - in: path
+    name: row_id
+    schema:
+      type: int
+    required: true
+    description: 'The corporate announcement to delete'
+responses:
+  204:
+    description: 'Corporate Announcement deleted'
+  404:
+    description: 'Corporate Announcement id: <row_id> does not exist'
+  500:
+    description: 'Some unknown exception!'

@@ -1,0 +1,5 @@
+Test CRUD
+1. Post
+    - test share any post
+    - test try to share post which is already shared
+    - test shared post to share

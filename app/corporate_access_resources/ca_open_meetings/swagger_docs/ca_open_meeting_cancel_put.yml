@@ -1,0 +1,29 @@
+Cancelled a CA Open Meeting
+---
+tags:
+  - CA Open Meetings
+parameters:
+  - in: header
+    name: Authorization
+    type: string
+  - in: path
+    name: row_id
+    schema:
+      type: int
+    required: true
+    description: 'The CA Open Meeting id to update'
+responses:
+  200:
+    description: 'Cancelled CA Open Meeting id: <row_id>'
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            message:
+              type: string
+              description: 'Cancelled CA Open Meeting id: <row_id>'
+  404:
+    description: 'CA Open Meeting id: <row_id> does not exist'
+  500:
+    description: 'Some unknown exception!'

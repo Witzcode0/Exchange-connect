@@ -1,0 +1,181 @@
+CORPORATE_ACCESS_LAUNCH_TEST:
+    -check if is_draft is false of the corporate_access_event launched:
+        - change the time according to timezone and send an email to creator
+        - and if invitees, change the time according to timezone Send an email
+            to invitees
+        - if participants, change the time according to timezone and Send an email
+            to participants
+        - if collaborators, change the time according to timezone and Send an email
+            to collaborators
+        - if hosts, change the time according to timezone and Send an email
+            to hosts
+        - if rsvps, send an email to rsvps
+        - check invitees send email with html
+        - check creator send email with html
+        - check participants send email with html
+        - check collaborators send email with html
+        - check rsvps send email with html
+        - check hosts send email with html
+     - Meeting type Event
+        - check with creator send mail with text
+        - check with invitee send mail with text
+        - if caevent_support true then send mail to CAEvent supporter with text
+
+Creater format synced as on 2018-06-18 16:24:12
+invitees format synced as on 2018-06-18 16:24:12
+Collaborators format synced as on 2018-06-18 16:24:12
+RSVPs format synced as on 2018-06-18 16:24:12
+participants format synced as on 2018-06-18 16:24:12
+hosts format synced as on 2018-06-18 16:24:12
+
+CORPORATE_ACCESS_UPDATE_TEST:
+    -check if RSVPs are changed for the corporate_access_event:
+                - change the time according to timezone and send an email to creator
+        - and if invitees, change the time according to timezone Send an email
+            to invitees
+        - if participants, change the time according to timezone and Send an email
+            to participants
+        - if collaborators, change the time according to timezone and Send an email
+            to collaborators
+        - if hosts, change the time according to timezone and Send an email
+            to hosts
+        - if rsvps, send an email to rsvps
+        - check invitees send email with html
+        - check creator send email with html
+        - check participants send email with html
+        - check collaborators send email with html
+        - check rsvps send email with html
+        - check hosts send email with html
+Creater format synced as on 2018-06-18 16:24:12
+invitees format synced as on 2018-06-18 16:24:12
+Collaborators format synced as on 2018-06-18 16:24:12
+RSVPs format synced as on 2018-06-18 16:24:12
+participants format synced as on 2018-06-18 16:24:12
+hosts format synced as on 2018-06-18 16:24:12
+
+CORPORATE_ACCESS_COMPLETION_TEST:
+    - send an email to creator
+    - send an email to attendee
+    - send an email to participant
+    - check creator send email with html
+    - check attendees send email with html
+    - check participants send email with html
+Creater format synced as on 2018-06-18 16:24:12
+attendees format synced as on 2018-06-18 16:24:12
+participants format synced as on 2018-06-18 16:24:12
+
+CAE_SLOT_UPDATE:
+    - check if started_at or ended_at or address for a CAE slot has been changed:
+        - change the time according to timezone and send an email to creator
+        - if collaborators, change the time according to timezone and Send an email
+            to collaborators
+        - if slot_inquirers, change the time according to timezone and Send an email
+            to confirmed slot_inquirers
+        - check creator send email with html
+        - check collaborators send email with html
+        - check confirmed slot_inquirers send email with html
+Creater format synced as on 2018-06-18 16:24:12
+Collaborators format synced as on 2018-06-18 16:24:12
+confirmed slot_inquirers format synced as on 2018-06-18 16:24:12
+
+CAE_SLOT_INQUIRY_GENERATED:
+    - check if a CAE slot inquiry has been generated:
+        - change the time according to timezone and send an email to creator
+        - if collaborators, change the time according to timezone and Send an email
+            to collaborators
+        - if slot_inquirers, change the time according to timezone and Send an email
+            to confirmed slot_inquirers
+        - check creator send email with html
+        - check collaborators send email with html
+        - check slot_inquirers send email with html
+Creater format synced as on 2018-06-18 16:24:12
+Collaborators format synced as on 2018-06-18 16:24:12
+slot_inquirers format synced as on 2018-06-18 16:24:12
+
+CAE_SLOT_INQUIRY_CONFIRMED:
+   - check if a CAE slot inquiry has been confirmed:
+        - change the time according to timezone and send an email to creator
+        - if collaborators, change the time according to timezone and Send an email
+            to collaborators
+        - if slot_inquirers, change the time according to timezone and Send an email
+            to confirmed slot_inquirers
+        - if participants, change the time according to timezone and Send an email
+            to participants
+        - check creator send email with html
+        - check collaborators send email with html
+        - check participants send email with html
+        - check slot_inquirers send email with html
+Creater format synced as on 2018-06-18 16:24:12
+Collaborators format synced as on 2018-06-18 16:24:12
+slot_inquirers format synced as on 2018-06-18 16:24:12
+participants format synced as on 2018-06-18 16:24:12
+
+CAE_SLOT_INQUIRY_DELETION:
+   - check if a confirmed CAE slot inquiry has been deleted:
+        - send an email to creator
+        - send an email to collaborators
+        - send an email to slot_inquirer
+        - send an email to participants
+        - check creator send email with html
+        - check collaborators send email with html
+        - check participants send email with html
+        - check slot_inquirers send email with html
+Creater format synced as on 2018-06-18 16:24:12
+Collaborators format synced as on 2018-06-18 16:24:12
+slot_inquirers format synced as 2018-06-18 16:24:12
+participants format synced as on 2018-06-18 16:24:12
+
+CAE_CANCELLATION:
+    - check if event cancelled, then send an email to invitees
+invitees format synced as on 2018-06-18 16:24:12
+
+checked for non mandatory fields:
+    LaunchContent
+    EventUpdateContent
+    SlotUpdatedContent
+    SlotInquiryGenerationContent
+    SlotInquiryConfirmationContent
+        mandatory fields :
+        - company_name
+        - user_name
+        - event_type
+        non-mandatory fields :
+        - time_zone
+        - date_time (started_at, ended_at)
+        - cae
+        - venue
+        - speaker_list
+        - participant_list
+        - contact_person
+        - email
+        constants/configs :
+        - link
+        - helpdesk_number
+        - helpdesk_email
+
+check only invitee can get book now option.
+check logo url:
+    Get the logo url from the event if not, get it from event account if not,
+    get default one from config.
+    for the following contents
+    1. Event launch
+    2. Event update
+    3. Event Completion
+    3. Slot update
+    4. Slot inquiry generation
+    5. Slot inquiry confirmation
+    6. Slot inquiry Deletion
+
+
+send_corporate_access_event_invitee_updated_email:
+    - check if existing external invitee 'email' update or
+        new external invitee add, then send email to respective invitee emails.
+
+If event type is conference call, then add dial_in_detail and
+    alternative_dial_in_detail to the event details.
+- check participants seen only if there are participants and
+    if participants list is empty then not showing the participant section at all.
+- check agendas seen only if there are agendas and
+    if no agendas then not showing the agenda section at all in launch and update email.
+- check speakers seen only if there are hosts and
+    if hosts list is empty then not showing the speakers section at all.

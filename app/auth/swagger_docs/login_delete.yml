@@ -1,0 +1,24 @@
+For logging out user
+---
+tags:
+  - Authentication & Password Assistance
+parameters:
+  - in: header
+    name: Authorization
+    type: string
+  - in: query
+    name: from_mobile
+    type: boolean
+responses:
+  200:
+    description: '"Logged out" or "Nothing to do"'
+    content:
+      application/json:
+      schema:
+        type: object
+        properties:
+          message:
+            type: string
+            description: A message
+  500:
+    description: Some unknown exception!

@@ -1,0 +1,534 @@
+For creating new webcast question by user
+---
+tags:
+  - Webcast Questions
+parameters:
+  - in: header
+    name: Authorization
+    type: string
+  - in: body
+    name: body
+    schema:
+      $ref: '#/definitions/WebcastQuestion'
+responses:
+  201:
+    description: 'webcast question has been created'
+    schema:
+      content:
+        application/json:
+      schema:
+        type: object
+        required:
+          - message
+          - row_id
+        properties:
+          name:
+            type: string
+            default: 'webcast question been created'
+          row_id:
+            type: int32
+            description: 'row id of the generated webcast question'
+            default: 1
+  400:
+    description: 'No data sent'
+  422:
+    description: 'Error in data'
+  500:
+    description: 'Some unknown exception!'
+definitions:
+  WebcastQuestion:
+    properties:
+      created_date:
+        format: date-time
+        readOnly: true
+        type: string
+        x-nullable: true
+      links:
+        readOnly: true
+        type: string
+      modified_date:
+        format: date-time
+        readOnly: true
+        type: string
+        x-nullable: true
+      question:
+        maxLength: 512
+        minLength: 1
+        type: string
+      questioned_by:
+        format: int32
+        type: integer
+      questioner:
+        properties:
+          account:
+            properties:
+              account_name:
+                minLength: 1
+                type: string
+              account_type:
+                enum:
+                - corporate
+                - buy-side
+                - sell-side
+                - general investor
+                - admin
+                type: string
+              row_id:
+                format: int32
+                readOnly: true
+                type: integer
+            readOnly: true
+            required:
+            - account_name
+            - account_type
+            type: object
+          profile:
+            properties:
+              designation:
+                maxLength: 128
+                type: string
+                x-nullable: true
+              designation_link:
+                properties:
+                  name:
+                    maxLength: 256
+                    minLength: 1
+                    type: string
+                  row_id:
+                    format: int32
+                    readOnly: true
+                    type: integer
+                readOnly: true
+                required:
+                - name
+                type: object
+              first_name:
+                maxLength: 512
+                minLength: 1
+                type: string
+              last_name:
+                maxLength: 512
+                minLength: 1
+                type: string
+              links:
+                readOnly: true
+                type: string
+              profile_photo_url:
+                format: url
+                readOnly: true
+                type: string
+              profile_thumbnail_url:
+                format: url
+                readOnly: true
+                type: string
+            required:
+            - first_name
+            - last_name
+            type: object
+          row_id:
+            format: int32
+            readOnly: true
+            type: integer
+        readOnly: true
+        required:
+        - profile
+        type: object
+      row_id:
+        format: int32
+        readOnly: true
+        type: integer
+      webcast:
+        properties:
+          account:
+            properties:
+              account_name:
+                minLength: 1
+                type: string
+              account_type:
+                enum:
+                - corporate
+                - buy-side
+                - sell-side
+                - general investor
+                - admin
+                type: string
+              links:
+                readOnly: true
+                type: string
+              row_id:
+                format: int32
+                readOnly: true
+                type: integer
+            readOnly: true
+            required:
+            - account_name
+            - account_type
+            type: object
+          account_id:
+            format: int32
+            readOnly: true
+            type: integer
+          audio_filename:
+            maxLength: 256
+            readOnly: true
+            type: string
+            x-nullable: true
+          audio_url:
+            format: url
+            readOnly: true
+            type: string
+          created_by:
+            format: int32
+            readOnly: true
+            type: integer
+          created_date:
+            format: date-time
+            readOnly: true
+            type: string
+            x-nullable: true
+          creator:
+            properties:
+              account:
+                properties:
+                  account_name:
+                    minLength: 1
+                    type: string
+                  account_type:
+                    enum:
+                    - corporate
+                    - buy-side
+                    - sell-side
+                    - general investor
+                    - admin
+                    type: string
+                  row_id:
+                    format: int32
+                    readOnly: true
+                    type: integer
+                readOnly: true
+                required:
+                - account_name
+                - account_type
+                type: object
+              profile:
+                properties:
+                  designation:
+                    maxLength: 128
+                    type: string
+                    x-nullable: true
+                  designation_link:
+                    properties:
+                      name:
+                        maxLength: 256
+                        minLength: 1
+                        type: string
+                      row_id:
+                        format: int32
+                        readOnly: true
+                        type: integer
+                    readOnly: true
+                    required:
+                    - name
+                    type: object
+                  first_name:
+                    maxLength: 512
+                    minLength: 1
+                    type: string
+                  last_name:
+                    maxLength: 512
+                    minLength: 1
+                    type: string
+                  links:
+                    readOnly: true
+                    type: string
+                  profile_photo_url:
+                    format: url
+                    readOnly: true
+                    type: string
+                  profile_thumbnail_url:
+                    format: url
+                    readOnly: true
+                    type: string
+                required:
+                - first_name
+                - last_name
+                type: object
+              row_id:
+                format: int32
+                readOnly: true
+                type: integer
+            readOnly: true
+            required:
+            - profile
+            type: object
+          description:
+            maxLength: 2048
+            minLength: 1
+            type: string
+            x-nullable: true
+          ended_at:
+            format: date-time
+            type: string
+            x-nullable: true
+          host:
+            properties:
+              account:
+                properties:
+                  account_name:
+                    minLength: 1
+                    type: string
+                  account_type:
+                    enum:
+                    - corporate
+                    - buy-side
+                    - sell-side
+                    - general investor
+                    - admin
+                    type: string
+                  row_id:
+                    format: int32
+                    readOnly: true
+                    type: integer
+                readOnly: true
+                required:
+                - account_name
+                - account_type
+                type: object
+              profile:
+                properties:
+                  designation:
+                    maxLength: 128
+                    type: string
+                    x-nullable: true
+                  designation_link:
+                    properties:
+                      name:
+                        maxLength: 256
+                        minLength: 1
+                        type: string
+                      row_id:
+                        format: int32
+                        readOnly: true
+                        type: integer
+                    readOnly: true
+                    required:
+                    - name
+                    type: object
+                  first_name:
+                    maxLength: 512
+                    minLength: 1
+                    type: string
+                  last_name:
+                    maxLength: 512
+                    minLength: 1
+                    type: string
+                  links:
+                    readOnly: true
+                    type: string
+                  profile_photo_url:
+                    format: url
+                    readOnly: true
+                    type: string
+                  profile_thumbnail_url:
+                    format: url
+                    readOnly: true
+                    type: string
+                required:
+                - first_name
+                - last_name
+                type: object
+              row_id:
+                format: int32
+                readOnly: true
+                type: integer
+            readOnly: true
+            required:
+            - profile
+            type: object
+          invite_banner_filename:
+            maxLength: 256
+            type: string
+            x-nullable: true
+          invite_banner_url:
+            format: url
+            readOnly: true
+            type: string
+          invite_logo_filename:
+            maxLength: 256
+            type: string
+            x-nullable: true
+          invite_logo_url:
+            format: url
+            readOnly: true
+            type: string
+          is_draft:
+            readOnly: true
+            type: boolean
+            x-nullable: true
+          links:
+            readOnly: true
+            type: string
+          modified_date:
+            format: date-time
+            readOnly: true
+            type: string
+            x-nullable: true
+          participant_ids:
+            items:
+              format: int32
+              type: integer
+            readOnly: true
+            type: array
+          participants:
+            items:
+              properties:
+                account:
+                  properties:
+                    account_name:
+                      minLength: 1
+                      type: string
+                    account_type:
+                      enum:
+                      - corporate
+                      - buy-side
+                      - sell-side
+                      - general investor
+                      - admin
+                      type: string
+                    row_id:
+                      format: int32
+                      readOnly: true
+                      type: integer
+                  readOnly: true
+                  required:
+                  - account_name
+                  - account_type
+                  type: object
+                profile:
+                  properties:
+                    designation:
+                      maxLength: 128
+                      type: string
+                      x-nullable: true
+                    designation_link:
+                      properties:
+                        name:
+                          maxLength: 256
+                          minLength: 1
+                          type: string
+                        row_id:
+                          format: int32
+                          readOnly: true
+                          type: integer
+                      readOnly: true
+                      required:
+                      - name
+                      type: object
+                    first_name:
+                      maxLength: 512
+                      minLength: 1
+                      type: string
+                    last_name:
+                      maxLength: 512
+                      minLength: 1
+                      type: string
+                    links:
+                      readOnly: true
+                      type: string
+                    profile_photo_url:
+                      format: url
+                      readOnly: true
+                      type: string
+                    profile_thumbnail_url:
+                      format: url
+                      readOnly: true
+                      type: string
+                  required:
+                  - first_name
+                  - last_name
+                  type: object
+                row_id:
+                  format: int32
+                  readOnly: true
+                  type: integer
+              readOnly: true
+              required:
+              - profile
+              type: object
+            type: array
+          row_id:
+            format: int32
+            readOnly: true
+            type: integer
+          started_at:
+            format: date-time
+            type: string
+            x-nullable: true
+          title:
+            maxLength: 256
+            minLength: 1
+            type: string
+          updated_by:
+            format: int32
+            readOnly: true
+            type: integer
+          url:
+            maxLength: 256
+            readOnly: true
+            type: string
+            x-nullable: true
+          video_filename:
+            maxLength: 256
+            readOnly: true
+            type: string
+            x-nullable: true
+          video_url:
+            format: url
+            readOnly: true
+            type: string
+          webcast_attendee:
+            items:
+              type: string
+            type: array
+          webcast_invitees:
+            items:
+              type: string
+            type: array
+          webcast_participants:
+            items:
+              properties:
+                participant_id:
+                  format: int32
+                  type: integer
+                row_id:
+                  format: int32
+                  readOnly: true
+                  type: integer
+                webcast_id:
+                  format: int32
+                  type: integer
+              readOnly: true
+              required:
+              - participant_id
+              - webcast_id
+              type: object
+            type: array
+          webcast_questions:
+            items:
+              type: string
+            type: array
+        readOnly: true
+        required:
+        - account_id
+        - created_by
+        - title
+        - updated_by
+        type: object
+      webcast_id:
+        format: int32
+        type: integer
+    required:
+    - question
+    - questioned_by
+    - webcast_id
+    type: object

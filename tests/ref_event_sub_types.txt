@@ -1,0 +1,26 @@
+Test Crud Operations
+* Post
+    - check data missing error (required field)
+    - check already exist data error (name should be unique)
+    - check does not exist error
+    - check data incorrect error (name and description length validations)
+    - check unknown error
+    - check no errors, data entered successfully
+    - check with has_slots boolean
+* Put
+    - check not found (reference event type id does not exist)
+    - check already exist data error (name should be unique)
+    - check does not exist error
+    - check data incorrect error (name and description length validations)
+    - check unknown error
+    - check no errors, data entered successfully
+    - check with change has_slots(never change has_slots)
+* Get
+    - check not found
+    - check found, fetched
+* Delete
+    - check not found
+    - check found, deleted
+
+TEST Listing
+- test name,event_type_id filter

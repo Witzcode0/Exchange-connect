@@ -1,0 +1,248 @@
+For creating new webinar attendee by user
+---
+tags:
+  - Webinar Attendees
+parameters:
+  - in: header
+    name: Authorization
+    type: string
+  - in: body
+    name: body
+    schema:
+      $ref: '#/definitions/WebinarAttendee'
+responses:
+  201:
+    description: 'webinar attendee has been created'
+    schema:
+      content:
+        application/json:
+      schema:
+        type: object
+        required:
+          - message
+          - row_id
+        properties:
+          name:
+            type: string
+            default: 'webinar attendee been created'
+          row_id:
+            type: int32
+            description: 'row id of the generated webinar attendee'
+            default: 1
+  400:
+    description: 'No data sent'
+  422:
+    description: 'Error in data'
+  500:
+    description: 'Some unknown exception!'
+definitions:
+  WebinarAttendee:
+    properties:
+      attendee:
+        properties:
+          account:
+            properties:
+              account_name:
+                maxLength: 512
+                minLength: 1
+                type: string
+              account_type:
+                enum:
+                - corporate
+                - buy-side
+                - sell-side
+                - general investor
+                - admin
+                - guest
+                type: string
+              row_id:
+                format: int32
+                readOnly: true
+                type: integer
+            readOnly: true
+            required:
+            - account_name
+            - account_type
+            type: object
+          profile:
+            properties:
+              designation:
+                maxLength: 128
+                type: string
+                x-nullable: true
+              designation_link:
+                properties:
+                  designation_level:
+                    enum:
+                    - bod & top management
+                    - mid-level management
+                    - managers & others
+                    type: string
+                  name:
+                    maxLength: 256
+                    minLength: 1
+                    type: string
+                  row_id:
+                    format: int32
+                    readOnly: true
+                    type: integer
+                readOnly: true
+                required:
+                - designation_level
+                - name
+                type: object
+              first_name:
+                maxLength: 512
+                minLength: 1
+                type: string
+              last_name:
+                maxLength: 512
+                minLength: 1
+                type: string
+              links:
+                readOnly: true
+                type: string
+              profile_photo_url:
+                format: url
+                readOnly: true
+                type: string
+              profile_thumbnail_url:
+                format: url
+                readOnly: true
+                type: string
+            required:
+            - first_name
+            - last_name
+            type: object
+          row_id:
+            format: int32
+            readOnly: true
+            type: integer
+        readOnly: true
+        required:
+        - profile
+        type: object
+      attendee_id:
+        format: int32
+        type: integer
+      browser_name:
+        maxLength: 128
+        type: string
+        x-nullable: true
+      browser_version:
+        maxLength: 128
+        type: string
+        x-nullable: true
+      chats_count:
+        format: int32
+        type: integer
+        x-nullable: true
+      comment:
+        maxLength: 256
+        type: string
+        x-nullable: true
+      created_by:
+        format: int32
+        readOnly: true
+        type: integer
+      created_date:
+        format: date-time
+        readOnly: true
+        type: string
+        x-nullable: true
+      device_name:
+        maxLength: 128
+        type: string
+        x-nullable: true
+      engaged_duration:
+        maxLength: 16
+        type: string
+        x-nullable: true
+      entered_at:
+        format: date-time
+        type: string
+        x-nullable: true
+      handouts:
+        type: string
+        x-nullable: true
+      leaved_at:
+        format: date-time
+        type: string
+        x-nullable: true
+      links:
+        readOnly: true
+        type: string
+      modified_date:
+        format: date-time
+        readOnly: true
+        type: string
+        x-nullable: true
+      polls:
+        type: string
+        x-nullable: true
+      polls_count:
+        format: int32
+        type: integer
+        x-nullable: true
+      qas_count:
+        format: int32
+        type: integer
+        x-nullable: true
+      questions:
+        type: string
+        x-nullable: true
+      rating:
+        format: int32
+        type: integer
+        x-nullable: true
+      row_id:
+        format: int32
+        readOnly: true
+        type: integer
+      total_duration:
+        maxLength: 16
+        type: string
+        x-nullable: true
+      updated_by:
+        format: int32
+        readOnly: true
+        type: integer
+      webinar:
+        properties:
+          ended_at:
+            format: date-time
+            type: string
+            x-nullable: true
+          invite_banner_filename:
+            maxLength: 256
+            type: string
+            x-nullable: true
+          invite_logo_filename:
+            maxLength: 256
+            type: string
+            x-nullable: true
+          row_id:
+            format: int32
+            readOnly: true
+            type: integer
+          started_at:
+            format: date-time
+            type: string
+            x-nullable: true
+          title:
+            maxLength: 256
+            minLength: 1
+            type: string
+        readOnly: true
+        required:
+        - title
+        type: object
+      webinar_id:
+        format: int32
+        type: integer
+    required:
+    - attendee_id
+    - created_by
+    - updated_by
+    - webinar_id
+    type: object

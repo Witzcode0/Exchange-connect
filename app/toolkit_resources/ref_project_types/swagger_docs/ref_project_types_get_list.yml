@@ -1,0 +1,112 @@
+Get a list of reference project types based on query parameters
+---
+tags:
+  - Reference Project Types
+parameters:
+  - in: header
+    name: Authorization
+    required: true
+    type: string
+  - in: query
+    schema:
+      $ref: '#/definitions/RefProjectTypeReadArgs'
+responses:
+  200:
+    description: 'reference project types fetched'
+    schema:
+      type: object
+      properties:
+        results:
+          type: array
+          items:
+            $ref: '#/definitions/RefProjectType'
+        total:
+          type: int32
+          default: 1
+  404:
+    description: 'reference project type id: <row_id> does not exist'
+  500:
+    description: 'Some unknown exception'
+definitions:
+  RefProjectType:
+    type: object
+    properties:
+      project_type_name:
+        type: string
+        minLength: 1
+      created_date:
+        type: string
+        format: date-time
+        readOnly: true
+        x-nullable: true
+      modified_date:
+        type: string
+        format: date-time
+        readOnly: true
+        x-nullable: true
+      row_id:
+        type: integer
+        format: int32
+        readOnly: true
+      links:
+        type: string
+        readOnly: true
+      estimated_delivery_days:
+        type: integer
+        format: int32
+      updated_by:
+        type: integer
+        format: int32
+        readOnly: true
+      created_by:
+        type: integer
+        format: int32
+        readOnly: true
+    required:
+    - created_by
+    - estimated_delivery_days
+    - project_type_name
+    - updated_by
+  RefProjectTypeReadArgs:
+    type: object
+    properties:
+      per_page:
+        type: integer
+        format: int32
+        default: 20
+      created_date_to:
+        type: string
+        format: date-time
+      created_date_from:
+        type: string
+        format: date-time
+      sort:
+        type: string
+        default: asc
+        enum:
+        - asc
+        - dsc
+      estimated_delivery_days:
+        type: integer
+        format: int32
+      sort_by:
+        type: array
+        default: row_id
+        items:
+          type: string
+      pfields:
+        type: array
+        items:
+          type: string
+      page:
+        type: integer
+        format: int32
+        default: 1
+      operator:
+        type: string
+        default: and
+        enum:
+        - and
+        - or
+      project_type_name:
+        type: string

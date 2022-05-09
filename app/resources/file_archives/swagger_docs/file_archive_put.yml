@@ -1,0 +1,35 @@
+Edit an Archive file udpate details etc.
+---
+tags:
+  - Archive Files
+parameters:
+  - in: header
+    name: Authorization
+    required: true
+    type: string
+  - in: path
+    name : row_id
+    required: true
+    type: integer
+  - name: filename
+    in: formData
+    type: file
+responses:
+  200:
+    description: 'Updated File id: <row_id>'
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            message:
+              type: string
+              description: 'Updated File id: <row_id>'
+  400:
+    description: 'No data sent or No file provided'
+  404:
+    description: 'File id: <row_id> does not exist'
+  422:
+    description: 'File type not allowed'
+  500:
+    description: 'Some unknown exception!'

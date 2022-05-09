@@ -1,0 +1,21 @@
+Delete Permission
+---
+tags:
+  - Permission (Admin)
+parameters:
+  - in: header
+    name: Authorization
+    type: string
+    required: true
+  - in: path
+    name: row_id
+    type: int
+    required: true
+    description: 'The permission to delete'
+responses:
+  204:
+    description: 'permission deleted'
+  404:
+    description: 'permission id: <row_id> does not exist'
+  500:
+    description: 'Some unknown exception!'

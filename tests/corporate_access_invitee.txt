@@ -1,0 +1,34 @@
+Test CRUD
+1. Post
+    - creating a corporate access event invitee - PASS
+    - testing below validations:
+        - Testing for validation of invitee_email:
+            - Testing for valid email address
+            - Testing for 128 characters limit
+        - checking for valid corporate access event_id (FK refer to corporate access event)
+        - check for unique constraint in corporate access event_id, invitee_id and invitee_email
+        - check whether invitee_id OR invitee_email is not NULL 
+2. Put
+    - updating a corporate access event invitee - PASS    
+    - testing below validations:
+        - Testing for validation of invitee_email:
+            - Testing for valid email address
+            - Testing for 128 characters limit
+        - checking for valid corporate access event_id (FK refer to corporate access event)
+        - check for unique constraint in corporate access event_id, invitee_id and invitee_email
+        - check whether invitee_id OR invitee_email is not NULL        
+3. Delete
+    - deleting a single corporate access event invitee = PASS
+4. Get
+    - fetching all corporate access event invitee lists = PASS
+    - fetching a single corporate access event invitee by id = PASS
+
+Joined Api Testing
+    - Check joined api with has_slot event sub type(
+      this type event have no join permission)
+    - check joined api with non has_slot event sub type
+
+    Meeting type Event:
+        - check with invitee joined event
+        - check with invitee rejected event
+        - this type event only invitee can joined and rejected particular event

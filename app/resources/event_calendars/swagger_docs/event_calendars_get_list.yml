@@ -1,0 +1,145 @@
+Get a list of event calendars based on query parameters
+---
+tags:
+  - Event Calendars
+parameters:
+  - in: header
+    name: Authorization
+    required: true
+    type: string
+  - in: query
+    schema:
+      $ref: '#/definitions/EventCalenderReadArgs'
+responses:
+  200:
+    description: 'events fetched'
+    schema:
+      type: object
+      properties:
+        results:
+          type: array
+          items:
+            $ref: '#/definitions/EventCalendar'
+        total:
+          type: int32
+          default: 1
+  404:
+    description: 'no matching events found'
+  500:
+    description: 'Some unknown exception'
+definitions:
+  EventCalendar:
+    properties:
+      account_name:
+        readOnly: true
+        type: string
+      account_type:
+        readOnly: true
+        type: string
+      collaborated:
+        format: int32
+        readOnly: true
+        type: integer
+      creator:
+        readOnly: true
+        type: object
+      description:
+        readOnly: true
+        type: string
+      end_date:
+        format: date-time
+        readOnly: true
+        type: string
+      event_type:
+        readOnly: true
+        type: string
+      hosted:
+        format: int32
+        readOnly: true
+        type: integer
+      invite_logo_filename:
+        readOnly: true
+        type: string
+      invite_logo_url:
+        format: url
+        readOnly: true
+        type: string
+      invited:
+        format: int32
+        readOnly: true
+        type: integer
+      name:
+        readOnly: true
+        type: string
+      participated:
+        format: int32
+        readOnly: true
+        type: integer
+      row_id:
+        format: int32
+        readOnly: true
+        type: integer
+      start_date:
+        format: date-time
+        readOnly: true
+        type: string
+      title:
+        readOnly: true
+        type: string
+    type: object
+  EventCalenderReadArgs:
+    properties:
+      created_date_from:
+        format: date-time
+        type: string
+      created_date_to:
+        format: date-time
+        type: string
+      ended_at:
+        format: date
+        type: string
+      ended_at_from:
+        format: date-time
+        type: string
+      ended_at_to:
+        format: date-time
+        type: string
+      operator:
+        enum:
+        - and
+        - or
+        type: string
+        default: and
+      page:
+        format: int32
+        type: integer
+        default: 1
+      per_page:
+        format: int32
+        type: integer
+        default: 20
+      pfields:
+        items:
+          type: string
+        type: array
+      sort:
+        enum:
+        - asc
+        - dsc
+        type: string
+        default: asc
+      sort_by:
+        items:
+          type: string
+        type: array
+        default: row_id
+      started_at:
+        format: date
+        type: string
+      started_at_from:
+        format: date-time
+        type: string
+      started_at_to:
+        format: date-time
+        type: string
+    type: object

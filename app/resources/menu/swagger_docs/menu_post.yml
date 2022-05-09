@@ -1,0 +1,90 @@
+For creating new menu
+---
+tags:
+  - Menu (Admin)
+parameters:
+  - in: header
+    name: Authorization
+    type: string
+  - in: body
+    name: body
+    schema:
+      $ref: '#/definitions/Menu'
+responses:
+  201:
+    description: 'Menu has been created'
+    schema:
+      content:
+        application/json:
+      schema:
+        type: object
+        required:
+          - message
+          - row_id
+        properties:
+          message:
+            type: string
+            default: 'Menu has been created'
+          row_id:
+            type: int32
+            description: 'row id of the generated Menu'
+            default: 1
+  400:
+    description: 'No data sent'
+  422:
+    description: 'Error in data or Menu already exists'
+  500:
+    description: 'Some unknown exception!'
+definitions:
+  Menu:
+      properties:
+        child_menus:
+          items:
+            allOf:
+            - $ref: '#/definitions/Menu'
+            readOnly: true
+          readOnly: true
+          type: array
+        created_date:
+          format: date-time
+          readOnly: true
+          type: string
+          x-nullable: true
+        description:
+          maxLength: 256
+          type: string
+          x-nullable: true
+        front_end_url:
+          maxLength: 1024
+          type: string
+        icon_name:
+          maxLength: 48
+          type: string
+          x-nullable: true
+        is_active:
+          type: boolean
+          x-nullable: true
+        modified_date:
+          format: date-time
+          readOnly: true
+          type: string
+          x-nullable: true
+        name:
+          maxLength: 256
+          type: string
+        parent_id:
+          format: int32
+          type: integer
+          x-nullable: true
+        row_id:
+          format: int32
+          readOnly: true
+          type: integer
+        sequence:
+          format: int32
+          type: integer
+          x-nullable: true
+      required:
+      - front_end_url
+      - name
+      type: object

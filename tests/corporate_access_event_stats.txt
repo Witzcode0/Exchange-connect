@@ -1,0 +1,21 @@
+Test Gets
+
+CorporateAccessEventStatsOverallAPI:
+* Get
+
+    total_meetings = total sum of slots from stats table + total sum on non slot meetings
+    total_events = total sum of events from stats table,
+    average_fill_rate = sum of attendee / sum of booked seats,
+    total_location = unique city of particular event from stats table,
+    total_attended = total sum of attended from stats table,
+    total_booked = total sum of booked seats
+    check total_attended, total_booked and total_meetings if null, return 0 not null.
+
+    fetch above data based on account
+
+    total_events_by_event_sub_types = count of events grouped by event types
+    total_attendees_by_account_types = count of attendees grouped by account types
+
+    - test fetch data when no parameters
+    - test fetch data according to started_at_from,started_at_to,
+    ended_at_from,ended_at_to

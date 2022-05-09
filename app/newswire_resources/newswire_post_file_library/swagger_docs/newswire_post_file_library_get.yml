@@ -1,0 +1,97 @@
+Fetch a Newswire Post File Librarry
+---
+tags:
+  - Newswire Post Library Files
+parameters:
+  - in: header
+    name: Authorization
+    required: true
+    type: string
+  - in: path
+    name: row_id
+    required: true
+    schema:
+      type: int
+responses:
+  200:
+    description: File fetched
+    schema:
+      $ref: '#/definitions/NewswirePostLibraryFile'
+  404:
+    description: 'File id: <row_id> does not exist'
+  500:
+    description: 'Some unknown exception!'
+definitions:
+  NewswirePostLibraryFile:
+    properties:
+      account:
+        type: string
+        x-nullable: true
+      account_id:
+        format: int32
+        readOnly: true
+        type: integer
+      created_by:
+        format: int32
+        readOnly: true
+        type: integer
+      created_date:
+        format: date-time
+        readOnly: true
+        type: string
+        x-nullable: true
+      creator:
+        type: string
+        x-nullable: true
+      deleted:
+        readOnly: true
+        type: boolean
+        x-nullable: true
+      file_major_type:
+        maxLength: 128
+        readOnly: true
+        type: string
+        x-nullable: true
+      file_type:
+        maxLength: 256
+        type: string
+        x-nullable: true
+      file_url:
+        format: url
+        readOnly: true
+        type: string
+      filename:
+        type: string
+        x-nullable: true
+      links:
+        readOnly: true
+        type: string
+      modified_date:
+        format: date-time
+        readOnly: true
+        type: string
+        x-nullable: true
+      newswire_posts:
+        items:
+          type: string
+        type: array
+      row_id:
+        format: int32
+        readOnly: true
+        type: integer
+      thumbnail_name:
+        type: string
+        x-nullable: true
+      thumbnail_url:
+        format: url
+        readOnly: true
+        type: string
+      updated_by:
+        format: int32
+        readOnly: true
+        type: integer
+    required:
+    - account_id
+    - created_by
+    - updated_by
+    type: object

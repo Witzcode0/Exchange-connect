@@ -1,0 +1,104 @@
+Test Crud Operations
+
+WebinarAPI :
+
+* Post
+    - check data missing error (required field)
+    - check data incorrect error (title and description length validations)
+    - check same and other company participant_ids
+    - check add single and multiple rsvps
+    - check add single and multiple external invitees
+    - check add single and multiple external participants
+    - check add single and multiple external hosts
+    - check add single and multiple open_to_account_types(with validation)
+    - check upload different files
+    - check no errors, data entered successfully
+    - test add hosts with user id
+    - test add invitees with contact id
+    - check upload different files(logo, banner,txt)
+    - check with multiple files(text, ppt) etc
+    - check with participant and sequence id
+    - check with rsvp and sequence id
+    - check with giving zero value to sequence id in participant or rsvp object
+    - check duration of webinar(diff between start and end time) not more than 4 hours/240 minutes
+    - check request url from third party api and then store to database
+    - check with group account type user with participant_ids and host_ids for
+        both account child and group account team member
+* Put
+    - check not found (Webinar id does not exist)
+    - check data incorrect error (title and description length validations)
+    - check with change participants sequence id
+    - check with give same sequence id in many participant for particular CSEvent
+    - rsvps - add rsvps if not available
+              update rsvps details if available with respective row_ids(rsvp_table)
+              check does not exist error if row_ids not available
+              try to change sequence id
+              try with same sequence id in many rsvp for particular CSEvent
+    - external_invitees:
+        add external_invitees if not available
+        update external_invitee details if available with respective row_ids(invitee_table)
+        check does not exist error if invitee row_ids not available
+    - external_participants:
+        add external_participants if not available
+        update external_participant details if available with respective row_ids(participant_table)
+        check does not exist error if participant row_ids not available
+    - external_hosts:
+        add external_hosts if not available
+        update external_host details if available with respective row_ids(host_table)
+        check does not exist error if host row_ids not available
+    - check update open_to_account_types(with validation)
+    - check upload different files
+    - check no errors, data entered successfully
+    - test add more or less invitees
+    - test add more or less hosts
+    - check upload different files(logo, banner,txt)
+    - check with multiple files(text, ppt) etc
+    - check duration of webinar(diff between start and end time) not more than 4 hours/240 minutes
+    - check request url from third party api and then store to database
+* Get
+    - check not found (Webinar id does not exist)
+    - check found, fetched
+    - check 403 error:
+        who can see the webinar:
+            1. webinar creator
+            2. if login user's account_type present in open_to_account_types of that particular webinar.
+    - check
+        if login user is invitee,
+            invited object display with login user(invitee) details
+        if not invitee, invited = null
+* Delete
+    - check not found (Webinar id does not exist)
+    - check found, deleted
+
+WebinarListAPI :
+
+* Get
+    - check found, fetched
+    - check fetch data according to started_at_from,started_at_to,
+    ended_at_from,ended_at_to
+    - check open_to_account_types and created_by
+        login with user account_type of corporate, then getting result of open_to_account_types
+            of corporate and created by that particular user also.
+        login with user account_type of corporate which he has not created any webinar, then getting only
+            open_to_account_types of that particular account_type.
+    - check main_filter(invited, participated, hosted, all and mine)
+    - check main_filter with guest user
+    - check invited field(if current user invited particular event invited)
+
+Webinar Cancelled API:-
+PUT:-
+  - check does not exist error
+  - check cancelled flag true is update
+  - check webinar in is_draft mode then can't be cancelled
+  - check conference related fields to null on successful webinar cancellation.
+
+ReSendMailToWebinarInvitee:-
+PUT:-
+  - check not exist error
+  - check unauthorized access
+  - check if only the recepients (invitees, hosts, rsvp's and participants) to
+    whome we did not sent the mail earlier will get the mail
+  - check if task is already running in background by acquiring webinar lock
+    (is_in_process) , don't add in task queue
+  - check if webinar lock is released after the task is finished and/or
+     exception is raised

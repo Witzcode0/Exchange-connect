@@ -1,0 +1,35 @@
+TEST CRUD
+* Post
+    - check data missing error
+    - check Project does not exist error
+    - check Parent Parameter does not exist error
+    - check level wise Parent Parameter does not exist error
+    - check data incorrect error (not applicable)
+    - check forbidden error
+    - check httpexception error
+    - check unknown error
+    - check no errors, data entered successfully
+* Put
+    - check data missing error
+    - check data incorrect error (not applicable)
+    - check forbidden error
+    - check httpexception error
+    - check unknown error
+    - check Parent Parameter does not exist error
+    - check level wise Parent Parameter does not exist error
+    - check no errors, data entered successfully
+    - check already exist error (project_id,parent_parameter_name,parameter_name)
+    - check completion status calculate based on parameter
+    - check no errors, project status updated successfully
+
+* Get
+    - check not found
+    - check found, fetched
+* Delete
+    - check not found
+    - check found, deleted
+    - check when parameter delete then project status also change
+
+TEST Listing
+- test parameter_name,parent_parameter_name filter
+- test project_id filter

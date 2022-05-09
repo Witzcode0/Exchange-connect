@@ -1,0 +1,28 @@
+Fetch Webcast stats overall
+---
+tags:
+  - Webcast Stats
+parameters:
+  - in: header
+    name: Authorization
+    required: true
+    type: string
+responses:
+  200:
+    description: Webcast stats fetched
+    schema:
+      $ref: '#/definitions/WebcastStatsOverall'
+  404:
+    description: 'No matching webcast stats found'
+  500:
+    description: 'Some unknown exception!'
+definitions:
+  WebcastStatsOverall:
+    properties:
+      total_webcast_participants:
+        format: int32
+        type: integer
+      total_webcasts:
+        format: int32
+        type: integer
+    type: object

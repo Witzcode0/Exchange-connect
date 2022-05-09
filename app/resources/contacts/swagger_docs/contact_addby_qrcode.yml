@@ -1,0 +1,74 @@
+For creating(sending) a new contact request by qrcode
+---
+tags:
+  - Contacts
+parameters:
+  - in: header
+    name: Authorization
+    type: string
+  - in: body
+    name: body
+    schema:
+      $ref: '#/definitions/ContactAddByQRCode'
+responses:
+  201:
+    description: 'Contact has been added'
+    schema:
+      content:
+        application/json:
+      schema:
+        type: object
+        required:
+          - message
+          - row_id
+        properties:
+          message:
+            type: string
+            default: 'Contact has been added'
+          row_id:
+            type: int32
+            description: 'row id of the generated Contact'
+            default: 1
+  400:
+    description: 'No data sent'
+  422:
+    description: 'Error in data or contact already added'
+  500:
+    description: 'Some unknown exception!'
+definitions:
+  ContactAddByQRCode:
+    required:
+    - sent_by
+    - sent_to
+    type: object
+    properties:
+      connected_j:
+        x-nullable: true
+        type: string
+      sendee:
+        x-nullable: true
+        type: string
+      sender:
+        x-nullable: true
+        type: string
+      sent_by:
+        format: int32
+        readOnly: true
+        type: integer
+      created_date:
+        x-nullable: true
+        format: date-time
+        readOnly: true
+        type: string
+      modified_date:
+        x-nullable: true
+        format: date-time
+        readOnly: true
+        type: string
+      sent_to:
+        format: int32
+        type: integer
+      row_id:
+        format: int32
+        readOnly: true
+        type: integer

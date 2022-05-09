@@ -1,0 +1,174 @@
+Get a list of reference project parameters based on query parameters
+---
+tags:
+  - Reference Project Parameters
+parameters:
+  - in: header
+    name: Authorization
+    required: true
+    type: string
+  - in: query
+    schema:
+      $ref: '#/definitions/RefProjectParameterReadArgs'
+responses:
+  200:
+    description: 'reference project parameters fetched'
+    schema:
+      type: object
+      properties:
+        results:
+          type: array
+          items:
+            $ref: '#/definitions/RefProjectParameter'
+        total:
+          type: int32
+          default: 1
+  404:
+    description: 'reference project parameter id: <row_id> does not exist'
+  500:
+    description: 'Some unknown exception'
+definitions:
+  RefProjectParameter:
+    properties:
+      created_by:
+        format: int32
+        readOnly: true
+        type: integer
+      created_date:
+        format: date-time
+        readOnly: true
+        type: string
+        x-nullable: true
+      has_value:
+        type: boolean
+        x-nullable: true
+      has_yes_no:
+        type: boolean
+        x-nullable: true
+      level:
+        format: int32
+        type: integer
+        x-nullable: true
+      links:
+        readOnly: true
+        type: string
+      modified_date:
+        format: date-time
+        readOnly: true
+        type: string
+        x-nullable: true
+      parameter_name:
+        maxLength: 256
+        minLength: 1
+        type: string
+      parent_parameter_name:
+        maxLength: 256
+        minLength: 1
+        type: string
+      project_type_id:
+        format: int32
+        type: integer
+      ref_project_type:
+        properties:
+          created_by:
+            format: int32
+            readOnly: true
+            type: integer
+          created_date:
+            format: date-time
+            readOnly: true
+            type: string
+            x-nullable: true
+          deleted:
+            type: boolean
+            x-nullable: true
+          estimated_delivery_days:
+            format: int32
+            type: integer
+          links:
+            readOnly: true
+            type: string
+          modified_date:
+            format: date-time
+            readOnly: true
+            type: string
+            x-nullable: true
+          project_type_name:
+            maxLength: 256
+            minLength: 1
+            type: string
+          row_id:
+            format: int32
+            readOnly: true
+            type: integer
+          updated_by:
+            format: int32
+            readOnly: true
+            type: integer
+        readOnly: true
+        required:
+        - created_by
+        - estimated_delivery_days
+        - project_type_name
+        - updated_by
+        type: object
+      row_id:
+        format: int32
+        readOnly: true
+        type: integer
+      updated_by:
+        format: int32
+        readOnly: true
+        type: integer
+    required:
+    - created_by
+    - parameter_name
+    - parent_parameter_name
+    - project_type_id
+    - updated_by
+    type: object
+  RefProjectParameterReadArgs:
+    properties:
+      parent_parameter_name:
+        type: string
+      per_page:
+        type: integer
+        format: int32
+        default: 20
+      created_date_from:
+        type: string
+        format: date-time
+      created_date_to:
+        type: string
+        format: date-time
+      sort:
+        type: string
+        enum:
+        - asc
+        - dsc
+        default: asc
+      parameter_name:
+        type: string
+      pfields:
+        type: array
+        items:
+          type: string
+      project_type_id:
+        type: integer
+        format: int32
+      page:
+        type: integer
+        format: int32
+        default: 1
+      sort_by:
+        type: array
+        default: row_id
+        items:
+          type: string
+      operator:
+        type: string
+        default: and
+        enum:
+        - and
+        - or
+    type: object

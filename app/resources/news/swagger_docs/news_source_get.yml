@@ -1,0 +1,57 @@
+Fetch a NewsSource
+---
+tags:
+  - News
+parameters:
+  - in: header
+    name: Authorization
+    type: string
+  - in: path
+    name: row_id
+    schema:
+      type: int
+    required: true
+    description: 'The News source id to fetch'
+responses:
+  200:
+    description: 'NewsSource fetched'
+    schema:
+      $ref: '#/definitions/NewsSource'
+  404:
+    description: 'NewsSource id: <row_id> does not exist'
+  500:
+    description: 'Some unknown exception!'
+definitions:
+  NewsSource:
+    properties:
+      created_date:
+        format: date-time
+        readOnly: true
+        type: string
+        x-nullable: true
+      last_fetched:
+        format: date-time
+        type: string
+        x-nullable: true
+      links:
+        readOnly: true
+        type: string
+      modified_date:
+        format: date-time
+        readOnly: true
+        type: string
+        x-nullable: true
+      news_name:
+        maxLength: 512
+        type: string
+      news_url:
+        maxLength: 1024
+        type: string
+      row_id:
+        format: int32
+        readOnly: true
+        type: integer
+    required:
+    - news_name
+    - news_url
+    type: object

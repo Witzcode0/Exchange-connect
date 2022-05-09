@@ -1,0 +1,74 @@
+TEST CRUD
+
+1. POST
+    - check data missing error
+    - check only sell-side users who are admins can create research report
+    - check http exception error
+    - check if file and url both are being sent, raise error
+    - check if file and url both not sent, raise error
+    - check no errors, research report created successfully
+
+2. PUT
+    - check not found
+    - check research report can be updated only by user who created it
+      and also he is admin and is of sell side type
+    - check http exception error
+    - check if file and url both are being sent, if yes, raise error
+    - check no errors, research report updated successfully
+
+3. DELETE
+    - check not found
+    - check only owner who is admin and is of sell-side type can delete
+    - check found, deleted
+
+4. GET
+   - check not found
+   - check found, fetched
+
+5. GETLIST
+   - check found, fetched
+   - check if main filter is 'mine' then research reports owned by him are
+     fetched
+   - check if main filter is 'mine_company' then reports owned by his
+     sell-side company are fetched
+   - if main filter is 'all' or not provided all research reports are fetched
+   - for company text search if account_id is passed text is matched in corporate
+     account name and vice versa
+
+
+TEST ADMIN
+
+1. POST
+    - check data missing error
+    - check only super admin can create research report
+    - check http exception error
+    - check user role, if permission is not 'add account', abort
+    - check if file and url both are being sent, if yes, raise error
+    - check raise error if file and url both not sent
+    - check account_id is of 'sell-side'  and corporate_account_id is corporate
+    - check no errors, data entered successfully
+
+2. PUT
+    - check forbidden error
+    - check only super admin can create research report
+    - check http exception error
+    - check not found
+    - check if file and url both are being sent, if yes, raise error
+    - check no errors, research report updated successfully
+
+3. DELETE
+    - check not found
+    - check only super admin can delete research report
+    - check found, deleted
+
+4. GET
+    - check not found
+    - check found, fetched
+
+5. GETLIST
+    - check with company_name filter, research reports which are created by or
+      created for company are fetched
+    - check if account_id filter, research reports created by that sell side
+      company are fetched
+    - check if corporate_account_id filter, research reports created for that
+      corporate company are fetched

@@ -1,0 +1,11 @@
+CRUD TEST
+1. POST
+ - upload file with form data
+ - test blank file upload
+ - test upload others data without file
+ - test upload file different different types
+2. DELETE
+ - test delete by row_id
+3. GET
+ - test fetch data by row_id
+ - test fetch all data

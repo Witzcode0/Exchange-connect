@@ -1,0 +1,15 @@
+Test CRUD
+1. Post
+    - test create post
+    - test pass any string in description and title
+    - test pass file id of according to upload(video, audio, photo, other)
+2. Put
+    - test update post
+    - test update to another user
+    - test pass shared_url
+    - check edited flag changed or not
+3. Delete
+    - test delete by created user
+    - test delete another user
+4. Get
+   - test fetch all post by current user

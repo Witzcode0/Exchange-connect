@@ -1,0 +1,24 @@
+TEST CRUD
+* Post
+    - check data missing error
+    - check non unique error
+    - check forbidden error
+    - check httpexception error
+    - check unknown error
+    - check no errors, data entered successfully
+* Put
+    - check data missing error
+    - check non unique error
+    - check forbidden error
+    - check httpexception error
+    - check unknown error
+    - check no errors, data entered successfully
+* Get
+    - check not found
+    - check found, fetched
+* Delete
+    - check not found
+    - check found, deleted
+
+TEST Listing
+- test name filter

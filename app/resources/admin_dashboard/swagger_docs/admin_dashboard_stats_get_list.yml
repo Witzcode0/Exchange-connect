@@ -1,0 +1,206 @@
+Get a list of admin dashboard stats
+---
+tags:
+  - Admin Dashboard Stats
+parameters:
+  - in: header
+    name: Authorization
+    required: true
+    type: string
+  - in: query
+    schema:
+      $ref: '#/definitions/AdminDashboardStatsReadArgs'
+responses:
+  200:
+    description: 'admin dashboard stats fetched'
+    schema:
+      type: object
+      properties:
+        results:
+          type: array
+          items:
+            $ref: '#/definitions/AdminDashboardStats'
+        total:
+          type: int32
+          default: 1
+  404:
+    description: 'No matching stats found'
+  500:
+    description: 'Some unknown exception'
+definitions:
+  AdminDashboardStats:
+    properties:
+      total_account_by_types:
+        items:
+          properties:
+            account_type:
+              readOnly: true
+              type: string
+            active_account_count:
+              format: int32
+              readOnly: true
+              type: integer
+            deactivated_account_count:
+              format: int32
+              readOnly: true
+              type: integer
+          type: object
+        type: array
+      total_accounts:
+        format: int32
+        readOnly: true
+        type: integer
+      total_active_accounts:
+        format: int32
+        readOnly: true
+        type: integer
+      total_active_users:
+        format: int32
+        readOnly: true
+        type: integer
+      total_ca_event_by_types:
+        items:
+          properties:
+            account_type:
+              readOnly: true
+              type: string
+            total_ca_event_count:
+              format: int32
+              readOnly: true
+              type: integer
+          type: object
+        type: array
+      total_ca_events:
+        format: int32
+        readOnly: true
+        type: integer
+      total_deactive_accounts:
+        format: int32
+        readOnly: true
+        type: integer
+      total_deactive_users:
+        format: int32
+        readOnly: true
+        type: integer
+      total_meeting_by_types:
+        items:
+          properties:
+            account_type:
+              readOnly: true
+              type: string
+            total_meeting_count:
+              format: int32
+              readOnly: true
+              type: integer
+          type: object
+        type: array
+      total_meetings:
+        format: int32
+        readOnly: true
+        type: integer
+      total_project_by_types:
+        items:
+          properties:
+            project_type_name:
+              readOnly: true
+              type: string
+            total_project_count:
+              format: int32
+              readOnly: true
+              type: integer
+          type: object
+        type: array
+      total_projects:
+        format: int32
+        readOnly: true
+        type: integer
+      total_users:
+        format: int32
+        readOnly: true
+        type: integer
+      total_users_by_types:
+        items:
+          properties:
+            account_type:
+              readOnly: true
+              type: string
+            active_user_count:
+              format: int32
+              readOnly: true
+              type: integer
+            deactivated_user_count:
+              format: int32
+              readOnly: true
+              type: integer
+          type: object
+        type: array
+      total_webcast_by_types:
+        items:
+          properties:
+            account_type:
+              readOnly: true
+              type: string
+            total_webcast_count:
+              format: int32
+              readOnly: true
+              type: integer
+          type: object
+        type: array
+      total_webcasts:
+        format: int32
+        readOnly: true
+        type: integer
+      total_webinar_by_types:
+        items:
+          properties:
+            account_type:
+              readOnly: true
+              type: string
+            total_webinar_count:
+              format: int32
+              readOnly: true
+              type: integer
+          type: object
+        type: array
+      total_webinars:
+        format: int32
+        readOnly: true
+        type: integer
+    type: object
+  AdminDashboardStatsReadArgs:
+    properties:
+      created_date_from:
+        format: date-time
+        type: string
+      created_date_to:
+        format: date-time
+        type: string
+      operator:
+        enum:
+        - and
+        - or
+        type: string
+      page:
+        format: int32
+        type: integer
+        default: 1
+      per_page:
+        format: int32
+        type: integer
+        default: 20
+      pfields:
+        items:
+          type: string
+        type: array
+      sort:
+        enum:
+        - asc
+        - dsc
+        type: string
+        default: asc
+      sort_by:
+        items:
+          type: string
+        type: array
+        default: row_id
+    type: object

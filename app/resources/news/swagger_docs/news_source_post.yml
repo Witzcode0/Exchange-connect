@@ -1,0 +1,71 @@
+For creating new newss source
+---
+tags:
+  - News
+parameters:
+  - in: header
+    name: Authorization
+    type: string
+  - in: body
+    name: body
+    schema:
+      $ref: '#/definitions/NewsSource'
+responses:
+  201:
+    description: 'NewsSource has been created'
+    schema:
+      content:
+        application/json:
+      schema:
+        type: object
+        required:
+          - message
+          - row_id
+        properties:
+          message:
+            type: string
+            default: 'NewsSource has been created'
+          row_id:
+            type: int32
+            description: 'row id of the generated NewsSource'
+            default: 1
+  400:
+    description: 'No data sent'
+  422:
+    description: 'Error in data or NewsSource already exists'
+  500:
+    description: 'Some unknown exception!'
+definitions:
+  NewsSource:
+    properties:
+      created_date:
+        format: date-time
+        readOnly: true
+        type: string
+        x-nullable: true
+      last_fetched:
+        format: date-time
+        type: string
+        x-nullable: true
+      links:
+        readOnly: true
+        type: string
+      modified_date:
+        format: date-time
+        readOnly: true
+        type: string
+        x-nullable: true
+      news_name:
+        maxLength: 512
+        type: string
+      news_url:
+        maxLength: 1024
+        type: string
+      row_id:
+        format: int32
+        readOnly: true
+        type: integer
+    required:
+    - news_name
+    - news_url
+    type: object

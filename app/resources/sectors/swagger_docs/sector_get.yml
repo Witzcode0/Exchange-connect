@@ -1,0 +1,59 @@
+Fetch a Sector
+---
+tags:
+  - Sectors
+parameters:
+  - in: header
+    name: Authorization
+    type: string
+    required: true
+  - in: path
+    name: row_id
+    schema:
+      type: int
+    required: true
+    description: 'The sector to fetch'
+responses:
+  200:
+    description: 'sector fetched'
+    schema:
+      $ref: '#/definitions/Sector'
+  404:
+    description: 'sector id: <row_id> does not exist'
+  500:
+    description: 'Some unknown exception!'
+definitions:
+  Sector:
+    properties:
+      created_date:
+        format: date-time
+        readOnly: true
+        type: string
+        x-nullable: true
+      creator:
+        properties:
+          row_id:
+            format: int32
+            readOnly: true
+            type: integer
+        readOnly: true
+        type: object
+      links:
+        readOnly: true
+        type: string
+      modified_date:
+        format: date-time
+        readOnly: true
+        type: string
+        x-nullable: true
+      name:
+        maxLength: 256
+        minLength: 1
+        type: string
+      row_id:
+        format: int32
+        readOnly: true
+        type: integer
+    required:
+    - name
+    type: object

@@ -1,0 +1,109 @@
+Edit a Management Profile udpate details etc.
+---
+tags:
+  - Management Profile
+parameters:
+  - in: header
+    name: Authorization
+    type: string
+    required: true
+  - in: path
+    name: row_id
+    type: integer
+  - name: profile_photo
+    in: formData
+    type: file
+  - name: name
+    in: formData
+    type: string
+  - name: designation
+    in: formData
+    type: string
+  - name: description
+    in: formData
+    type: string
+  - name: account_profile_id
+    in: formData
+    type: integer
+  - name: user_id
+    in: formData
+    type: integer
+    schema:
+      $ref: '#/definitions/ManagementProfile'
+responses:
+  200:
+    description: 'Updated Management Profile id: <row_id>'
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            message:
+              type: string
+              description: 'Updated Management Profile id: <row_id>'
+  400:
+    description: No data sent
+  404:
+    description: 'Management Profile id: <row_id> does not exist'
+  422:
+    description: 'Error in data'
+  500:
+    description: 'Some unknown exception!'
+definitions:
+  ManagementProfile:
+    properties:
+      account_profile:
+        type: string
+        x-nullable: true
+      account_profile_id:
+        format: int32
+        readOnly: true
+        type: integer
+      created_date:
+        format: date-time
+        readOnly: true
+        type: string
+        x-nullable: true
+      description:
+        maxLength: 9216
+        type: string
+        x-nullable: true
+      designation:
+        maxLength: 128
+        type: string
+        x-nullable: true
+      links:
+        readOnly: true
+        type: string
+      modified_date:
+        format: date-time
+        readOnly: true
+        type: string
+        x-nullable: true
+      name:
+        maxLength: 256
+        type: string
+        x-nullable: true
+      profile_photo:
+        type: string
+        x-nullable: true
+      profile_photo_url:
+        format: url
+        readOnly: true
+        type: string
+      row_id:
+        format: int32
+        readOnly: true
+        type: integer
+      sequence_id:
+        format: int32
+        readOnly: true
+        type: integer
+      user_id:
+        format: int32
+        type: integer
+        x-nullable: true
+    required:
+    - account_profile_id
+    - sequence_id
+    type: object

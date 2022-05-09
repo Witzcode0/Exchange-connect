@@ -1,0 +1,26 @@
+Test Crud Operations
+
+EmeetingAPI :
+
+* Post
+    - check data missing error (required field)
+    - check data incorrect error (status)
+    - check invitee_ids exist in project which is given by project_id
+    - check no errors, data entered successfully
+
+* Get
+    - check not found (Emeeting Comment id does not exist)
+    - check found, fetched
+    - check 403 error:
+        who can see the Emeeting:
+            1. Emeeting creator
+            2. And Invitees of that Emeeting.
+
+* Delete
+    - check not found (Emeeting Comment id does not exist)
+    - check found, deleted
+
+EmeetingListAPI :
+
+* Get
+    - check found, fetched

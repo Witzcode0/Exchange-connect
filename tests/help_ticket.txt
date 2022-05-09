@@ -1,0 +1,23 @@
+Test CRUD
+1. Post
+    - check data missing error
+    - check data already exists error
+    - check forbidden error
+    - check httpexception error
+    - uploaded attachment and created url for it
+    - check no errors, ticket data entered successfully and email is has been sent
+    - check assignee id, section, function does not exist error
+2. Put
+    - check forbidden error
+    - check httpexception error
+    - uploaded attachment and created url for it
+    - check no errors, ticket data updated successfully
+    - check assignee id, section, function does not exist error
+3. Delete
+    - check ticket, not found
+    - check found, deleted successfully
+4. Get
+    - check ticket, not found
+    - check ticket, found and data returned
+    - fetching the ticket using filters
+    - when manager fetch the help tickets, fetch only assigned accounts related ticket

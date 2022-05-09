@@ -1,0 +1,42 @@
+Test CRUD
+1. Post
+    - creating a corporate access event inquiry - PASS
+    - testing below validations:
+        - checking for valid corporate access event_id (FK refer to corporate access event)
+        - checking for valid corporate_access_event_slot_id (FK refer to corporate access event)
+        - check if choice (inquired, confirmed) given for status is valid
+        - check if available seat is zero
+        - check if already inquired for particular slot
+        - check with non invitee users
+        - check with add inquiry by event creator and collaborator
+        - check with status 'confirmed'
+
+2. Put
+    - updating a corporate access event inquiry - PASS    
+    - testing below validations:
+        - checking for valid corporate access event_id (FK refer to corporate access event)
+        - checking for valid corporate_access_event_slot_id (FK refer to corporate access event)
+        - check if choice (inquired, confirmed) given for status is valid
+        - check with event id with different slot id
+        - check with status 'confirmed' by invitee
+
+3. Delete
+    - deleting a single corporate access event inquiry = PASS
+4. Get
+    - fetching all corporate access event inquiry lists = PASS
+    - fetching a single corporate access event inquiry by id = PASS
+    - fetching data with main filter (mine and event_created)
+    - fetching data with full_name with event_created
+
+
+Extra testing API(Permissions)
+
+    - invitee and external invitee can add inquiry
+    - collaborator and event creator have access to confirm inquiry
+    - collaborator event creator and invitee have access to delete particular inquiry
+    - if any slot confirm by event creator for particular invitee,
+        invitees can not inquiry other slots or update
+    - if event creator delete inquiry for slot for particular invitee, so invitee can not
+        re add inquiry for particular slot
+    - if delete confirm inquiry by event creator, collaborator or invitee, so invitee can
+        inquiry any slot

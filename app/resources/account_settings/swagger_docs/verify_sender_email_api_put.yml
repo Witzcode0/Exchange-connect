@@ -1,0 +1,30 @@
+Edit an Account settings udpate details etc.
+---
+tags:
+  - Account Settings
+parameters:
+  - in: header
+    name: Authorization
+    type: string
+responses:
+  200:
+    description: 'Updated Account Setting id: <row_id>'
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            message:
+              type: string
+              description: 'Updated Account Settings id: <row_id>'
+            extra_message:
+              type: string
+              description: 'Add some details for domain verification.'
+  400:
+    description: No data sent
+  404:
+    description: 'Account Settings for account_id: <row_id> does not exist'
+  422:
+    description: 'Sender email not set nothing to verify'
+  500:
+    description: 'Some unknown exception!'

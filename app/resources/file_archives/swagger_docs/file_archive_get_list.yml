@@ -1,0 +1,133 @@
+Get a list of Archive Files based on query parameters
+---
+tags:
+  - Archive Files
+parameters:
+  - in: header
+    name: Authorization
+    type: string
+  - in: query
+    schema:
+      $ref: '#/definitions/ArchiveFileReadArgs'
+responses:
+  200:
+    description: 'Files fetched'
+    schema:
+      type: object
+      properties:
+        results:
+          type: array
+          items:
+            $ref: '#/definitions/ArchiveFile'
+        total:
+          type: int32
+          default: 1
+  404:
+    description: 'No matching files found'
+  500:
+    description: 'Some unknown exception'
+definitions:
+  ArchiveFile:
+    properties:
+      created_by:
+        type: integer
+        format: int32
+        readOnly: true
+      links:
+        type: string
+        readOnly: true
+      account:
+        type: string
+        x-nullable: true
+      creator:
+        type: string
+        x-nullable: true
+      modified_date:
+        x-nullable: true
+        type: string
+        format: date-time
+        readOnly: true
+      row_id:
+        type: integer
+        format: int32
+        readOnly: true
+      account_id:
+        type: integer
+        format: int32
+        readOnly: true
+      updated_by:
+        type: integer
+        format: int32
+        readOnly: true
+      deleted:
+        type: boolean
+        x-nullable: true
+        readOnly: true
+      filename:
+        type: string
+        x-nullable: true
+      file_url:
+        type: string
+        format: url
+        readOnly: true
+      file_type:
+        maxLength: 256
+        type: string
+        x-nullable: true
+      file_major_type:
+        maxLength: 128
+        type: string
+        x-nullable: true
+      created_date:
+        x-nullable: true
+        type: string
+        format: date-time
+        readOnly: true
+    type: object
+    required:
+    - account_id
+    - created_by
+    - updated_by
+  ArchiveFileReadArgs:
+    properties:
+      per_page:
+        format: int32
+        type: integer
+        default: 20
+      page:
+        format: int32
+        type: integer
+        default: 1
+      sort_by:
+        items:
+          type: string
+        type: array
+        default: row_id
+      filename:
+        type: string
+      company_id:
+        format: int32
+        type: integer
+      created_date_from:
+        format: date-time
+        type: string
+      sort:
+        enum:
+        - asc
+        - dsc
+        type: string
+        default: asc
+      created_date_to:
+        format: date-time
+        type: string
+      operator:
+        enum:
+        - and
+        - or
+        type: string
+        default: and
+      pfields:
+        items:
+          type: string
+        type: array
+    type: object

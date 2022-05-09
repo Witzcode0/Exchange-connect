@@ -1,0 +1,22 @@
+Delete a Management Profile
+---
+tags:
+  - Management Profile (Admin)
+parameters:
+  - in: header
+    name: Authorization
+    type: string
+    required: true
+  - in: path
+    name: row_id
+    schema:
+      type: int
+    required: true
+    description: 'The Management Profile to delete'
+responses:
+  204:
+    description: 'Management Profile deleted'
+  404:
+    description: 'Management Profile id: <row_id> does not exist'
+  500:
+    description: 'Some unknown exception!'

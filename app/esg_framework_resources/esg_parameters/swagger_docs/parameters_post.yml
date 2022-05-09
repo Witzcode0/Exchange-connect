@@ -1,0 +1,93 @@
+For creating new Parameter
+---
+tags:
+  - Parameter
+parameters:
+  - in: header
+    name: Authorization
+    type: string
+  - in: body
+    name: body
+    schema:
+      $ref: '#/definitions/Parameter'
+responses:
+  201:
+    description: Parameter has been created
+    schema:
+      content:
+        application/json:
+      schema:
+        type: object
+        required:
+          - message
+          - row_id
+        properties:
+          message:
+            type: string
+            default: Parameter has been created
+          row_id:
+            type: int32
+            description: row id of the generated Parameter
+            default: 1
+  400:
+    description: No data sent
+  422:
+    description: Error in data
+  500:
+    description: Some unknown exception!
+
+# the model definition
+definitions:
+  Parameter:
+    properties:
+      created_by:
+        format: int32
+        readOnly: true
+        type: integer
+      creator:
+        properties:
+          row_id:
+            format: int32
+            readOnly: true
+            type: integer
+        readOnly: true
+        type: object
+      date_created:
+        format: date-time
+        readOnly: true
+        type: string
+        x-nullable: true
+      date_modified:
+        format: date-time
+        readOnly: true
+        type: string
+        x-nullable: true
+      links:
+        readOnly: true
+        type: string
+      name:
+        maxLength: 256
+        minLength: 1
+        type: string
+      parameter_index:
+        maxLength: 32
+        minLength: 1
+        type: string
+      parameter_parent_id:
+        format: int32
+        type: integer
+        x-nullable: true
+      row_id:
+        format: int32
+        readOnly: true
+        type: integer
+      updated_by:
+        format: int32
+        readOnly: true
+        type: integer
+    required:
+    - created_by
+    - name
+    - parameter_index
+    - updated_by
+    type: object

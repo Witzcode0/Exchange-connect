@@ -1,0 +1,27 @@
+Test Crud Operations
+
+CorporateAccessEventRSVPAPI :
+
+* Post
+    - check data missing error (required field)
+    - check does not exist error by sending not available corporate_access_event_id.
+    - check data incorrect error (length validations of email, phone and contact_person)
+    - check unknown error
+    - check no errors, data entered successfully
+* Put
+    - check not found (corporate access event rsvp id does not exist)
+    - check does not exist error by sending not available corporate_access_event_id.
+    - check data incorrect error (length validations of email, phone and contact_person)
+    - check unknown error
+    - check no errors, data entered successfully
+* Get
+    - check not found (corporate access event rsvp id does not exist)
+    - check found, fetched
+* Delete
+    - check not found (corporate access event rsvp id does not exist)
+    - check found, deleted
+
+CorporateAccessEventRSVPListAPI :
+
+* Get
+    - check found, fetched.

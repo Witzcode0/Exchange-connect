@@ -1,0 +1,59 @@
+LOGIN:
+POST:
+1. Test missing data
+2. Test missing email/password
+3. Test email password mismatch
+4. Test successful login
+5. When admin=True, check user account type
+    if 'admin' account_type, return token.
+    if not 'admin' account_type, disallow login.
+6. When admin=False, no checking on account_type, return token.
+6. When we pass from_mobile, check token_valid_mobile, from_mobile flags become True.
+7. Check normal login success without passing either admin or from_mobile.
+8. check on login success, store/update last login time.
+9. unsuccessful login count test:
+    - If entered password is not correct, and unsuccessful_login_count is less than 10, then 401.
+    - If unsuccessful_login_count greater than or equal to 10 then lock user.
+    - If everything is good, then along with token return, change unsuccessful_login_count to 0.
+    - If unsuccessful_login_count < 10, then login_locked is False.
+    - If unsuccessful_login_count >= 10, then login_locked id True.
+
+GET
+PUT
+DELETE:
+1. Test missing token
+2. Test invalid token
+3. Test valid logout
+4. When we pass from_mobile, check token_valid_mobile flag become False.
+5. On successful logout, store/update last logout time.
+
+FORGOT/RESET PASSWORD:
+1. Test email sent with link
+2. Test incorrect link
+3. Test correct link
+4. Test missing data
+5. Test missing password
+6. Test successful reset
+
+AdminLoginAsAPI:
+1. Check missing data
+2. Check missing email/password
+3. Check login with normal user email and super admin password
+4. Check only super admin can access this api
+5. Check user is unverified or deactivated or deleted then throw an error 403
+6. Check if normal user email is incorrect, then throw an unauthorized error
+7. Check if user has not given permission for admin to login as him,
+       then throw 403 error.
+8. Check if all good, successful login
+
+TokenVerificationAPI:
+1. Check if token missing.
+2. Check if token given and is correct else raise error.
+3. Check if token given and valid, if user is not a corporate user, abort with
+    message access denied.
+4. check if token given and valid, if user is a corporate user, access granted.
+
+SwitchUserAccountAPI:
+1. check with group account type user
+2. check other user type user
+3. check with child_account_id

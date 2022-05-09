@@ -1,0 +1,29 @@
+Cancelled a Webinar
+---
+tags:
+  - Webinars
+parameters:
+  - in: header
+    name: Authorization
+    type: string
+  - in: path
+    name: row_id
+    schema:
+      type: int
+    required: true
+    description: 'The Webinar id to update'
+responses:
+  200:
+    description: 'Cancelled Webinar id: <row_id>'
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            message:
+              type: string
+              description: 'Cancelled Webinar id: <row_id>'
+  404:
+    description: 'Webinar id: <row_id> does not exist'
+  500:
+    description: 'Some unknown exception!'

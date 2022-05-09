@@ -1,0 +1,128 @@
+Get a list of Users and their Scheduled report count
+---
+tags:
+  - Scheduled reports (Admin)
+parameters:
+  - in: header
+    name: Authorization
+    type: string
+  - in: query
+    schema:
+      $ref: '#/definitions/ScheduledReportsUserwiseReadArgs'
+responses:
+  200:
+    description: 'Scheduled reports user wise fetched'
+    schema:
+      type: object
+      properties:
+        results:
+          type: array
+          items:
+            $ref: '#/definitions/ScheduledReportUserwise'
+        total:
+          type: int32
+          default: 1
+  404:
+    description: 'no matching users schedule report count found'
+  500:
+    description: 'Some unknown exception'
+definitions:
+  ScheduledReportUserwise:
+    properties:
+      count:
+        format: int32
+        readOnly: true
+        type: integer
+      user:
+        properties:
+          account:
+            properties:
+              account_name:
+                maxLength: 512
+                minLength: 1
+                type: string
+              account_type:
+                enum:
+                  - corporate
+                  - buy-side
+                  - sell-side
+                  - general investor
+                  - private
+                  - sme
+                  - corporate-group
+                  - guest
+                  - admin
+                type: string
+              row_id:
+                format: int32
+                readOnly: true
+                type: integer
+            readOnly: true
+            required:
+              - account_name
+              - account_type
+            type: object
+          profile:
+            properties:
+              designation:
+                maxLength: 128
+                type: string
+                x-nullable: true
+              first_name:
+                maxLength: 512
+                minLength: 1
+                type: string
+              last_name:
+                maxLength: 512
+                minLength: 1
+                type: string
+            required:
+              - first_name
+              - last_name
+            type: object
+          row_id:
+            format: int32
+            readOnly: true
+            type: integer
+        readOnly: true
+        required:
+          - profile
+        type: object
+    type: object
+  ScheduledReportsUserwiseReadArgs:
+      properties:
+        account_name:
+          type: string
+        created_date_from:
+          format: date-time
+          type: string
+        created_date_to:
+          format: date-time
+          type: string
+        full_name:
+          type: string
+        operator:
+          enum:
+            - and
+            - or
+          type: string
+        page:
+          format: int32
+          type: integer
+        per_page:
+          format: int32
+          type: integer
+        pfields:
+          items:
+            type: string
+          type: array
+        sort:
+          enum:
+            - asc
+            - dsc
+          type: string
+        sort_by:
+          items:
+            type: string
+          type: array
+      type: object

@@ -1,0 +1,64 @@
+Fetch a reference project type
+---
+tags:
+  - Reference Project Types
+parameters:
+  - in: header
+    name: Authorization
+    required: true
+    type: string
+  - in: path
+    name: row_id
+    schema:
+      type: int
+    required: true
+    description: 'The reference project type id to fetch'
+responses:
+  200:
+    description: reference project type fetched
+    schema:
+      $ref: '#/definitions/RefProjectType'
+  404:
+    description: 'reference project type id: <row_id> does not exist'
+  500:
+    description: 'Some unknown exception!'
+definitions:
+  RefProjectType:
+    type: object
+    properties:
+      project_type_name:
+        type: string
+        minLength: 1
+      created_date:
+        type: string
+        format: date-time
+        readOnly: true
+        x-nullable: true
+      modified_date:
+        type: string
+        format: date-time
+        readOnly: true
+        x-nullable: true
+      row_id:
+        type: integer
+        format: int32
+        readOnly: true
+      links:
+        type: string
+        readOnly: true
+      estimated_delivery_days:
+        type: integer
+        format: int32
+      updated_by:
+        type: integer
+        format: int32
+        readOnly: true
+      created_by:
+        type: integer
+        format: int32
+        readOnly: true
+    required:
+    - created_by
+    - estimated_delivery_days
+    - project_type_name
+    - updated_by

@@ -1,0 +1,17 @@
+Test Gets
+
+AdminDashboardStatsListAPI:
+* Get
+
+    total_users = total active users by account type + total deactivated users by account type,
+    total_accounts = total activated accounts by account type + total deactivated accounts by account type,
+    total_webcast = sum of webcasts by account type which are not in draft mode,
+    total_webinar = sum of webinars by account type which are not in draft mode,
+    total_projects = sum of projects by project type which are not in draft mode,
+    total_meetings = sum of meetings by account type which are not in draft mode,
+    total_ca_events = sum of ca_events by account type which are not in draft mode
+
+    fetch above data based on account
+
+    total_users_by_types = count of users grouped by account types
+    total_accounts_by_account_types = count of accounts grouped by account types

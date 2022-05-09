@@ -1,0 +1,29 @@
+Cancelled a Webcast
+---
+tags:
+  - Webcasts
+parameters:
+  - in: header
+    name: Authorization
+    type: string
+  - in: path
+    name: row_id
+    schema:
+      type: int
+    required: true
+    description: 'The Webcast id to update'
+responses:
+  200:
+    description: 'Cancelled Webcast id: <row_id>'
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            message:
+              type: string
+              description: 'Cancelled Webcast id: <row_id>'
+  404:
+    description: 'Webcast id: <row_id> does not exist'
+  500:
+    description: 'Some unknown exception!'

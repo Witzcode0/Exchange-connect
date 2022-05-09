@@ -1,0 +1,28 @@
+CRUD TEST
+1. PUT
+  - test upload cover_photo and profile_photo with form data
+  - test both photo upload at a time without others data
+  - test only one photo with others data
+  - test blank data upload via form data
+  - test pass experiences and educations in stringify object with multiple data
+  - test delete cover_photo and profile_photo via form data as a file name
+  - test one photo upload and one photo delete
+  - test remove cover photo or profile photo, cover thumbnail and profile
+    thumbnail also delete
+2. GET
+  - test fetch all data of users
+  - check filter sector and industry w.r.t. account_profile
+  - check search_privacy w.r.t user_settings
+  - check not_of_account_type filter
+
+  - after adding new key 'account_model' in current_user
+    - check search_privacy_sector and search_privacy_indsutry
+        check display users only whose account sector_id in users search privacy sectors
+        check display users only whose account industry_id in users search privacy industries
+    - check search_privacy_market_cap
+        cehck display users only whose account market_cap should be between
+        user settings privacy min and max market caps.
+    - search_privacy_designation_level
+        check designation level wise if any user set designation level as
+        bod & top management, only bod & top management designation level user can
+        search particular user

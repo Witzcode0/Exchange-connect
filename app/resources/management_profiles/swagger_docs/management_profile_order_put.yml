@@ -1,0 +1,41 @@
+Update all the Management Profile's sequence_id
+---
+tags:
+  - Management Profile
+parameters:
+  - in: header
+    name: Authorization
+    type: string
+    required: true
+  - name: body
+    in: body
+    schema:
+      $ref: '#/definitions/ManagementProfileOrder'
+responses:
+  200:
+    description: 'Management Profiles Updated'
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            message:
+              type: string
+              description: 'Management Profiles Updated'
+  400:
+    description: No data sent
+  422:
+    description: 'Error in data'
+  500:
+    description: 'Some unknown exception!'
+definitions:
+  ManagementProfileOrder:
+    properties:
+      management_profile_ids:
+        items:
+          format: int32
+          type: integer
+        type: array
+    required:
+    - management_profile_ids
+    type: object

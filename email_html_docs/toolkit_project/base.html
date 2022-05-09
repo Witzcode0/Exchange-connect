@@ -1,0 +1,99 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Untitled Document</title>
+</head>
+
+<body>
+
+ <table width="100%" style="max-width: 580px;border: 1px solid #ccc; font-family:Arial,' sans-serif'; font-size: 14px;" cellpadding="0" border="0" cellspacing="0" bgcolor="#fff" align="center">
+  <tbody>
+    <tr>
+      <td bgcolor="#870d14" style="color: #fff; text-align: center; padding: 10px;">
+        Hello {{user_name}}
+      </td>
+    </tr>
+    {% block content %} {% endblock %}
+    <tr>
+      <td><hr></td>
+    </tr>
+    <tr>
+    </tr>
+    <tr>
+      <td style="padding: 10px;">
+        <table width="560px" style="border: 1px solid #870d14; padding: 10px;">
+        <tbody>
+        <tr>
+          <td colspan="3" align="center"><strong>Project Details</strong></td>
+        </tr>
+        <tr>
+          <td width="175px">Area of work</td>
+          <td width="30px">:</td>
+          <td>{{work_area}}</td>
+        </tr>
+        <tr>
+          <td width="175px">Type of presentation</td>
+          <td width="30px">:</td>
+          <td>{{project.project_type.project_type_name}}</td>
+        </tr>
+        <tr>
+          <td width="175px">Presentation dimention</td>
+          <td width="30px">:</td>
+          <td>{{project.dimention}}</td>
+        </tr>
+        <tr>
+          <td width="175px">Number of slides</td>
+          <td width="30px">:</td>
+          <td>{{project.sides_nr}}</td>
+        </tr>
+        {% if creator_mail %}
+        <tr>
+          <td width="175px">Contact Email</td>
+          <td width="30px">:</td>
+          <td>{{creator_mail}}</td>
+        </tr>
+        {% endif %}
+        </tbody>
+      </table>
+      </td>
+    </tr>
+    <tr>
+      <td height="20">
+
+      </td>
+    </tr>
+<!--    <tr>-->
+<!--      <td align="center">-->
+<!--        <a href="{{link}}" style=" background: #870d14; color: #fff; padding: 10px; text-decoration: none;">Go to project</a>-->
+<!--      </td>-->
+<!--    </tr>-->
+    <tr>
+      <td height="20">
+
+      </td>
+    </tr>
+    <tr>
+      <td style="padding: 10px;">
+        For queries, contact <a href="mailto:{{helpdesk_email}}"
+                                target="_blank">{{helpdesk_email}}</a>
+        and {{helpdesk_number}}.
+      </td>
+    </tr><br/>
+
+   <tr>
+      <td style="padding: 0 10px 10px 10px; font-family:Arial,' sans-serif'; font-size: 14px; line-height:20px">
+        Warm regards,<br/>
+        Team Design Lab
+      </td>
+    </tr>
+<!--    <tr>-->
+<!--      <td style="padding: 0 10px 10px 10px;font-size: 10px;display:block;padding-bottom:8px;color:#999">-->
+<!--        If you don't want to receive this type of email in the future, please-->
+<!--        <a href="{{unsubscribe}}">unsubscribe.</a>-->
+<!--      </td>-->
+<!--    </tr>-->
+  </tbody>
+</table>
+</body>
+</html>

@@ -1,0 +1,69 @@
+TEST CRUD
+* Post
+    - check data missing error
+    - check data incorrect error (not applicable)
+    - check forbidden error
+    - check httpexception error
+    - check unknown error
+    - check no errors, Project Parameter data entered successfully
+    - check does not exist error(parent_parameter_name)
+    - check completion status calculate based on parameter
+    - check no errors, data entered successfully
+* Put
+    - check data missing error
+    - check data incorrect error (not applicable)
+    - check no errors, Project Parameter data update successfully
+    - check no errors, Project Parameter new data create successfully
+    - check forbidden error
+    - check httpexception error
+    - check unknown error
+    - check already exist error (project_id,parent_parameter_name,parameter_name)
+    - check if custom parameter, updating project_parameters
+        by not sending parameter_value also
+    - check no errors, data entered successfully
+* Get
+    - check not found
+    - check found, fetched
+* Delete
+    - check not found
+    - check found, deleted
+
+TEST Listing
+- test project_name filter
+- test created_by filter
+- test sort_by project_type_name with asc and dsc
+
+
+ProjectAdminAnalystAPI:
+
+*Put
+    - check role permissions
+    - check does not exist error: Project id: 199 does not exist
+    - check data missing error
+    - check no errors, Project Parameter data update successfully
+    - check no errors, Project Parameter new data create successfully
+    - check already exist error (project_id,parent_parameter_name,parameter_name)
+    - check does not exist error for parent_parameter_name, project_id
+    - check add/update(if exist) single and multiple analysts(with validation)
+    - check admin can give started_at and ended_at to any project
+    - check no errors, data entered successfully
+
+*Get
+    - check role permissions
+    - check not found
+    - check found, fetched
+
+*Delete
+    - check role permissions
+    - check not found
+    - check found, deleted
+
+ProjectAdminAnalystListAPI
+
+*Get
+    - check role permissions
+    - check getting all projects
+    - check project_name filter
+    - cehck sort_by project_type_name with asc and dsc
+    - check project_type_id filter
+    - when manager user fetch project only assigned account's project will be fetch

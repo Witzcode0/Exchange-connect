@@ -1,0 +1,56 @@
+For creating new comment by user
+---
+tags:
+  - Comment
+parameters:
+  - in: header
+    name: Authorization
+    type: string
+    required: true
+  - name: attachment
+    in: formData
+    type: file
+  - name: deleted
+    in: formData
+    type: boolean
+    default: false
+    required: true
+  - name: is_admin
+    in: formData
+    type: boolean
+    default: false
+  - name: message
+    in: formData
+    type: string
+    required: true
+  - name: ticket_id
+    in: formData
+    type: integer
+    required: true
+    schema:
+      $ref: '#/definitions/Comment'
+responses:
+  201:
+    description: 'comment has been created'
+    schema:
+      content:
+        application/json:
+      schema:
+        type: object
+        required:
+          - message
+          - row_id
+        properties:
+          name:
+            type: string
+            default: 'comment been created'
+          row_id:
+            type: int32
+            description: 'row id of the generated comment'
+            default: 1
+  400:
+    description: 'No data sent'
+  422:
+    description: 'Error in data'
+  500:
+    description: 'Some unknown exception!'

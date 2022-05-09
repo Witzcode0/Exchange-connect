@@ -1,0 +1,20 @@
+Delete a RegistrationRequest
+---
+tags:
+  - Registration Requests (Admin)
+parameters:
+  - in: header
+    name: Authorization
+    type: string
+  - in: path
+    name: row_id
+    schema:
+      type: int
+    required: true
+    description: The registration request to delete
+responses:
+  204:
+    description: RegistrationRequest deleted
+
+  500:
+    description: Some unknown exception!

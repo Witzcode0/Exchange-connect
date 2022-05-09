@@ -1,0 +1,45 @@
+Update all the User's sequence_id for same account
+---
+tags:
+  - Users (Admin)
+parameters:
+  - in: header
+    name: Authorization
+    type: string
+    required: true
+  - name: body
+    in: body
+    schema:
+      $ref: '#/definitions/AdminUserOrder'
+responses:
+  200:
+    description: 'Users Updated'
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            message:
+              type: string
+              description: 'Users Updated'
+  400:
+    description: No data sent
+  422:
+    description: 'Error in data'
+  500:
+    description: 'Some unknown exception!'
+definitions:
+  AdminUserOrder:
+    properties:
+      account_id:
+        format: int32
+        type: integer
+      user_ids:
+        items:
+          format: int32
+          type: integer
+        type: array
+    required:
+    - account_id
+    - user_ids
+    type: object

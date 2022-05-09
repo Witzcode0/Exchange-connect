@@ -1,0 +1,46 @@
+Test Crud Operations
+
+WebinarHostAPI :
+
+* Post
+    - check data missing error (required field)
+    - check does not exist error by sending not available webinar_id.
+    - check already exists error (unique constraint: webinar_id and host_id)
+    - check length validations for host_first_name,
+        host_last_name and host_designation.
+    - check for unique constraint in webinar_id, host_id and host_email
+        - check whether host_id OR host_email is not NULL
+        - check if host_id is given, host_email should not be there and vice versa.
+        - check if host_id is given, any detail belongs to external host of
+        host_first_name, host_last_name and host_designation
+        should not be there and vice versa.
+    - check unknown error
+    - check no errors, data entered successfully
+    - update the webinar_stats table for the webinar_id
+* Put
+    - check not found (webinar host id does not exist)
+    - check does not exist error by sending not available webinar_id.
+    - check already exists error (unique constraint: webinar_id and host_id)
+    - check length validations for host_first_name,
+        host_last_name and host_designation.
+    - check for unique constraint in webinar_id, host_id and host_email
+        - check whether host_id OR host_email is not NULL
+        - check if host_id is given, host_email should not be there and vice versa.
+        - check if host_id is given, any detail belongs to external host of
+        host_first_name, host_last_name and host_designation
+        should not be there and vice versa.
+    - check unknown error
+    - check no errors, data entered successfully
+    - check if webinar_id is changed then update the webinar_stats for the new webinar_id and old
+        webinar_id
+* Get
+    - check not found (webinar host id does not exist)
+    - check found, fetched
+* Delete
+    - check not found (webinar host id does not exist)
+    - check found, deleted
+
+WebinarHostListAPI :
+
+* Get
+    - check found, fetched.

@@ -1,0 +1,66 @@
+Webcast Launch Test:
+-check if is_draft is false of the Webcast launched:
+    - Send an email to creator
+    - if invitees, Send an email to invitees
+    - if participants, send an email to participants
+    - if rsvps, send an email to rsvps
+    - if hosts, send an email to hosts
+
+creator format synced as on 2018-06-18 11:25:17
+invitees format synced as on 2018-06-18 11:25:20
+participants format synced as on 2018-06-18 11:25:24
+rsvps format synced as on 2018-06-18 11:25:27
+hosts format synced as on 2018-06-18 11:25:00
+-check send launch email to creator,invitees,participants,rsvps and hosts according to timezone
+
+Webcast Update Test:
+    - check update mail with html
+    - check send update email to invitees
+    - check send update email to creators.
+    - check send update email to rsvps.
+    - check send update email to participants.
+    - check send update email to hosts.
+
+creator format synced as on 2018-06-18 11:25:28
+invitees format synced as on 2018-06-18 11:25:32
+participants format synced as on 2018-06-18 11:25:35
+rsvps format synced as on 2018-06-18 11:25:38
+hosts format synced as on 2018-06-18 11:25:00
+-check send update email to creator,invitees,participants,rsvps and hosts according to timezone
+
+Webcast Completion Test:
+    - check completion email of participants with html
+    - check completion email of attendees with html
+
+participants format synced as on 2018-06-18 11:28:14
+attendees format synced as on 2018-06-18 11:28:14
+
+Webcast Cancellation Test:
+    - check if webcast cancelled, then send an email to invitees
+invitees format last synced on 2018-06-18 11:35:53
+
+checked for non mandatory fields:
+    mandatory fields :
+    - company_name
+    - user_name
+    non-mandatory fields :
+    - time_zone
+    - date_time (started_at, ended_at)
+    - webcast
+    - speaker_list
+    - participant_list
+    - contact_person
+    - email
+    constants/configs :
+    - link
+    - helpdesk_number
+    - helpdesk_email
+
+check only invitee can get book now option.
+check logo url:
+    Get the logo url from the webcast if not, get it from webcast account if not,
+    get default one from config.
+    for the following contents
+    1. Webcast launch
+    2. Webcast update
+    3. Webcast completion

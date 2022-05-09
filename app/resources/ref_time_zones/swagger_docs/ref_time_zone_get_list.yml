@@ -1,0 +1,107 @@
+Get a list of Time Zone based on query parameters
+---
+tags:
+  - TimeZones
+parameters:
+  - in: header
+    name: Authorization
+    type: string
+  - in: query
+    schema:
+      $ref: '#/definitions/RefTimeZoneReadArgs'
+responses:
+  200:
+    description: 'Time Zone fetched'
+    schema:
+      type: object
+      properties:
+        results:
+          type: array
+          items:
+            $ref: '#/definitions/RefTimeZone'
+        total:
+          type: int32
+          default: 1
+  404:
+    description: 'No matching time zones found'
+  500:
+    description: 'Some unknown exception'
+definitions:
+  RefTimeZone:
+    properties:
+      created_date:
+        format: date-time
+        readOnly: true
+        type: string
+        x-nullable: true
+      display_value:
+        maxLength: 256
+        type: string
+      links:
+        readOnly: true
+        type: string
+      modified_date:
+        format: date-time
+        readOnly: true
+        type: string
+        x-nullable: true
+      offset:
+        maxLength: 32
+        type: string
+        x-nullable: true
+      row_id:
+        format: int32
+        readOnly: true
+        type: integer
+      timezone_value:
+        maxLength: 128
+        type: string
+        x-nullable: true
+      utc:
+        items:
+          type: string
+        type: array
+    required:
+    - display_value
+    - utc
+    type: object
+  RefTimeZoneReadArgs:
+    properties:
+      created_date_from:
+        format: date-time
+        type: string
+      created_date_to:
+        format: date-time
+        type: string
+      display_value:
+        type: string
+      operator:
+        enum:
+        - and
+        - or
+        type: string
+        default: and
+      page:
+        format: int32
+        type: integer
+        default: 1
+      per_page:
+        format: int32
+        type: integer
+        default: 20
+      pfields:
+        items:
+          type: string
+        type: array
+      sort:
+        enum:
+        - asc
+        - dsc
+        type: string
+        default: asc
+      sort_by:
+        items:
+          type: string
+        type: array
+        default: row_id
+    type: object

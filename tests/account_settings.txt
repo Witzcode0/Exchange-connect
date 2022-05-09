@@ -1,0 +1,24 @@
+TEST DEFAULT CREATION
+  - test created when new account added in account admin_api POST api
+  - test created when new account added in import accounts script
+
+TEST CRUD
+1. PUT
+  - test incorrect email errors
+  - test correct email is accepted
+  - test email already exists error
+  - test verification email sent
+  - test email verification flag updated correctly when already verified email
+  - test email verification flag updated correctly when new unverified email
+  - test email domain verification message returned
+  - test old email removed, when new email set
+2. GET
+  - test get
+
+Test VerifySenderEmailAPI
+PUT
+  - test if email is not yet verified, verification email is resent
+  - test if email is verified, then verification flag is updated
+  - test if email does not exist, then error is returned
+
+Test affect of settings email in CAE launch - in CAE tests

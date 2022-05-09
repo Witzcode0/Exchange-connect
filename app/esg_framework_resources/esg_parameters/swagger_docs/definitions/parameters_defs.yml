@@ -1,0 +1,94 @@
+definitions:
+  Parameter:
+    properties:
+      created_by:
+        format: int32
+        readOnly: true
+        type: integer
+      creator:
+        properties:
+          row_id:
+            format: int32
+            readOnly: true
+            type: integer
+        readOnly: true
+        type: object
+      date_created:
+        format: date-time
+        readOnly: true
+        type: string
+        x-nullable: true
+      date_modified:
+        format: date-time
+        readOnly: true
+        type: string
+        x-nullable: true
+      links:
+        readOnly: true
+        type: string
+      name:
+        maxLength: 256
+        minLength: 1
+        type: string
+      parameter_index:
+        maxLength: 32
+        minLength: 1
+        type: string
+      parameter_parent_id:
+        format: int32
+        type: integer
+        x-nullable: true
+      row_id:
+        format: int32
+        readOnly: true
+        type: integer
+      updated_by:
+        format: int32
+        readOnly: true
+        type: integer
+    required:
+    - created_by
+    - name
+    - parameter_index
+    - updated_by
+    type: object
+  ParameterReadArgs:
+    properties:
+      date_created_from:
+        format: date-time
+        type: string
+      date_created_to:
+        format: date-time
+        type: string
+      name:
+        type: string
+      operator:
+        enum:
+        - and
+        - or
+        type: string
+      page:
+        format: int32
+        type: integer
+      parameter_index:
+        type: string
+      parameter_parent_id:
+        format: int32
+        type: integer
+      per_page:
+        format: int32
+        type: integer
+      pfields:
+        items:
+          type: string
+        type: array
+      sort:
+        enum:
+        - asc
+        - dsc
+        type: string
+      sort_by:
+        items:
+          type: string
+        type: array
+    type: object

@@ -1,0 +1,147 @@
+For creating new News item archive
+---
+tags:
+  - News Archive
+parameters:
+  - in: header
+    name: Authorization
+    type: string
+  - in: path
+    name: news_item_id
+    type: int
+    required: true
+    description: 'The News item archive create'
+responses:
+  201:
+    description: 'NewsItem Archive has been created'
+    schema:
+      content:
+        application/json:
+      schema:
+        type: object
+        required:
+          - message
+          - row_id
+        properties:
+          message:
+            type: string
+            default: 'NewsItem Archive has been created'
+          row_id:
+            type: int32
+            description: 'row id of the generated NewsItem Archive'
+            default: 1
+  400:
+    description: 'No data sent'
+  422:
+    description: 'Error in data or NewsItem Archive already exists'
+  500:
+    description: 'Some unknown exception!'
+NewsItemArchive:
+    type: object
+    required:
+    - account_id
+    - created_by
+    - description
+    - guid
+    - link
+    - news_id
+    - posted_at
+    - title
+    - updated_by
+    properties:
+      description:
+        type: string
+      account_id:
+        format: int32
+        readOnly: true
+        type: integer
+      news_id:
+        format: int32
+        readOnly: true
+        type: integer
+      posted_at:
+        format: date-time
+        type: string
+      news:
+        readOnly: true
+        type: object
+        properties:
+          links:
+            readOnly: true
+            type: string
+          row_id:
+            format: int32
+            readOnly: true
+            type: integer
+      row_id:
+        format: int32
+        readOnly: true
+        type: integer
+      modified_date:
+        format: date-time
+        readOnly: true
+        x-nullable: true
+        type: string
+      created_date:
+        format: date-time
+        readOnly: true
+        x-nullable: true
+        type: string
+      links:
+        readOnly: true
+        type: string
+      account:
+        readOnly: true
+        type: object
+        required:
+        - account_name
+        properties:
+          account_name:
+            minLength: 1
+            type: string
+      title:
+        maxLength: 512
+        type: string
+      creator:
+        readOnly: true
+        type: object
+        required:
+        - profile
+        properties:
+          row_id:
+            format: int32
+            readOnly: true
+            type: integer
+          profile:
+            type: object
+            required:
+            - first_name
+            - last_name
+            properties:
+              links:
+                readOnly: true
+                type: string
+              first_name:
+                minLength: 1
+                type: string
+              last_name:
+                minLength: 1
+                type: string
+              designation:
+                x-nullable: true
+                maxLength: 128
+                type: string
+      link:
+        maxLength: 1024
+        type: string
+      guid:
+        maxLength: 1024
+        type: string
+      updated_by:
+        format: int32
+        readOnly: true
+        type: integer
+      created_by:
+        format: int32
+        readOnly: true
+        type: integer

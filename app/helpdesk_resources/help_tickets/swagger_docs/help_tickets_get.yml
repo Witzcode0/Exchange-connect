@@ -1,0 +1,191 @@
+Fetch a ticket
+---
+tags:
+  - Ticket
+parameters:
+  - in: header
+    name: Authorization
+    required: true
+    type: string
+  - in: path
+    name: row_id
+    schema:
+      type: int
+    required: true
+    description: 'The ticket id to fetch'
+responses:
+  200:
+    description: ticket fetched
+    schema:
+      $ref: '#/definitions/Ticket'
+  404:
+    description: 'ticket id: <row_id> does not exist'
+  500:
+    description: 'Some unknown exception!'
+definitions:
+  Ticket:
+    properties:
+      all_comments:
+        type: string
+      assignee:
+        type: string
+        x-nullable: true
+      assignee_id:
+        format: int32
+        type: integer
+        x-nullable: true
+      attachment:
+        type: string
+        x-nullable: true
+      attachment_url:
+        format: url
+        type: string
+      comments:
+        items:
+          type: string
+        type: array
+      created_by:
+        format: int32
+        readOnly: true
+        type: integer
+      created_date:
+        format: date-time
+        readOnly: true
+        type: string
+        x-nullable: true
+      creator:
+        type: string
+        x-nullable: true
+      deleted:
+        readOnly: true
+        type: boolean
+        x-nullable: true
+      description:
+        maxLength: 1024
+        minLength: 1
+        type: string
+      email:
+        format: email
+        maxLength: 128
+        minLength: 1
+        type: string
+      function:
+        enum:
+        - home
+        - following
+        - company showcase
+        - find connection
+        - news
+        - overview
+        - events
+        - statistics
+        - draft
+        - webcast
+        - upcoming
+        - webinar
+        - survey
+        - newswire
+        - investor relations modules
+        - concept of investor relations
+        - organizing and conducting investor day
+        - other
+        - activity
+        - followers
+        - company webpage
+        - my network
+        - my connections
+        - search company
+        - search people
+        - sent requests
+        - contact requests
+        - corporate access
+        - open for event
+        - availability
+        - create event
+        - ownership analysis
+        - snapshot
+        - buyer/seller
+        - comprehensive ownership
+        - historical
+        - geographical dispersion
+        - peer analysis
+        - company profile
+        - stock info
+        - search profile
+        - people
+        - tree view
+        - investor targeting
+        - perception study
+        - create survey
+        - disclosures enhancement
+        - webcasting
+        - newswire distribution
+        - create newswire
+        - order your documents
+        - my projects
+        - projects
+        - files
+        - dashboard
+        - announcements
+        type: string
+      links:
+        type: string
+      modified_date:
+        format: date-time
+        readOnly: true
+        type: string
+        x-nullable: true
+      name:
+        maxLength: 128
+        minLength: 1
+        type: string
+      phone:
+        maxLength: 16
+        minLength: 1
+        type: string
+      row_id:
+        format: int32
+        readOnly: true
+        type: integer
+      section:
+        enum:
+        - activity
+        - corporate access
+        - peer benchmarking
+        - webcasting
+        - webinar
+        - perception survey
+        - newswire distribution
+        - investor relations modules
+        - other
+        - my network
+        - ownership analysis
+        - investor targeting
+        - perception study
+        - disclosures enhancement
+        - order your documents
+        - my projects
+        type: string
+      status:
+        enum:
+        - pending
+        - in process
+        - closed
+        type: string
+      subject:
+        maxLength: 256
+        minLength: 1
+        type: string
+      updated_by:
+        format: int32
+        readOnly: true
+        type: integer
+    required:
+    - created_by
+    - description
+    - email
+    - name
+    - phone
+    - subject
+    - updated_by
+    type: object

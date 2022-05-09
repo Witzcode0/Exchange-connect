@@ -1,0 +1,102 @@
+Edit an AccountProfile udpate details etc.
+---
+tags:
+  - Account Profiles
+parameters:
+  - in: header
+    name: Authorization
+    required: true
+    type: string
+  - in: path
+    name: account_id
+    required: true
+  - name: cover_photo
+    in: formData
+    type: file
+  - name: profile_photo
+    in: formData
+    type: file
+  - name: description
+    in: formData
+    type: string
+  - name: sector_id
+    in: formData
+    type: integer
+  - name: industry_id
+    in: formData
+    type: integer
+  - name: region
+    in: formData
+    type: string
+  - name: country
+    in: formData
+    type: string
+  - name: institution_type
+    in: formData
+    type: string
+  - name: institution_style
+    in: formData
+    type: string
+  - name: cap_group
+    in: formData
+    type: string
+    schema:
+      $ref: '#/definitions/cap_group'
+  - name: top_ten_holdings_percentage
+    in: formData
+    type: number
+  - name: currency
+    in: formData
+    type: string
+  - name: turnover
+    in: formData
+    type: string
+  - name: address_street_one
+    in: formData
+    type: string
+  - name: address_street_two
+    in: formData
+    type: string
+  - name: address_city
+    in: formData
+    type: string
+  - name: address_state
+    in: formData
+    type: string
+  - name: address_zip_code
+    in: formData
+    type: string
+  - name: address_country
+    in: formData
+    type: string
+  - name: phone_primary
+    in: formData
+    type: string
+  - name: phone_secondary
+    in: formData
+    type: string
+  - name: phone_alternate
+    in: formData
+    type: string
+  - name: management_profiles
+    in: formData
+    description: 'stringify json'
+    schema:
+      $ref: '#/definitions/ManagementProfile'
+definitions:
+  cap_group:
+      type: string
+      x-nullable: true
+      enum:
+      - small cap
+      - mid cap
+      - large cap
+  ManagementProfile:
+    type: object
+    properties:
+      name:
+        type: string
+      description:
+        type: string
+      designation:
+        type: string

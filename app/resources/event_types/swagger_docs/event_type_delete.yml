@@ -1,0 +1,21 @@
+Delete a Event Type
+---
+tags:
+  - Event Types
+parameters:
+  - in: header
+    name: Authorization
+    type: string
+  - in: path
+    name: row_id
+    schema:
+      type: int
+    required: true
+    description: 'The Event Type to delete'
+responses:
+  204:
+    description: 'Event Type deleted'
+  404:
+    description: 'Event Type id: <row_id> does not exist'
+  500:
+    description: 'Some unknown exception!'

@@ -1,0 +1,118 @@
+Get a list of Scheduled report logs
+---
+tags:
+  - Scheduled reports (Admin)
+parameters:
+  - in: header
+    name: Authorization
+    type: string
+  - in: query
+    schema:
+      $ref: '#/definitions/AdminScheduledReportLogReadArgs'
+responses:
+  200:
+    description: 'Scheduled report logs fetched'
+    schema:
+      type: object
+      properties:
+        results:
+          type: array
+          items:
+            $ref: '#/definitions/ScheduledReportLog'
+        total:
+          type: int32
+          default: 1
+  404:
+    description: 'no matching schedule report logs found'
+  500:
+    description: 'Some unknown exception'
+definitions:
+  ScheduledReportLog:
+    properties:
+      account_id:
+        format: int32
+        readOnly: true
+        type: integer
+      api_calls:
+        items:
+          $ref: '#/definitions/ApiCalls'
+        type: array
+      created_by:
+        format: int32
+        readOnly: true
+        type: integer
+      created_date:
+        format: date-time
+        readOnly: true
+        type: string
+        x-nullable: true
+      modified_date:
+        format: date-time
+        readOnly: true
+        type: string
+        x-nullable: true
+      report:
+        type: string
+        x-nullable: true
+      report_id:
+        format: int32
+        readOnly: true
+        type: integer
+        x-nullable: true
+      response_body:
+        type: string
+        x-nullable: true
+      response_code:
+        format: int32
+        type: integer
+        x-nullable: true
+      row_id:
+        format: int32
+        readOnly: true
+        type: integer
+      sent_at:
+        format: date-time
+        type: string
+        x-nullable: true
+      status:
+        type: string
+    required:
+      - account_id
+      - created_by
+    type: object
+  AdminScheduledReportLogReadArgs:
+    properties:
+      created_date_from:
+        format: date-time
+        type: string
+      created_date_to:
+        format: date-time
+        type: string
+      operator:
+        enum:
+          - and
+          - or
+        type: string
+      page:
+        format: int32
+        type: integer
+      per_page:
+        format: int32
+        type: integer
+      pfields:
+        items:
+          type: string
+        type: array
+      report_id:
+        format: int32
+        type: integer
+      sort:
+        enum:
+          - asc
+          - dsc
+        type: string
+      sort_by:
+        items:
+          type: string
+        type: array
+    type: object

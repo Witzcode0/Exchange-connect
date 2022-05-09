@@ -1,0 +1,133 @@
+Get a list of corporate access event global stats based on query parameters
+---
+tags:
+  - Corporate Access Event Stats
+parameters:
+  - in: header
+    name: Authorization
+    required: true
+    type: string
+  - in: query
+    schema:
+      $ref: '#/definitions/CorporateAccessEventStatsOverallReadArgs'
+responses:
+  200:
+    description: 'corporate access event global stats fetched'
+    schema:
+      type: object
+      properties:
+        results:
+          type: array
+          items:
+            $ref: '#/definitions/CorporateAccessEventStatsOverall'
+        total:
+          type: int32
+          default: 1
+  404:
+    description: 'corporate access event stats not found'
+  500:
+    description: 'Some unknown exception'
+definitions:
+  CorporateAccessEventStatsOverall:
+    properties:
+      average_fill_rate:
+        format: float
+        readOnly: true
+        type: number
+      total_attended:
+        format: int32
+        readOnly: true
+        type: integer
+      total_attendees_by_account_types:
+        items:
+          properties:
+            account_type:
+              readOnly: true
+              type: string
+            total:
+              format: int32
+              readOnly: true
+              type: integer
+          type: object
+        readOnly: true
+        type: array
+      total_booked:
+        format: int32
+        readOnly: true
+        type: integer
+      total_events:
+        format: int32
+        readOnly: true
+        type: integer
+      total_events_by_event_sub_types:
+        items:
+          properties:
+            name:
+              readOnly: true
+              type: string
+            total:
+              format: int32
+              readOnly: true
+              type: integer
+          type: object
+        readOnly: true
+        type: array
+      total_location:
+        format: int32
+        readOnly: true
+        type: integer
+      total_meetings:
+        format: int32
+        readOnly: true
+        type: integer
+    type: object
+  CorporateAccessEventStatsOverallReadArgs:
+    properties:
+      created_date_from:
+        format: date-time
+        type: string
+      created_date_to:
+        format: date-time
+        type: string
+      ended_at_from:
+        format: date-time
+        type: string
+      ended_at_to:
+        format: date-time
+        type: string
+      operator:
+        enum:
+        - and
+        - or
+        type: string
+        default: and
+      page:
+        format: int32
+        type: integer
+        default: 1
+      per_page:
+        format: int32
+        type: integer
+        default: 20
+      pfields:
+        items:
+          type: string
+        type: array
+      sort:
+        enum:
+        - asc
+        - dsc
+        type: string
+        default: asc
+      sort_by:
+        items:
+          type: string
+        type: array
+        default: row_id
+      started_at_from:
+        format: date-time
+        type: string
+      started_at_to:
+        format: date-time
+        type: string
+    type: object

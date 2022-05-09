@@ -1,0 +1,49 @@
+TEST CRUD
+1. Post
+   - test with accepted_terms (if requested user not accepted terms so
+    422 will be return)
+2. Put
+3. Get
+4. Delete
+
+TEST ADDITIONAL FUNCTIONALITY
+1. Check first email verification sent on new registration request
+2. Check that on email verification link visit, status changed to pending
+    - test "bad email" condition
+    - test "already verified" condition
+    - test "successfully verified" condition
+3. Check via admin
+    - test "all pending/unverified" requested
+    - if unverified requested then resend email for verification
+    - if rejected then status changed to rejected and send mail to user
+    - if accepted by admin then user created and auto password generated
+      send mail to user
+    - try to add rejected user
+    - try to add unverified user
+    - test email sent from task
+
+RegistrationRequestAddUserAPI:
+    - check after new user added, activation_date updated for new account.
+    - check if subscription first date and last date not provided while creating
+        a new account(i.e. both are empty in account table ),
+        then update both values while creating an user.
+    - send a welcome email to user after admin accepted request.
+    - add default contacts to user after admin accepted request.
+    - check after new user added, user_id gets updated to respective event if that user was already invited to that event.
+    - check with requested user whose already exists in user as a guest user,
+      try to add with account id ,account type and role
+    - also provide the sequence_id to the newly added user from api for ordering users
+        of same account
+
+AccountUserMember:
+    - Prefer account user member test case
+
+RegistrationRequestEmailVerifyAPI
+PUT:
+    - check with verification token, user will be verified
+    - if registration request via admin then user can change password,
+        first_name, last_name, phone_number
+
+GET:
+    - check with verification token, if token is right so, fetch registration
+        request data

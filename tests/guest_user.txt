@@ -1,0 +1,21 @@
+Test CRUD
+
+* Post
+    - create by email id, first name, last name etc
+    - password is email id by default
+    - by default account type is guest user
+    - if guest user already exists then direct access token return
+    - if normal user so 422 error generated
+    - when new guest created then direct access token return
+    - test with accepted_terms (if guest user not accepted terms so
+        422 will be return)
+    - sequence_id should be 1 for every guest user
+
+Extra testing API(Permission)
+    - Guest user can add as invitee, host, participants of webinar, webcast and coporate access event
+	- Guest user can see which are invited, particpated or hosted in particular
+	    webinar, webcast and coporate access event
+	- Guest user only access event get, slot get, inquiry get put delete post
+	- Guest user behaviour like normal user with less permissions
+	- Guest user can access corporate access attendee put method for rating
+

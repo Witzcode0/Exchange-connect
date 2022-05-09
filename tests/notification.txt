@@ -1,0 +1,67 @@
+1) Contact Request
+    - check sender requested to sendee notification for sendee
+    - check sendee accepted request notification for sender
+
+2) Follow
+    - check when any user follow company, notification for company admin
+
+3) Event
+    - check When event creator invite many users, notification all invitees
+
+4) Post comment and star
+    - check when any user commented particular post, notification for post creator
+        and all commented users
+    - check when any user started particular post, notification for  post creator
+
+5) Survey
+    - check When survey creator invite many users, notification all invitees
+
+6) Corporate access event
+    - check When Corporate access event creator invite many users,
+        notification all invitees
+    - check When Corporate access event creator host many users,
+        notification all hosts
+    - check When Corporate access event creator host many collaborator,
+        notification all collaborators
+    - check When Corporate access event creator host many participants,
+        notification all participants
+    - check when Corporate access event launch in put call so send notification for all user
+       such as all host, participant and invitee
+7) Webcast
+    - check When Webcast creator invite many invitees in POST/PUT, notify all related invitees
+    - check When Webcast creator invite many participants in POST/PUT, notify all related participants
+    - check When Webcast creator invite many hostsin POST/PUT, notify all related hosts
+    - check When Webcast creator invite many rsvpsin POST/PUT, notify all related rsvps
+    - check when Webcast is updated, notify all related users
+    - check when Webcast is cancelled, notify invitee users
+    - check when event creator adds many hosts in PUT, notify all hosts
+    - check When event creator adds many rsvp in PUT, notify all rsvps
+    - check when event creator adds many participant in PUT, notify all participant
+    - check when webcast is cancelled then send notification to invitee
+
+8) Webinar
+    - check When Webinar creator invite many users, notification all invitees
+    - check when webinar creator adds many hosts, notify all hosts
+    - check When Webinar creator adds many participant, notify all participants
+    - check When Webinar creator adds many rsvp, notify all rsvps
+    - check When Webinar is updated, notify all related users
+    - check When Webinar is cancelled, notify invitee users
+    - check when webinar launch in put call so send notification for all user
+       such as all host, participant and invitee
+    - check when webinar is cancelled then send notification to invitee
+
+9) CAEvent
+    - check when event creator adds many hosts, notify all hosts
+    - check When event creator adds many rsvp, notify all rsvps
+    - check when event creator adds many participant, notify all participant
+    - check when event creator adds many collaborator, notify all collaborator
+    - check when event is updated, notify all related users
+    - check when event is cancelled, notify all related users
+    - check when event creator adds many hosts in PUT, notify all hosts
+    - check When event creator adds many rsvp in PUT, notify all rsvps
+    - check when event creator adds many participant in PUT, notify all participant
+    - check when event creator adds many collaborator in PUT, notify all collaborator
+
+10) CAEvent Invitee
+    - when invitee accepted event notification for event creator
+    - when invitee rejected event notification for event creator

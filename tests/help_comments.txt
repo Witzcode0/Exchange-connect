@@ -1,0 +1,22 @@
+Test CRUD
+1. Post
+    - check data missing error
+    - check data already exists error
+    - check forbidden error
+    - check httpexception error
+    - uploaded attachment and created url for it
+    - check no errors, comment data entered successfully and email is has been sent
+    - check ticket id does not exist error
+2. Put
+    - check forbidden error
+    - check httpexception error
+    - uploaded attachment and created url for it
+    - check no errors, comment data updated successfully and email has been sent
+    - check ticket id does not exist error
+3. Delete
+    - check comment, not found
+    - check found, deleted successfully
+4. Get
+    - check comment, not found
+    - check comment, found and data returned
+    - fetching the comment using filters

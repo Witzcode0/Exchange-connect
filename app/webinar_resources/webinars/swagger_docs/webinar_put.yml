@@ -1,0 +1,239 @@
+For update webinar detail
+---
+tags:
+  - Webinars
+parameters:
+  - in: header
+    name: Authorization
+    required: true
+    type: string
+  - in: path
+    name : row_id
+    required: true
+    type: integer
+  - name: title
+    in: formData
+    type: string
+  - name: started_at
+    in: formData
+    type: string
+    format: date-time
+  - name: ended_at
+    in: formData
+    type: string
+    format: date-time
+  - name: description
+    in: formData
+    type: string
+  - name: open_to_account_types
+    in: formData
+    schema:
+      $ref: '#/definitions/open_to_account_types'
+  - name: file_ids
+    in: formData
+    schema:
+      $ref: '#/definitions/file_ids'
+  - name: participant_ids
+    in: formData
+    schema:
+      $ref: '#/definitions/participant_ids'
+  - name: host_ids
+    in: formData
+    schema:
+      $ref: '#/definitions/host_ids'
+  - name: rsvps
+    in: formData
+    schema:
+      $ref: '#/definitions/rsvps'
+  - name: external_hosts
+    in: formData
+    schema:
+      $ref: '#/definitions/external_hosts'
+  - name: external_invitees
+    in: formData
+    schema:
+      $ref: '#/definitions/external_invitees'
+  - name: external_participants
+    in: formData
+    schema:
+      $ref: '#/definitions/external_participants'
+  - name: cc_emails
+    in: formData
+    schema:
+      $ref: '#/definitions/cc_emails'
+  - name: invite_logo_filename
+    in: formData
+    type: file
+  - name: invite_banner_filename
+    in: formData
+    type: file
+responses:
+  200:
+    description: 'Updated webinar id: <row_id>'
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            message:
+              type: string
+              description: 'Updated webinar id: <row_id>'
+  400:
+    description: No data sent
+  404:
+    description: 'webinar id: <row_id> does not exist'
+  422:
+    description: 'Error in data'
+  500:
+    description: 'Some unknown exception!'
+definitions:
+  file_ids:
+    items:
+      format: int32
+      type: integer
+    readOnly: true
+    type: array
+  participant_ids:
+    type: array
+    items:
+      type: integer
+  host_ids:
+    type: array
+    items:
+      type: integer
+  invitee_ids:
+    type: array
+    items:
+      type: integer
+  rsvps:
+    items:
+      properties:
+        contact_person:
+          maxLength: 256
+          minLength: 1
+          type: string
+          x-nullable: true
+        email:
+          format: email
+          maxLength: 128
+          minLength: 1
+          type: string
+          x-nullable: true
+        phone:
+          maxLength: 32
+          minLength: 1
+          type: string
+          x-nullable: true
+        row_id:
+          format: int32
+          readOnly: true
+          type: integer
+      type: object
+    type: array
+  external_hosts:
+    items:
+      properties:
+        host_designation:
+          maxLength: 128
+          minLength: 1
+          type: string
+          x-nullable: true
+        host_email:
+          format: email
+          maxLength: 128
+          minLength: 1
+          type: string
+          x-nullable: true
+        host_first_name:
+          maxLength: 128
+          minLength: 1
+          type: string
+          x-nullable: true
+        host_last_name:
+          maxLength: 128
+          minLength: 1
+          type: string
+          x-nullable: true
+        row_id:
+          format: int32
+          readOnly: true
+          type: integer
+      type: object
+    type: array
+  external_invitees:
+    items:
+      properties:
+        invitee_designation:
+          maxLength: 128
+          minLength: 1
+          type: string
+          x-nullable: true
+        invitee_email:
+          format: email
+          maxLength: 128
+          minLength: 1
+          type: string
+          x-nullable: true
+        invitee_first_name:
+          maxLength: 128
+          minLength: 1
+          type: string
+          x-nullable: true
+        invitee_last_name:
+          maxLength: 128
+          minLength: 1
+          type: string
+          x-nullable: true
+        row_id:
+          format: int32
+          readOnly: true
+          type: integer
+      type: object
+    type: array
+  external_participants:
+    items:
+      properties:
+        participant_designation:
+          maxLength: 128
+          minLength: 1
+          type: string
+          x-nullable: true
+        participant_email:
+          format: email
+          maxLength: 128
+          minLength: 1
+          type: string
+          x-nullable: true
+        participant_first_name:
+          maxLength: 128
+          minLength: 1
+          type: string
+          x-nullable: true
+        participant_last_name:
+          maxLength: 128
+          minLength: 1
+          type: string
+          x-nullable: true
+        row_id:
+          format: int32
+          readOnly: true
+          type: integer
+      type: object
+    type: array
+  open_to_account_types:
+    items:
+      enum:
+      - corporate
+      - buy-side
+      - sell-side
+      - general investor
+      - admin
+      - guest
+      type: string
+    type: array
+  cc_emails:
+    items:
+      format: email
+      type: string
+    type: array
+    x-nullable: true

@@ -1,0 +1,9 @@
+CRUD TEST
+1. POST
+ - upload file with form data
+ - test blank file upload
+ - test upload others data without file
+ - test upload file different different types
+2. PUT
+3. DELETE
+4. GET

@@ -1,0 +1,21 @@
+Delete a Event Invite
+---
+tags:
+  - Event Invites
+parameters:
+  - in: header
+    name: Authorization
+    type: string
+  - in: path
+    name: row_id
+    schema:
+      type: int
+    required: true
+    description: 'The event invite request to delete'
+responses:
+  204:
+    description: 'Event Invite deleted'
+  404:
+    description: 'Event Invite id: <row_id> does not exist'
+  500:
+    description: 'Some unknown exception!'

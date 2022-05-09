@@ -1,0 +1,18 @@
+Updates the registration request status on successful verification link
+---
+tags:
+  - Registration Requests
+parameters:
+  - in: path
+    name: token
+    schema:
+      type: string
+    required: true
+    description: Special token generated for the link
+responses:
+  200:
+    description: '"Email has been successfully verified" or "Email already verified"'
+  404:
+    description: Bad email
+  500:
+    description: Some unknown exception!

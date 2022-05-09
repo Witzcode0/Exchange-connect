@@ -1,0 +1,98 @@
+definitions:
+  ManagementProfile:
+    properties:
+      account_profile:
+        type: string
+        x-nullable: true
+      account_profile_id:
+        format: int32
+        readOnly: true
+        type: integer
+      created_date:
+        format: date-time
+        readOnly: true
+        type: string
+        x-nullable: true
+      description:
+        maxLength: 9216
+        type: string
+        x-nullable: true
+      designation:
+        maxLength: 128
+        type: string
+        x-nullable: true
+      links:
+        readOnly: true
+        type: string
+      modified_date:
+        format: date-time
+        readOnly: true
+        type: string
+        x-nullable: true
+      name:
+        maxLength: 256
+        type: string
+        x-nullable: true
+      profile_photo:
+        type: string
+        x-nullable: true
+      profile_photo_url:
+        format: url
+        readOnly: true
+        type: string
+      row_id:
+        format: int32
+        readOnly: true
+        type: integer
+      sequence_id:
+        format: int32
+        readOnly: true
+        type: integer
+      user_id:
+        format: int32
+        type: integer
+        x-nullable: true
+    required:
+    - account_profile_id
+    - sequence_id
+    type: object
+  ManagementProfileReadArgs:
+    properties:
+      account_profile_id:
+        type: string
+      created_date_from:
+        format: date-time
+        type: string
+      created_date_to:
+        format: date-time
+        type: string
+      operator:
+        enum:
+        - and
+        - or
+        type: string
+        default: and
+      page:
+        format: int32
+        type: integer
+        default: 1
+      per_page:
+        format: int32
+        type: integer
+        default: 20
+      pfields:
+        items:
+          type: string
+        type: array
+      sort:
+        enum:
+        - asc
+        - dsc
+        type: string
+        default: asc
+      sort_by:
+        items:
+          type: string
+        type: array
+        default: row_id
+    type: object
